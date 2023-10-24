@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 // import logo from '../../assets/images/logo.png';
 // import second from '../../assets/images/logo_black.png';
-
 import './header.scss';
+
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

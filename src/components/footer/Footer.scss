@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Mont-Bold';
-    src: url('/public/fonts/Mont-Bold.ttf') format('woff');
+    src: url('../../../public/fonts/Mont-Bold.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Mont-SemiBold';
-    src: url('/public/fonts/Mont-SemiBold.ttf') format('woff');
+    src: url('../../../public/fonts/Mont-SemiBold.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -52,11 +52,11 @@
         height: 32px;
         width: 32px;
         position: relative;
-        background-image: url('/public/icons/Slider\ button\ -\ Default\ \(right\).png');
+        background-image: url('../../../public/icons/Slider\ button\ -\ Default\ \(right\).png');
 
         &::before {
             position: absolute;
-            transform: translateX(-120%) translateY(50%);
+            transform: translateX(-130%) translateY(50%);
             white-space: nowrap;
             content: 'Back to top';
 
@@ -82,17 +82,14 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 16px;
-            align-self: stretch;
         }
 
         &__back-block {
-            flex-grow: 1;
             width: 100%;
         }
 
         &__back-button {
             margin: auto;
-            padding-left: 100px;
         }
 
         &__links {
