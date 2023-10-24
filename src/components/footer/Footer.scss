@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'Mont-Bold';
+    src: url('../../../public/fonts/Mont-Bold.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mont-SemiBold';
+    src: url('../../../public/fonts/Mont-SemiBold.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.footer {
+    height: 96px;
+    box-shadow: 0px -1px 0px 0px #E2E6E9;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-around;
+
+    &__logo-link {
+        text-decoration: none;
+    }
+
+    &__links {
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 0.2;
+        margin-right: 100px;
+
+        font-family: 'Mont-Bold';
+    }
+
+    &__link {
+        text-decoration: none;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 11px;
+        letter-spacing: 0.48px;
+        color: #89939A;
+    }
+
+    &__back-button {
+        display: block;
+        height: 32px;
+        width: 32px;
+        position: relative;
+        background-image: url('../../../public/icons/Slider\ button\ -\ Default\ \(right\).png');
+
+        &::before {
+            position: absolute;
+            transform: translateX(-130%) translateY(50%);
+            white-space: nowrap;
+            content: 'Back to top';
+
+            font-family: 'Mont-SemiBold';
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            color: #89939A;
+        }
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .footer {
+        height: auto;
+        padding: 32px 16px;
+        gap: 32px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__links {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        &__back-block {
+            width: 100%;
+        }
+
+        &__back-button {
+            margin: auto;
+        }
+
+        &__links {
+            margin-right: 0;
+        }
+
+    }
+}
