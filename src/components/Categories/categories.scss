@@ -1,0 +1,41 @@
+.categories {
+  padding-bottom: 80px;
+
+  &__title {
+    color: #0F0F11;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -1%;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+  }
+
+  &__item {
+    &-picture {
+      margin: 0;
+      margin-bottom: 24px;
+    }
+
+    &-title {
+      margin: 0;
+      color: #0F0F11;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 25.56px;
+      margin-bottom: 4px;
+    }
+
+    &-description {
+      color: #89939A;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+    }
+  }
+}
