@@ -1,0 +1,49 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+
+  &__button {
+    border-radius: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #B4BDC3;
+
+    &--active {
+      background-color: #0F0F11;
+    }
+  }
+
+  &__content {
+    color: #0F0F11;
+    text-align: center;
+
+    /* Body text 14 */
+    font-family: Mont-Regular;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+    /* 150% */
+
+    &--active {
+      color: #FFF;
+    }
+  }
+
+  &__arrow {
+    width: 16px;
+    height: 16px;
+    fill: #0F0F11;
+
+    &--left {
+      background-image: url('../../assets/icons/Chevron\ \(Arrow\ Left\).svg');
+    }
+
+    &--right {
+      background-image: url('../../assets/icons/Chevron\ \(Arrow\ Right\).svg');
+    }
+  }
+}

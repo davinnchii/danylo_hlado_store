@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 
-// import logo from '../../assets/images/logo.png';
-// import second from '../../assets/images/logo_black.png';
+import logo from '../../assets/images/logo.png';
+import logoBlack from '../../assets/images/logo-black.png';
 import './header.scss';
 
 export const Header: React.FC = () => {
@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
         <a className="header__logo" href="/">
           <img
             className="header__logo-img"
-            src={isMenuOpen ? 'logo' : 'logo_black'}
+            src={isMenuOpen ? logo : logoBlack}
             alt="logo"
           />
         </a>
