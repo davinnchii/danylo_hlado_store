@@ -1,20 +1,5 @@
-@font-face {
-    font-family: 'Mont-Bold';
-    src: url('../../../public/fonts/Mont-Bold.ttf') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Mont-SemiBold';
-    src: url('../../../public/fonts/Mont-SemiBold.ttf') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
 .footer {
-    height: 96px;
+    padding: 32px;
     box-shadow: 0px -1px 0px 0px #E2E6E9;
 
     display: flex;
