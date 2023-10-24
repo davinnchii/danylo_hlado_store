@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Mont-Bold";
+  src: local("Mont-Bold"),
+   url("./assets/fonts/Mont-Bold.otf") format("truetype");
+  font-weight: bold;
+ }
+
+@font-face {
+  font-family: "Mont-Regular";
+  src: local("Mont-Regular"),
+   url("./assets/fonts/Mont-Regular.otf") format("truetype");
+  font-weight: bold;
+ }
+
+@font-face {
+  font-family: "Mont-SemiBold";
+  src: local("Mont-SemiBold"),
+   url("./assets/fonts/Mont-SemiBold.otf") format("truetype");
+  font-weight: bold;
+ }
+
+body {
+  margin: 0;
+  font-family: 'Mont-Bold', sans-serif;
+}
