@@ -1,5 +1,5 @@
-import React from "react";
-import "./Footer.scss";
+import React from 'react';
+import './Footer.scss';
 
 export const Footer = () => {
   return (
@@ -13,15 +13,17 @@ export const Footer = () => {
       </a>
 
       <div className="footer__links">
-        <a href="#" className="footer__link">github</a>
+        <a href="/" className="footer__link">github</a>
 
-        <a href="#" className="footer__link">contacts</a>
+        <a href="/" className="footer__link">contacts</a>
 
-        <a href="#" className="footer__link">rights</a>
+        <a href="/" className="footer__link">rights</a>
       </div>
 
       <div className="footer__back-block">
-        <a href="#home" className="footer__back-button"></a>
+        <a href="/" className="footer__back-button" aria-label="go-to-top">
+          <i className="footer__back-button" aria-hidden="true" />
+        </a>
       </div>
     </footer>
   );
