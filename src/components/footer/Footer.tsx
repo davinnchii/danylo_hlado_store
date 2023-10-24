@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.scss';
+import logo from '../../assets/images/logo.png';
 
 export const Footer = () => {
   return (
@@ -8,7 +9,7 @@ export const Footer = () => {
         <img
           className="footer__logo-image"
           alt="nice-gadgets-logo"
-          src="../../../public/logo512.png"
+          src={logo}
         />
       </a>
 
