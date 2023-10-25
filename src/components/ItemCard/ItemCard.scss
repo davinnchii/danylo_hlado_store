@@ -1,0 +1,26 @@
+.ItemCard {
+  display: flex;
+  flex-direction: column;
+
+  &__back-arrow {
+    position: relative;
+  }
+
+  &__back-link {
+    align-self: flex-start;
+    font-family: 'Mont-SemiBold';
+    color: #89939A;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      content: 'Back';
+    }
+
+    &:hover {
+      color: #0F0F11;
+    }
+  }
+}

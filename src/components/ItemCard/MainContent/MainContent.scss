@@ -1,0 +1,241 @@
+.MainContent {
+  display: grid;
+  grid-template-columns: repeat(24, 32px);
+  column-gap: 16px;
+
+  &__header {
+    color: #0F0F11;
+    font-family: 'Mont-Bold';
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+    box-sizing: border-box;
+    text-align: left;
+
+    margin: 16px 0 40px;
+    grid-column: 1/-1;
+  }
+
+  &__photos {
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+
+    &__item {
+      box-sizing: border-box;
+      border: 1px solid #C4C4C4;
+      border-radius: 8px;
+      padding: 8px;
+      object-fit: contain;
+
+      height: 80px;
+      width: 80px;
+    }
+
+    &__item-selected {
+      border-color: #0F0F11;
+    }
+  }
+
+  &__selected-photo {
+    grid-column: 3/12;
+
+    &__image {
+      max-height: 442px;
+    }
+  }
+
+  &__stats {
+    grid-column: 14/20;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #89939A;
+    font-family: 'Mont-SemiBold';
+    font-size: 12px;
+    font-weight: 600;
+
+    &__colors-header {
+      margin: 0 0 8px;
+    }
+
+    &__colors {
+      display: flex;
+      gap: 8px;
+
+      box-sizing: border-box;
+      border-bottom: 1px solid #E2E6E9;
+      padding-bottom: 24px;
+      width: 100%;
+    }
+
+    &__color {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      border: solid 2px white;
+      outline: 1px solid #E2E6E9;
+
+      &:hover {
+        outline-color: #B4BDC4;
+      }
+    }
+
+    &__color-selected {
+      outline-color: #0F0F11 !important;
+    }
+
+    &__capacity-header {
+      margin: 24px 0 8px;
+    }
+
+    &__capacites {
+      display: flex;
+      gap: 8px;
+
+      color: #0F0F11;
+      text-align: center;
+      font-family: 'Mont-SemiBold';
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #E2E6E9;
+      padding-bottom: 24px;
+      width: 100%;
+    }
+
+    &__capacity {
+      width: 56px;
+      height: 32px;
+      color: #000;
+      border-radius: 4px;
+      border: solid 1px #E2E6E9;
+      background-color: #FFF;
+
+      &:hover {
+        border-color: #0F0F11;
+      }
+    }
+
+    &__capacity-selected {
+      color: #FFF;
+      background-color: #0F0F11;
+      border-color: #0F0F11;
+    }
+
+    &__prices {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+      margin-top: 32px;
+    }
+
+    &__price-discount {
+      color: #0F0F11;
+      font-family: 'Mont-Bold';
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 41px;
+      letter-spacing: -0.32px;
+
+      &::before {
+        content: '$';
+      }
+    }
+
+    &__price-regular {
+      color: var(--gray-secondary, #89939A);
+      font-family: 'Mont-Bold';
+      font-size: 22px;
+      font-weight: 500;
+      text-decoration: line-through;
+
+      &::before {
+        content: '$';
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    &__short {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      width: 100%;
+      margin-top: 32px;
+      row-gap: 8px;
+
+      &__header {
+        grid-column: 1;
+        text-align: left;
+
+        color: #89939A;
+        font-family: 'Mont-SemiBold';
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      &__screen-header {
+        grid-row: 1;
+      }
+
+      &__resolution-header {
+        grid-row: 2;
+      }
+
+      &__processor-header {
+        grid-row: 3;
+      }
+
+      &__ram-header {
+        grid-row: 4;
+      }
+
+      &__value {
+        grid-column: 2;
+        text-align: right;
+
+        color:#0F0F11;
+        font-family: 'Mont-SemiBold';
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      &__screen {
+        grid-row: 1;
+      }
+
+      &__resolution {
+        grid-row: 2;
+      }
+
+      &__processor {
+        grid-row: 3;
+      }
+
+      &__ram {
+        grid-row: 4;
+      }
+    }
+  }
+
+  &__id {
+    text-transform: uppercase;
+    text-align: right;
+    font-family: 'Mont-SemiBold';
+    font-size: 12px;
+    font-weight: 700;
+    color: #B4BDC3;
+
+    grid-column: -4/-1;
+    text-align: right;
+  }
+}
