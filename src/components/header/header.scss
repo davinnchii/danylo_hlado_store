@@ -146,15 +146,18 @@
     &__menu {
       display: none;
       flex-direction: column;
+      height: 100vh;
       gap: 16px;
       top: 72px;
       left: 0;
       right: 0;
       background-color: #fff;
       position: absolute;
+      z-index: 999;
 
       &-link {
         padding-bottom: 8px;
+        height: 27px;
       }
     }
   }
