@@ -23,3 +23,18 @@ body {
   margin: 0;
   font-family: 'Mont-Bold', sans-serif;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  padding-inline: 24px;
+}
+
+@media (max-width: 639px) {
+  .wrapper {
+    padding-inline: 16px;
+  }
+}
