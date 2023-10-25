@@ -4,26 +4,31 @@ import './MainContent.scss';
 import { Button } from '../../Button';
 import { Phone } from '../../../Types';
 import { HeartIcon } from '../../HeartIcon';
+import { getSplitedGB } from '../../../utils/getSplitedGB';
 
 const getImagelink = (img: string) => {
   return `https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/${img}`;
 };
 
-const getValidGBString = (GBString: string) => `${GBString.slice(0, -2)} GB`;
-
 type Props = {
   phone: Phone;
   phoneId: number;
+  selectedCapacity: string;
+  onSelectCapacity: (selectedCapacity: string) => void;
 };
 
-export const MainContent: React.FC<Props> = ({ phone, phoneId }) => {
+export const MainContent: React.FC<Props> = ({
+  phone,
+  phoneId,
+  selectedCapacity,
+  onSelectCapacity,
+}) => {
   const {
     name,
     images,
     colorsAvailable,
     color,
     capacityAvailable,
-    capacity,
     priceRegular,
     priceDiscount,
     screen,
@@ -34,10 +39,9 @@ export const MainContent: React.FC<Props> = ({ phone, phoneId }) => {
 
   const [selectedPhoto, setSelectedPhoto] = useState(getImagelink(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
-  const [selectedCapacity, setSelectedCapacity] = useState(capacity);
 
   return (
-    <main className="MainContent">
+    <section className="MainContent">
       <h1 className="MainContent__header">{name}</h1>
 
       <div className="MainContent__photos">
@@ -96,11 +100,11 @@ export const MainContent: React.FC<Props> = ({ phone, phoneId }) => {
                 'MainContent__stats__capacity-selected':
                   selectedCapacity === currentCapacity,
               })}
-              onClick={() => setSelectedCapacity(currentCapacity)}
+              onClick={() => onSelectCapacity(currentCapacity)}
               aria-label={`capacity-${currentCapacity}`}
               type="button"
             >
-              {getValidGBString(currentCapacity)}
+              {getSplitedGB(currentCapacity)}
             </button>
           ))}
         </div>
@@ -167,7 +171,7 @@ export const MainContent: React.FC<Props> = ({ phone, phoneId }) => {
           <span className="MainContent__stats__short__ram
             MainContent__stats__short__value"
           >
-            {getValidGBString(ram)}
+            {getSplitedGB(ram)}
           </span>
         </div>
       </div>
@@ -175,6 +179,6 @@ export const MainContent: React.FC<Props> = ({ phone, phoneId }) => {
       <div className="MainContent__id">
         {`id:${phoneId}`}
       </div>
-    </main>
+    </section>
   );
 };
