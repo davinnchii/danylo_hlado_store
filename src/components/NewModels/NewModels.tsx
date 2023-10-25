@@ -2,6 +2,7 @@ import React from 'react';
 
 import { SwiperCards } from '../SwiperCards';
 import './newModels.scss';
+import { ProductCard } from '../productCard/productCard';
 
 export const NewModels = () => {
   return (
@@ -31,7 +32,9 @@ export const NewModels = () => {
         <SwiperCards
           arrowLeftClassName="new-models__arrow-left"
           arrowRightClassName="new-models__arrow-right"
-        />
+        >
+          <ProductCard />
+        </SwiperCards>
       </div>
     </section>
   );
