@@ -9,18 +9,20 @@ import './swiperCards.scss';
 type Props = {
   arrowLeftClassName: string,
   arrowRightClassName: string,
+  children: React.ReactChild;
 };
 
 export const SwiperCards: React.FC<Props> = ({
   arrowLeftClassName,
   arrowRightClassName,
+  children,
 }) => {
   return (
     <Swiper
       className="swiper-cards"
       modules={[Navigation]}
       slidesPerView={1}
-      navigation={{ nextEl: `.${arrowLeftClassName}`, prevEl: `.${arrowRightClassName}` }}
+      navigation={{ nextEl: `.${arrowRightClassName}`, prevEl: `.${arrowLeftClassName}` }}
       autoHeight
       breakpoints={{
         320: {
@@ -39,7 +41,7 @@ export const SwiperCards: React.FC<Props> = ({
     >
       {[1, 2, 3, 4, 5, 6].map(item => (
         <SwiperSlide key={item}>
-          <div className="swiper__item">slide</div>
+          {children}
         </SwiperSlide>
       ))}
     </Swiper>

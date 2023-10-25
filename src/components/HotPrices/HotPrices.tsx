@@ -2,6 +2,7 @@ import React from 'react';
 
 import './hotPrices.scss';
 import { SwiperCards } from '../SwiperCards';
+import { ProductCard } from '../productCard/productCard';
 
 export const HotPrices = () => {
   return (
@@ -29,7 +30,9 @@ export const HotPrices = () => {
         <SwiperCards
           arrowLeftClassName="hot-prices__arrow-left"
           arrowRightClassName="hot-prices__arrow-right"
-        />
+        >
+          <ProductCard />
+        </SwiperCards>
       </div>
     </section>
   );
