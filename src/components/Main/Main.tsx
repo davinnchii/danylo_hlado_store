@@ -1,47 +1,21 @@
 import React from 'react';
 
 import './main.scss';
+import { SwiperMain } from '../SwiperMain';
 
 export const Main = () => {
   return (
     <section className="main">
       <div className="container">
-        <h1 className="main__title">Welcome to Nice Gadgets store!</h1>
-
-        <div className="main__carousel">
-          <div className="main__carousel-content">
-            <div className="main__carousel-arrows">
-              <button
-                className="main__carousel-arrow arrow arrow-left"
-                type="button"
-                aria-label="arrow-left"
-              />
-
-              <button
-                className="main__carousel-arrow arrow arrow-right"
-                type="button"
-                aria-label="arrow-right"
-              />
+        <div className="main__content">
+          <h1 className="main__title">
+            <div className="wrapper">
+              Welcome to Nice Gadgets store!
             </div>
-          </div>
+          </h1>
 
-          <div className="main__carousel-dots">
-            <button
-              className="dot active-dot"
-              type="button"
-              aria-label="dot"
-            />
-
-            <button
-              className="dot"
-              type="button"
-              aria-label="dot"
-            />
-            <button
-              className="dot"
-              type="button"
-              aria-label="dot"
-            />
+          <div className="main__swiper">
+            <SwiperMain />
           </div>
         </div>
       </div>

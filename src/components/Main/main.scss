@@ -1,7 +1,17 @@
 .main {
-  padding: 56px 0 80px;
+  margin: 56px 0 80px;
+
+  &__content {
+    display: grid;
+    column-gap: 16px;
+    --columns: 24;
+    grid-template-columns: repeat(var(--columns), 1fr);
+  }
 
   &__title {
+    grid-column: 1 / -1;
+
+    margin: 0;
     color: #0F0F11;
     font-weight: 800;
     font-size: 48px;
@@ -10,111 +20,37 @@
     margin-bottom: 56px;
   }
 
-  &__carousel {
-    &-content {
-      background-image: url(../../assets/images/banner.png);
-      background-repeat: no-repeat;
-      height: 400px;
-      max-width: 1040px;
+  &__swiper {
+    grid-column: 1 / -1;
+  }
+}
 
-      margin-inline: 48px;
-      margin-bottom: 8px;
+@media (max-width: 1199px) {
+  .main {
+    margin: 32px 0 64px;
 
-      position: relative;
+    &__content {
+      --columns: 12;
     }
 
-    &-dots {
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    &-arrow {
-      position: absolute;
-      width: 32px;
-      height: 100%;
+    &__title {
+      margin-bottom: 32px;
     }
   }
 }
 
-.arrow {
-  border: 1px solid #B4BDC3;
-  border-radius: 48px;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
+@media (max-width: 639px) {
+  .main {
+    margin: 24px 0 56px;
 
-  &-left {
-    left: -48px;
-    background-image: url(../../assets/icons/arrow-left-black.svg);
-  }
+    &__title {
+      font-size: 32px;
+      margin-bottom: 24px;
+      line-height: 41px;
+    }
 
-  &-right {
-    right: -48px;
-    background-image: url(../../assets/icons/arrow-right-black.svg);
+    &__content {
+      --columns: 4;
+    }
   }
 }
-
-.dot {
-  border: none;
-  width: 14px;
-  height: 4px;
-  margin: 10px 5px;
-  background-color: #E2E6E9;
-  cursor: pointer;
-}
-
-.active-dot {
-  background-color: #0F0F11;
-}
-
-
-// @mixin pageGrid {
-//   --columns: 2;
-//   display: grid;
-//   column-gap: 20px;
-//   grid-template-columns: repeat(var(--columns), 1fr);
-
-//   @include onTablet {
-//     --columns: 6;
-//     column-gap: 24px;
-//   }
-
-//   @include onDesktop {
-//     --columns: 12;
-//   }
-// }
-
-
-// .about {
-//   @include pageGrid;
-
-//   &__title {
-//     grid-column: 1 / -1;
-
-//     @include onTablet {
-//       grid-column: 1 / 4;
-//     }
-
-//     @include onDesktop {
-//       grid-column: span 6;
-//     }
-//   }
-
-//   &__description {
-//     grid-column: 1 / -1;
-
-//     @include onTablet {
-//       grid-column: 4 / 7;
-//     }
-
-//     @include onDesktop {
-//       grid-column: span 6;
-//     }
-
-//     font-size: 23px;
-//     font-weight: 500;
-//     line-height: 32.2px;
-//   }
-// }

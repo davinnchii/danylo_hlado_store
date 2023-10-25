@@ -1,5 +1,5 @@
 .categories {
-  padding-bottom: 80px;
+  margin-bottom: 80px;
 
   &__title {
     color: #0F0F11;
@@ -11,15 +11,22 @@
   }
 
   &__list {
+    display: grid;
+    column-gap: 16px;
+    --columns: 24;
+    grid-template-columns: repeat(var(--columns), 1fr);
+
+    padding: 0;
     list-style: none;
-    display: flex;
-    gap: 16px;
   }
 
   &__item {
+    grid-column: span 8;
+
     &-picture {
       margin: 0;
       margin-bottom: 24px;
+      width: 100%;
     }
 
     &-title {
@@ -36,6 +43,44 @@
       font-size: 14px;
       font-weight: 500;
       line-height: 21px;
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .categories {
+    margin-bottom: 64px;
+
+    &__list {
+    --columns: 12;
+    }
+
+    &__item {
+      grid-column: span 4;
+
+      &-picture {
+        border-radius: 8px;
+      }
+    }
+
+    &__title {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .categories {
+    margin-bottom: 56px;
+
+    &__list {
+      --columns: 4;
+      row-gap: 32px;
+    }
+
+    &__title {
+      font-size: 22px;
+      line-height: 30.4px;
     }
   }
 }

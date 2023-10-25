@@ -1,5 +1,5 @@
 .hot-prices {
-  padding-bottom: 80px;
+  margin-bottom: 80px;
 
   &__top {
     display: flex;
@@ -19,9 +19,41 @@
     display: flex;
     gap: 16px;
   }
+}
 
-  &__arrow {
-    width: 32px;
-    height: 32px;
+.arrow {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #B4BDC3;
+  border-radius: 48px;
+  background: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &-left {
+    background-image: url(../../assets/icons/arrow-left-black.svg);
+  }
+
+  &-right {
+    background-image: url(../../assets/icons/arrow-right-black.svg);
+  }
+}
+
+@media (max-width: 1199px) {
+  .hot-prices {
+    margin-bottom: 64px;
+  }
+}
+
+@media (max-width: 639px) {
+  .hot-prices {
+    margin-bottom: 56px;
+
+    &__title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 30.8px;
+    }
   }
 }
