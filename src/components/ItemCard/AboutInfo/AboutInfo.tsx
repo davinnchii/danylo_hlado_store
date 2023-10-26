@@ -20,6 +20,17 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
     cell,
   } = phone;
 
+  const dataFormTable = {
+    screen,
+    resolution,
+    processor,
+    RAM: getSplitedGB(ram),
+    'built in memory': getSplitedGB(selectedCapacity),
+    camera,
+    zoom,
+    cell: cell.join(' '),
+  };
+
   return (
     <article className="About-info">
       <div className="About-info__about">
@@ -27,16 +38,25 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
           About
         </h2>
 
-        <div className="About-info__description">
+        <div className="About-info__about__description">
           {description.map(({ title, text }) => (
-            <React.Fragment key={title}>
-              <h3 className="">
+            <div
+              className="About-info__about__description__block"
+              key={title}
+            >
+              <h3 className="About-info__about__description__title">
                 {title}
               </h3>
-              <p>
-                {text}
-              </p>
-            </React.Fragment>
+
+              {text.map((paragraph) => (
+                <p
+                  className="About-info__about__description__text"
+                  key={paragraph}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           ))}
         </div>
       </div>
@@ -46,38 +66,20 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
           Tech specs
         </h2>
 
-        <div className="About-info-stats">
-          <span>Screen</span>
+        <div className="About-info__tech-specs__stats">
+          {Object.entries(dataFormTable).map(([key, value]) => {
+            return (
+              <div className="About-info__tech-specs__stats__row" key={key}>
+                <span className="About-info__tech-specs__stats__title">
+                  {key}
+                </span>
 
-          <span>Resolution</span>
-
-          <span>Processor</span>
-
-          <span>RAM</span>
-
-          <span>Built in memory</span>
-
-          <span>Camera</span>
-
-          <span>Zoom</span>
-
-          <span>Cell</span>
-
-          <span>{screen}</span>
-
-          <span>{resolution}</span>
-
-          <span>{processor}</span>
-
-          <span>{getSplitedGB(ram)}</span>
-
-          <span>{getSplitedGB(selectedCapacity)}</span>
-
-          <span>{camera}</span>
-
-          <span>{zoom}</span>
-
-          <span>{cell.join(' ')}</span>
+                <span className="About-info__tech-specs__stats__data">
+                  {value}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </article>

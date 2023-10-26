@@ -9,7 +9,7 @@ export const HomePage = () => {
   return (
     <>
       <Main />
-      <NewModels />
+      <NewModels title="Brand new models" />
       <Categories />
       <HotPrices />
     </>
