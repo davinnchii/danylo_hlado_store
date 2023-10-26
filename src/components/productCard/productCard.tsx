@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './productCard.scss';
 import iphoneImg from '../../assets/images/phoneImages/iphoneImg.png';
-import addToFavorite from '../../assets/images/phoneImages/addToFavorite.png';
+import addToFavorite from '../../assets/images/phoneImages/addToFavorite.svg';
+import addedToFavorite from
+  '../../assets/images/phoneImages/addedToFavorite.svg';
 
 export const ProductCard = () => {
+  const [isAdded, setAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddToCart = () => {
+    if (isAdded) {
+      setAdded(false);
+    } else {
+      setAdded(true);
+    }
+  };
+
+  const handleAddToFavorite = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+    } else {
+      setIsFavorite(true);
+    }
+  };
+
   return (
     <section className="card">
       <span className="card__image-block">
@@ -60,23 +81,25 @@ export const ProductCard = () => {
       </div>
 
       <span className="card__buttons">
-        <a
-          href="/link"
-          className="card__button"
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          className={`card__button ${isAdded ? 'added' : ''}`}
         >
-          Add to cart
-        </a>
+          {isAdded ? 'Added' : 'Add to cart'}
+        </button>
 
-        <a
-          href="/link"
-          className="card__favorite"
+        <button
+          type="button"
+          onClick={handleAddToFavorite}
+          className={`card__favorite ${isFavorite ? 'added' : ''}`}
         >
           <img
-            src={addToFavorite}
+            src={isFavorite ? addedToFavorite : addToFavorite}
             alt="add to favorite"
             className="card__favorite--img"
           />
-        </a>
+        </button>
       </span>
     </section>
   );

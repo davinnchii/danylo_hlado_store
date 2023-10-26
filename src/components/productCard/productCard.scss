@@ -140,6 +140,39 @@
     background: $accentColor;
     color: #fff;
     text-decoration: none;
+    border: 1px solid $iconsColor;
+
+    &:hover {
+      box-shadow: 1px 4px 16px 0 rgba(232, 232, 240, 0.4);
+
+      animation-name: button-add;
+      animation-duration: 0.3s;
+      animation-timing-function: ease;
+      animation-iteration-count: 2;
+
+      @keyframes button-add {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        25% {
+          transform: rotate(-1deg);
+        }
+
+        50% {
+          transform: rotate(1deg);
+        }
+
+        100% {
+          transform: rotate(0);
+        }
+      }
+    }
+
+    &.added {
+      background: #fff;
+      color: $accentColor;
+    }
   }
 
   &__favorite {
@@ -150,8 +183,16 @@
     border-radius: 48px;
     border: 1px solid $iconsColor;
 
+    background: #fff;
+
+    &:hover {
+      border: 1px solid $primaryColor;
+    }
+
     &--img {
-      width: 100%;
+      width: 16px;
+      height: 16px;
+      margin-top: 1.5px
     }
   }
 }
