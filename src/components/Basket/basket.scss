@@ -12,7 +12,7 @@
   &__title {
     grid-area: title;
     width: 320px;
-    font-family: Mont;
+    font-family: 'Mont-SemiBold';
     font-size: 48px;
     font-weight: 800;
     line-height: 56px;
@@ -43,7 +43,7 @@
     }
 
     &__title {
-      font-family: Mont;
+      font-family: 'Mont-Regular', serif;
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;
@@ -51,7 +51,7 @@
     }
 
     &__count {
-      font-family: Mont;
+      font-family: 'Mont-Regular', serif;
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;
@@ -66,6 +66,10 @@
       text-align: end;
       margin-left: 24px;
       width: 80px;
+      font-family: 'Mont-Bold', serif;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 800;
     }
   }
 
@@ -87,7 +91,7 @@
     .totally {
       &__title {
         color: #0F0F11;
-        font-family: Mont;
+        font-family: 'Mont-SemiBold', serif;
         font-size: 32px;
         font-style: normal;
         font-weight: 800;
@@ -104,6 +108,7 @@
         text-align: center;
         width: 321px;
         color: #89939A;
+        font-family: Mont-Regular, serif;
       }
 
       &__button {
@@ -112,7 +117,7 @@
         padding: 13.5px 125.5px;
         text-decoration: none;
         background: #216CFF;
-        font-family: Mont;
+        font-family: Mont-Regular, serif;
         color: #FFF;
         font-size: 14px;
         font-style: normal;
