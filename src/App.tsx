@@ -1,21 +1,19 @@
 import React from 'react';
 
+import { Outlet } from 'react-router-dom';
 import { Header } from './components/header/Header';
-
 import { Footer } from './components/footer/Footer';
 import { HomePage } from './pages/HomePage/HomePage';
-import { Basket } from './components/Basket/Basket';
+
 import './App.scss';
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
+    <>
       <Header />
       <HomePage />
-      <Basket />
+      <Outlet />
       <Footer />
-    </div>
+    </>
   );
-}
-
-export default App;
+};
