@@ -20,7 +20,7 @@ export const Root = () => {
           <Route path="tablets" element={<h1>tablets</h1>} />
           <Route path="accessories" element={<h1>accessories</h1>} />
           <Route path="favourites" element={<h1>favourites</h1>} />
-          <Route path="shopping-bag" element={<h1>shopping-bag</h1>} />
+          <Route path="cart" element={<h1>shopping-bag</h1>} />
 
         </Route>
         <Route path="*" element={<NotFoundPage />} />
