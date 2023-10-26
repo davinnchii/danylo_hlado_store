@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -10,7 +11,7 @@ import './header.scss';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectMenuActive, setSelectMenuActive] = useState('');
+  const [selectMenuActive, setSelectMenuActive] = useState('home');
 
   const handleMenuItemClick = (selectedItem: string) => {
     setIsMenuOpen(false);
@@ -23,7 +24,7 @@ export const Header: React.FC = () => {
         <Link
           className="header__logo"
           to="/"
-          onClick={() => handleMenuItemClick('')}
+          onClick={() => handleMenuItemClick('home')}
         >
           <img
             className="header__logo-img"
@@ -34,11 +35,11 @@ export const Header: React.FC = () => {
 
         <nav className={`header__menu ${isMenuOpen ? 'active-menu' : ''}`}>
           <Link
-            to="/"
+            to="/home"
             className={classnames('header__menu-link', {
-              'active-menu-link': selectMenuActive === '',
+              'active-menu-link': selectMenuActive === 'home',
             })}
-            onClick={() => handleMenuItemClick('')}
+            onClick={() => handleMenuItemClick('home')}
           >
             home
           </Link>
@@ -82,9 +83,13 @@ export const Header: React.FC = () => {
             onClick={() => setIsMenuOpen(prev => !prev)}
           />
 
-          <Link to="/favourites" className="icon icon--favourites" />
+          <Link to="/favourites" className="icon icon--favourites__link">
+            <i className="icon--favourites" />
+          </Link>
 
-          <Link to="/shopping-bag" className="icon icon--shopping-bag" />
+          <Link to="/shopping-bag" className="icon icon--shopping-bag__link">
+            <i className="icon--shopping-bag" />
+          </Link>
         </div>
       </div>
     </header>
