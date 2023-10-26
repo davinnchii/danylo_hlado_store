@@ -10,6 +10,7 @@ import { App } from './App';
 
 import { HomePage } from './pages/HomePage/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { PhonesPage } from './pages/PhonesPage/PhonesPage';
 
 export const Root = () => {
   return (
@@ -19,7 +20,7 @@ export const Root = () => {
           <Route index element={<HomePage />} />
 
           <Route path="phones">
-            <Route index element={<h1>phones</h1>} />
+            <Route index element={<PhonesPage />} />
             <Route path=":id?" element={<h1>phone number</h1>} />
           </Route>
 
