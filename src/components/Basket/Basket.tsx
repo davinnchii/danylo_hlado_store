@@ -13,102 +13,136 @@ export const Basket = () => {
       <div className="basket__title">Cart</div>
       <div className="basket__cards">
         <div className="basket__card">
-          <img
-            className="basket__card__icon padding"
-            src={close}
-            alt=""
-          />
-          <img
-            className="basket__card__phone padding"
-            src={phoneimage}
-            alt=""
-          />
-          <div className="basket__card__title padding">
-            Apple iPhone 14 Pro 128GB Silver (MQ023)
-          </div>
-          <div className="basket__card__quantity padding">
+          <div className="basket__card__info">
             <img
-              className="basket__card__icon-minus padding"
-              src={minus}
+              className="basket__card__icon padding"
+              src={close}
               alt=""
             />
-            <div className="basket__card__count padding">1</div>
+
             <img
-              className="basket__card__icon-plus padding"
-              src={plus}
+              className="basket__card__phone padding"
+              src={phoneimage}
               alt=""
             />
+
+            <div className="basket__card__title padding">
+              Apple iPhone 14 Pro 128GB Silver (MQ023)
+            </div>
           </div>
-          <div className="basket__card__totally padding">
-            $999
+          <div className="basket__card__totally">
+            <div className="basket__card__quantity padding">
+              <img
+                className="basket__card__icon-minus padding"
+                src={minus}
+                alt=""
+              />
+
+              <div className="basket__card__count padding">1</div>
+
+              <img
+                className="basket__card__icon-plus padding"
+                src={plus}
+                alt=""
+              />
+
+            </div>
+
+            <div className="basket__card__sum padding">
+              $999
+            </div>
           </div>
         </div>
+
         <div className="basket__card">
-          <img
-            className="basket__card__icon padding"
-            src={close}
-            alt=""
-          />
-          <img
-            className="basket__card__phone padding"
-            src={phoneimage}
-            alt=""
-          />
-          <div className="basket__card__title padding">
-            Apple iPhone 14 Pro 128GB Silver (MQ023)
-          </div>
-          <div className="basket__card__quantity padding">
+          <div className="basket__card__info">
             <img
-              className="basket__card__icon-minus padding"
-              src={minus}
+              className="basket__card__icon padding"
+              src={close}
               alt=""
             />
-            <div className="basket__card__count padding">1</div>
+
             <img
-              className="basket__card__icon-plus padding"
-              src={plus}
+              className="basket__card__phone padding"
+              src={phoneimage}
               alt=""
             />
+
+            <div className="basket__card__title padding">
+              Apple iPhone 14 Pro 128GB Silver (MQ023)
+            </div>
           </div>
-          <div className="basket__card__totally padding">
-            $999
+          <div className="basket__card__totally">
+            <div className="basket__card__quantity padding">
+              <img
+                className="basket__card__icon-minus padding"
+                src={minus}
+                alt=""
+              />
+
+              <div className="basket__card__count padding">1</div>
+
+              <img
+                className="basket__card__icon-plus padding"
+                src={plus}
+                alt=""
+              />
+
+            </div>
+
+            <div className="basket__card__sum padding">
+              $999
+            </div>
           </div>
         </div>
+
         <div className="basket__card">
-          <img
-            className="basket__card__icon padding"
-            src={close}
-            alt=""
-          />
-          <img
-            className="basket__card__phone padding"
-            src={phoneimage}
-            alt=""
-          />
-          <div className="basket__card__title padding">
-            Apple iPhone 14 Pro 128GB Silver (MQ023)
-          </div>
-          <div className="basket__card__quantity padding">
+          <div className="basket__card__info">
             <img
-              className="basket__card__icon-minus padding"
-              src={minus}
+              className="basket__card__icon padding"
+              src={close}
               alt=""
             />
-            <div className="basket__card__count padding">1</div>
+
             <img
-              className="basket__card__icon-plus padding"
-              src={plus}
+              className="basket__card__phone padding"
+              src={phoneimage}
               alt=""
             />
+
+            <div className="basket__card__title padding">
+              Apple iPhone 14 Pro 128GB Silver (MQ023)
+            </div>
           </div>
-          <div className="basket__card__totally padding">
-            $999
+          <div className="basket__card__totally">
+            <div className="basket__card__quantity padding">
+              <img
+                className="basket__card__icon-minus padding"
+                src={minus}
+                alt=""
+              />
+
+              <div className="basket__card__count padding">1</div>
+
+              <img
+                className="basket__card__icon-plus padding"
+                src={plus}
+                alt=""
+              />
+
+            </div>
+
+            <div className="basket__card__sum padding">
+              $999
+            </div>
           </div>
         </div>
       </div>
       <div className="basket__totally totally">
         <div className="totally__title">$2657</div>
+
         <div className="totally__subtitle">Total for 3 items</div>
+
         <a className="totally__button" href="/">Checkout</a>
       </div>
     </section>
