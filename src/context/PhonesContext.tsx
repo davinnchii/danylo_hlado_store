@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { PhoneType } from '../types/PhoneType';
+import { ProductType } from '../types/ProductType';
 
 interface PhonesContextType {
-  phones: PhoneType[],
-  setPhones: React.Dispatch<React.SetStateAction<PhoneType[]>>
+  phones: ProductType[],
+  setPhones: React.Dispatch<React.SetStateAction<ProductType[]>>
 }
 
 const PhonesContext = React.createContext({} as PhonesContextType);
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const PhonesContextProvider: React.FC<Props> = ({ children }) => {
-  const [phones, setPhones] = useState<PhoneType[]>([]);
+  const [phones, setPhones] = useState<ProductType[]>([]);
 
   const value = {
     phones,

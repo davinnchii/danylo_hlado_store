@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { TabletType } from '../types/TabletType';
+import { ProductType } from '../types/ProductType';
 
 interface TabletsContextType {
-  tablets: TabletType[],
-  setTablets: React.Dispatch<React.SetStateAction<TabletType[]>>
+  tablets: ProductType[],
+  setTablets: React.Dispatch<React.SetStateAction<ProductType[]>>
 }
 
 const TabletsContext = React.createContext({} as TabletsContextType);
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const TabletsContextProvider: React.FC<Props> = ({ children }) => {
-  const [tablets, setTablets] = useState<TabletType[]>([]);
+  const [tablets, setTablets] = useState<ProductType[]>([]);
 
   const value = {
     tablets,

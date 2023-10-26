@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { AccessoryType } from '../types/AccessoryType';
+import { ProductType } from '../types/ProductType';
 
 interface AccessoriesContextType {
-  accessories: AccessoryType[],
-  setAccessories: React.Dispatch<React.SetStateAction<AccessoryType[]>>
+  accessories: ProductType[],
+  setAccessories: React.Dispatch<React.SetStateAction<ProductType[]>>
 }
 
 const AccessoriesContext = React.createContext({} as AccessoriesContextType);
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const AccessoriesContextProvider: React.FC<Props> = ({ children }) => {
-  const [accessories, setAccessories] = useState<AccessoryType[]>([]);
+  const [accessories, setAccessories] = useState<ProductType[]>([]);
 
   const value = {
     accessories,

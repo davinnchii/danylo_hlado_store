@@ -1,4 +1,4 @@
-export interface AccessoryType {
+export interface ProductDetailsType {
   id: string;
   namespaceId: string;
   name: string;
@@ -10,12 +10,14 @@ export interface AccessoryType {
   color: string;
   images: string[];
   description: {
-    title: string
+    title: string,
     text: string[],
-  }[];
+  }[],
   screen: string;
   resolution: string;
   processor: string;
   ram: string;
+  camera?: string;
+  zoom?: string;
   cell: string[];
 }
