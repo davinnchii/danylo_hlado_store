@@ -62,10 +62,12 @@ export const ProductCard = () => {
           {product.price}
         </p>
 
-        <p className="card__price-old">
-          $
-          {product.fullPrice}
-        </p>
+        {product.fullPrice && (
+          <p className="card__price-old">
+            $
+            {product.fullPrice}
+          </p>
+        )}
       </span>
 
       <div className="card__line" />
