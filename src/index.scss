@@ -33,6 +33,13 @@ body {
   padding-inline: 24px;
 }
 
+@media (max-width: 1199px) {
+  .container {
+    max-width: 1200px;
+    margin: 0;
+  }
+}
+
 @media (max-width: 639px) {
   .wrapper {
     padding-inline: 16px;
