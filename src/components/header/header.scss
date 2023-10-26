@@ -46,6 +46,11 @@
       height: 100%;
       border-bottom: 3px solid transparent;
       letter-spacing: 4%;
+      transition: color 0.4s ease-in;
+
+      &:hover {
+        color: #0F0F11;
+      }
     }
   }
 
@@ -58,9 +63,6 @@
 
 .icon {
   display: block;
-  width: 16px;
-  height: 16px;
-  background-size: cover;
   position: relative;
   margin: 24px;
   cursor: pointer;
@@ -79,12 +81,33 @@
     top: -24px;
   }
 
+  &--favourites,
+  &--shopping-bag {
+    z-index: 999;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    cursor: pointer;
+  }
+
   &--favourites {
     background-image: url(../../assets/icons/favouritesh-heart-like.svg);
+    transition: background-image 0.3s ease;
+
+    &:hover {
+      animation: icons-scale 1s infinite;
+      background-image: url(../../assets/icons/favourites-filled-heart-like.svg);
+    }
   }
 
   &--shopping-bag {
     background-image: url(../../assets/icons/shopping-bag-cart.svg);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      animation: icons-shop 1s infinite alternate-reverse;
+    }
   }
 
   &--close {
@@ -146,30 +169,35 @@
     &__menu {
       display: none;
       flex-direction: column;
+      height: 100vh;
       gap: 16px;
       top: 72px;
       left: 0;
       right: 0;
       background-color: #fff;
       position: absolute;
+      z-index: 999;
 
       &-link {
         padding-bottom: 8px;
+        height: 27px;
       }
     }
   }
 
   .icon {
-    &--favourites {
-      display: none;
-    }
-
-    &--shopping-bag {
+    &--favourites__link,
+    &--shopping-bag__link {
       display: none;
     }
 
     &--menu, &--close {
       display: block;
+      z-index: 999;
+      width: 16px;
+      height: 16px;
+      background-size: cover;
+      cursor: pointer;
       margin-right: 0;
     }
   }
@@ -183,4 +211,25 @@
 
 .active-menu {
   display: flex;
+}
+
+@keyframes icons-scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes icons-shop {
+  0% {
+    transform: rotate(50deg) scale(1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(-50deg) scale(1);
+  }
 }
