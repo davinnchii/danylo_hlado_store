@@ -133,8 +133,6 @@
     width: 100%;
     gap: 8px;
     justify-content: space-between;
-
-    font-family: $fontRegular;
   }
 
   &__button {
@@ -147,9 +145,14 @@
 
     border-radius: 8px;
     background: $accentColor;
+    border: 1px solid $iconsColor;
+
+    font-family: $fontSemiBold;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
     color: #fff;
     text-decoration: none;
-    border: 1px solid $iconsColor;
 
     &:hover {
       box-shadow: 1px 4px 16px 0 rgba(232, 232, 240, 0.4);
