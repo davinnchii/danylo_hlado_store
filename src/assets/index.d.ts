@@ -4,3 +4,4 @@ declare module '*.svg' {
   export = value;
 }
 declare module '*.png';
+declare module '*.gif';

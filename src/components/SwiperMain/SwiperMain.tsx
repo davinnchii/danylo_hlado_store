@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import banner from '../../assets/images/banner.png';
 import bannerMobile from '../../assets/images/banner-mobile.png';
+import arrow_left_black from '../../assets/icons/arrow-left-black.svg';
+import arrow_right_black from '../../assets/icons/arrow-right-black.svg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,9 +16,13 @@ import './swiperMain.scss';
 export const SwiperMain = () => {
   return (
     <Swiper
-      pagination={{ clickable: true }}
-      modules={[Navigation, Pagination]}
+      modules={[Navigation, Pagination, Autoplay]}
       className="mySwiper"
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      pagination={{ clickable: true }}
       navigation={{ nextEl: '.swiper-slide__main-arrow-right', prevEl: '.swiper-slide__main-arrow-left' }}
     >
       {[1, 2, 3].map(item => (
@@ -38,13 +44,17 @@ export const SwiperMain = () => {
               className="swiper-slide__main-arrow swiper-slide__main-arrow-left"
               type="button"
               aria-label="arrow-left"
-            />
+            >
+              <img src={arrow_left_black} alt="arrow_left_black" />
+            </button>
 
             <button
               className="swiper-slide__main-arrow swiper-slide__main-arrow-right"
               type="button"
               aria-label="arrow-right"
-            />
+            >
+              <img src={arrow_right_black} alt="arrow_right_black" />
+            </button>
           </div>
         </SwiperSlide>
       ))}
