@@ -5,8 +5,8 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import banner from '../../assets/images/banner.png';
 import bannerMobile from '../../assets/images/banner-mobile.png';
-import arrow_left_black from '../../assets/icons/arrow-left-black.svg';
-import arrow_right_black from '../../assets/icons/arrow-right-black.svg';
+import arrowLeftBlack from '../../assets/icons/arrow-left-black.svg';
+import arrowRightBlack from '../../assets/icons/arrow-right-black.svg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -45,7 +45,7 @@ export const SwiperMain = () => {
               type="button"
               aria-label="arrow-left"
             >
-              <img src={arrow_left_black} alt="arrow_left_black" />
+              <img src={arrowLeftBlack} alt="arrow_left_black" />
             </button>
 
             <button
@@ -53,7 +53,7 @@ export const SwiperMain = () => {
               type="button"
               aria-label="arrow-right"
             >
-              <img src={arrow_right_black} alt="arrow_right_black" />
+              <img src={arrowRightBlack} alt="arrow_right_black" />
             </button>
           </div>
         </SwiperSlide>
