@@ -66,18 +66,27 @@
 
   &__price {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    margin: 0;
     // margin: 8px 0;
-
-    font-family: $fontBold;
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 140%;
   }
 
   &__price-new {
+    font-family: $fontBold;
+    font-size: 22px;
+    line-height: 140%;
     color: $primaryColor;
+    font-weight: 800;
+    margin: 0;
+    margin-right: 8px;
+  }
+
+  &__price-old {
+    font-family: $fontSemiBold;
+    font-size: 22px;
+    color: $secondaryColor;
+    font-weight: 600;
+    text-decoration-line: line-through;
     margin: 0;
   }
 
