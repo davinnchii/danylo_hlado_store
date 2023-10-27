@@ -7,6 +7,22 @@ import '../../components/productCard/productCard.scss';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 
+const product = {
+  id: '1',
+  category: 'phones',
+  phoneId: 'apple-iphone-7-32gb-black',
+  itemId: 'apple-iphone-7-32gb-black',
+  name: 'Apple iPhone 7 32GB Black',
+  fullPrice: 400,
+  price: 375,
+  screen: '4.7\' IPS',
+  capacity: '32GB',
+  color: 'black',
+  ram: '2GB',
+  year: 2016,
+  image: 'img/phones/apple-iphone-7/black/00.jpg',
+};
+
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
   { value: 'alphabetically ', label: 'Alphabetically ' },
@@ -68,22 +84,22 @@ export const PhonesPage: React.FC = () => {
         </article>
 
         <section className="catalog">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
         </section>
       </section>
     </>
