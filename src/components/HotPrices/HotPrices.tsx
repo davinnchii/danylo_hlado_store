@@ -1,11 +1,14 @@
 import React from 'react';
 
-import './hotPrices.scss';
 import { SwiperCards } from '../SwiperCards';
-import { ProductCard } from '../productCard/productCard';
-import products from '../productCard/productData';
+import { ProductType } from '../../types/ProductType';
+import './hotPrices.scss';
 
-export const HotPrices = () => {
+type Props = {
+  visibleProducts: ProductType[];
+};
+
+export const HotPrices: React.FC<Props> = ({ visibleProducts }) => {
   return (
     <section className="hot-prices">
       <div className="container">
@@ -31,13 +34,8 @@ export const HotPrices = () => {
         <SwiperCards
           arrowLeftClassName="hot-prices__arrow-left"
           arrowRightClassName="hot-prices__arrow-right"
-        >
-          <>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </>
-        </SwiperCards>
+          visibleProducts={visibleProducts}
+        />
       </div>
     </section>
   );
