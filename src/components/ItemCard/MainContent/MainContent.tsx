@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import './MainContent.scss';
 import { Button } from '../../Button';
-import { Phone } from '../../../Types';
+import { Phone } from '../../../types';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
 import rightArrow from '../../../assets/icons/Chevron (Arrow Right).svg';

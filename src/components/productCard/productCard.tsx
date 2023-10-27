@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import './productCard.scss';
-import iphoneImg from '../../assets/images/phoneImages/iphoneImg.png';
 import addToFavorite from '../../assets/images/phoneImages/addToFavorite.svg';
 import addedToFavorite from
   '../../assets/images/phoneImages/addedToFavorite.svg';
-import { ProductType } from './types/productTypes';
+import { ProductType } from '../../types/ProductType';
+import { getImageUrl } from '../../utils/getImageUrl';
 
 type ProductCardProps = {
   product: ProductType;
@@ -35,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <section className="card">
       <span className="card__image-block">
         <img
-          src={iphoneImg} // later here will be {product.image}
+          src={getImageUrl(product.image)}
           alt={product.name}
           className="card__image"
         />
