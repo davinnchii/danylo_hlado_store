@@ -1,17 +1,19 @@
 import React from 'react';
-import './Footer.scss';
+import { Link } from 'react-router-dom';
+
 import logo from '../../assets/images/logo.png';
+import './Footer.scss';
 
 export const Footer = () => {
   return (
     <footer className="footer">
-      <a href="#home" className="footer__logo-link">
+      <Link to="/" className="footer__logo-link">
         <img
           className="footer__logo-image"
           alt="nice-gadgets-logo"
           src={logo}
         />
-      </a>
+      </Link>
 
       <div className="footer__links">
         <a href="/" className="footer__link">github</a>

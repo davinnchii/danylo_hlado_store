@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 import React from 'react';
 
-import './main.scss';
 import { SwiperMain } from '../SwiperMain';
+import './main.scss';
 
 export const Main = () => {
   return (
