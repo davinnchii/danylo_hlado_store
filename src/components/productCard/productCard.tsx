@@ -5,24 +5,13 @@ import iphoneImg from '../../assets/images/phoneImages/iphoneImg.png';
 import addToFavorite from '../../assets/images/phoneImages/addToFavorite.svg';
 import addedToFavorite from
   '../../assets/images/phoneImages/addedToFavorite.svg';
+import { ProductType } from './types/productTypes';
 
-const product = {
-  id: '1',
-  category: 'phones',
-  phoneId: 'apple-iphone-7-32gb-black',
-  itemId: 'apple-iphone-7-32gb-black',
-  name: 'Apple iPhone 7 32GB Black',
-  fullPrice: 400,
-  price: 375,
-  screen: '4.7 IPS',
-  capacity: '32GB',
-  color: 'black',
-  ram: '2GB',
-  year: 2016,
-  image: 'img/phones/apple-iphone-7/black/00.jpg',
+type ProductCardProps = {
+  product: ProductType;
 };
 
-export const ProductCard = () => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isAdded, setAdded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
