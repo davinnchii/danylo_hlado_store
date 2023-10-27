@@ -3,8 +3,6 @@
 
 .card {
   display: flex;
-  width: 288px;
-  height: auto;
   padding: 32px;
   flex-direction: column;
 
@@ -33,6 +31,7 @@
   }
 
   &__title {
+    height: 63px;
     display: flex;
     text-align: start;
     padding-top: 16px;
