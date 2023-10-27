@@ -8,7 +8,7 @@ import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 
 const product = {
-  id: '1',
+  id: 1,
   category: 'phones',
   phoneId: 'apple-iphone-7-32gb-black',
   itemId: 'apple-iphone-7-32gb-black',
@@ -37,7 +37,7 @@ const paginationOptions = [
 
 export const PhonesPage: React.FC = () => {
   return (
-    <>
+    <div className="container">
       <div className="top-bar">
         <a
           href="/home"
@@ -102,6 +102,6 @@ export const PhonesPage: React.FC = () => {
           <ProductCard product={product} />
         </section>
       </section>
-    </>
+    </div>
   );
 };
