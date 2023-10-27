@@ -10,7 +10,7 @@ export const HomePage = () => {
   return (
     <div className="home-page">
       <Main />
-      <NewModels />
+      <NewModels title="Brand new models" />
       <Categories />
       <HotPrices />
     </div>
