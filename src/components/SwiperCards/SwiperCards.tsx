@@ -1,21 +1,24 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { ProductCard } from '../productCard/productCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './swiperCards.scss';
+import { ProductType } from '../../types/ProductType';
 
 type Props = {
   arrowLeftClassName: string,
   arrowRightClassName: string,
-  children: React.ReactChild;
+  visibleProducts: ProductType[],
 };
 
 export const SwiperCards: React.FC<Props> = ({
   arrowLeftClassName,
   arrowRightClassName,
-  children,
+  visibleProducts,
 }) => {
   return (
     <Swiper
@@ -39,9 +42,9 @@ export const SwiperCards: React.FC<Props> = ({
         },
       }}
     >
-      {[1, 2, 3, 4, 5, 6].map(item => (
-        <SwiperSlide key={item}>
-          {children}
+      {visibleProducts.map(product => (
+        <SwiperSlide key={product.id}>
+          <ProductCard product={product} />
         </SwiperSlide>
       ))}
     </Swiper>
