@@ -33,9 +33,9 @@ const styles: StylesConfig = {
     ...provided,
 
     borderRadius: '8px',
-    width: '150px',
     height: '40px',
     cursor: 'pointer',
+    fontSize: '12px',
     '&:hover': {
       color: state.isFocused ? '#89939a' : '#b4bdc3',
       border: '1px solid #0f0f11',

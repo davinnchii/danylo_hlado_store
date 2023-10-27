@@ -2,6 +2,7 @@
 
 .catalog {
   @include PageGrid;
+  max-width: 1200px;
   justify-items: center;
 }
 
@@ -47,7 +48,7 @@
 
 .sort {
   @include PageGrid;
-  margin-left: 18px;
+  margin-inline: 12px;
   margin-bottom: 24px;
 
   &__item {
@@ -56,7 +57,7 @@
       grid-column: 1 / 3;
 
       @include onTablet {
-        grid-column: 1 / 4;
+        grid-column: span 4;
       }
     }
 
