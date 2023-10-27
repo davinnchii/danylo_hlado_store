@@ -3,6 +3,7 @@ import React from 'react';
 import './hotPrices.scss';
 import { SwiperCards } from '../SwiperCards';
 import { ProductCard } from '../productCard/productCard';
+import products from '../productCard/productData';
 
 export const HotPrices = () => {
   return (
@@ -31,7 +32,11 @@ export const HotPrices = () => {
           arrowLeftClassName="hot-prices__arrow-left"
           arrowRightClassName="hot-prices__arrow-right"
         >
-          <ProductCard />
+          <>
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </>
         </SwiperCards>
       </div>
     </section>

@@ -1,28 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './productCard.scss';
 import iphoneImg from '../../assets/images/phoneImages/iphoneImg.png';
-import addToFavorite from '../../assets/images/phoneImages/addToFavorite.png';
+import addToFavorite from '../../assets/images/phoneImages/addToFavorite.svg';
+import addedToFavorite from
+  '../../assets/images/phoneImages/addedToFavorite.svg';
+import { ProductType } from './types/productTypes';
 
-export const ProductCard = () => {
+type ProductCardProps = {
+  product: ProductType;
+};
+
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const [isAdded, setAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddToCart = () => {
+    if (isAdded) {
+      setAdded(false);
+    } else {
+      setAdded(true);
+    }
+  };
+
+  const handleAddToFavorite = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+    } else {
+      setIsFavorite(true);
+    }
+  };
+
   return (
     <section className="card">
       <span className="card__image-block">
         <img
-          src={iphoneImg}
-          alt="Apple iPhone 14 Pro 128GB Deep Purple (MQ0G3)"
+          src={iphoneImg} // later here will be {product.image}
+          alt={product.name}
           className="card__image"
         />
       </span>
 
       <h3 className="card__title">
-        Apple iPhone 14 Pro 128GB Deep Purple (MQ0G3)
+        {product.name}
       </h3>
 
       <span className="card__price">
         <p className="card__price-new">
-          $999
+          $
+          {product.price}
         </p>
+
+        {product.fullPrice && (
+          <p className="card__price-old">
+            $
+            {product.fullPrice}
+          </p>
+        )}
       </span>
 
       <div className="card__line" />
@@ -34,7 +68,7 @@ export const ProductCard = () => {
           </p>
 
           <p className="card__info-item">
-            6.1” OLED
+            {product.screen}
           </p>
         </span>
 
@@ -44,7 +78,7 @@ export const ProductCard = () => {
           </p>
 
           <p className="card__info-item">
-            128 GB
+            {product.capacity}
           </p>
         </span>
 
@@ -54,29 +88,31 @@ export const ProductCard = () => {
           </p>
 
           <p className="card__info-item">
-            6 GB
+            {product.ram}
           </p>
         </span>
       </div>
 
       <span className="card__buttons">
-        <a
-          href="/link"
-          className="card__button"
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          className={`card__button ${isAdded ? 'added' : ''}`}
         >
-          Add to cart
-        </a>
+          {isAdded ? 'Added' : 'Add to cart'}
+        </button>
 
-        <a
-          href="/link"
-          className="card__favorite"
+        <button
+          type="button"
+          onClick={handleAddToFavorite}
+          className={`card__favorite ${isFavorite ? 'added' : ''}`}
         >
           <img
-            src={addToFavorite}
+            src={isFavorite ? addedToFavorite : addToFavorite}
             alt="add to favorite"
             className="card__favorite--img"
           />
-        </a>
+        </button>
       </span>
     </section>
   );

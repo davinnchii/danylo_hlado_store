@@ -3,6 +3,7 @@ import React from 'react';
 import { SwiperCards } from '../SwiperCards';
 import './newModels.scss';
 import { ProductCard } from '../productCard/productCard';
+import products from '../productCard/productData';
 
 type Props = {
   title: string;
@@ -37,7 +38,11 @@ export const NewModels: React.FC<Props> = ({ title }) => {
           arrowLeftClassName="new-models__arrow-left"
           arrowRightClassName="new-models__arrow-right"
         >
-          <ProductCard />
+          <>
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </>
         </SwiperCards>
       </div>
     </section>

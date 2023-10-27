@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import ERROR_NOT_FOUND from '../../assets/images/404-error.png';
 
 import './NotFoundPage.scss';

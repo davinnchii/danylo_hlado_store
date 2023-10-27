@@ -79,18 +79,27 @@
 
   &__price {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    margin: 0;
     // margin: 8px 0;
-
-    font-family: $fontBold;
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 140%;
   }
 
   &__price-new {
+    font-family: $fontBold;
+    font-size: 22px;
+    line-height: 140%;
     color: $primaryColor;
+    font-weight: 800;
+    margin: 0;
+    margin-right: 8px;
+  }
+
+  &__price-old {
+    font-family: $fontSemiBold;
+    font-size: 22px;
+    color: $secondaryColor;
+    font-weight: 600;
+    text-decoration-line: line-through;
     margin: 0;
   }
 
@@ -137,8 +146,6 @@
     width: 100%;
     gap: 8px;
     justify-content: space-between;
-
-    font-family: $fontRegular;
   }
 
   &__button {
@@ -151,8 +158,46 @@
 
     border-radius: 8px;
     background: $accentColor;
+    border: 1px solid $iconsColor;
+
+    font-family: $fontSemiBold;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
     color: #fff;
     text-decoration: none;
+
+    &:hover {
+      box-shadow: 1px 4px 16px 0 rgba(232, 232, 240, 0.4);
+
+      animation-name: button-add;
+      animation-duration: 0.3s;
+      animation-timing-function: ease;
+      animation-iteration-count: 2;
+
+      @keyframes button-add {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        25% {
+          transform: rotate(-1deg);
+        }
+
+        50% {
+          transform: rotate(1deg);
+        }
+
+        100% {
+          transform: rotate(0);
+        }
+      }
+    }
+
+    &.added {
+      background: #fff;
+      color: $accentColor;
+    }
   }
 
   &__favorite {
@@ -163,8 +208,17 @@
     border-radius: 48px;
     border: 1px solid $iconsColor;
 
+    background: #fff;
+
+    &:hover {
+      border: 1px solid $primaryColor;
+    }
+
     &--img {
-      width: 100%;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px
     }
   }
 }
+
