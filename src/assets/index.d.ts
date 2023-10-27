@@ -3,6 +3,5 @@ declare module '*.svg' {
   const value: any;
   export = value;
 }
-
 declare module '*.png';
 declare module '*.gif';

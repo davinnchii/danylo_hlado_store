@@ -5,14 +5,18 @@ import './newModels.scss';
 import { ProductCard } from '../productCard/productCard';
 import products from '../productCard/productData';
 
-export const NewModels = () => {
+type Props = {
+  title: string;
+};
+
+export const NewModels: React.FC<Props> = ({ title }) => {
   return (
     <section className="new-models">
       <div className="container">
         <div className="wrapper">
           <div className="new-models__top">
             <h2 className="new-models__title">
-              Brand new models
+              {title}
             </h2>
 
             <div className="new-models__arrows">
