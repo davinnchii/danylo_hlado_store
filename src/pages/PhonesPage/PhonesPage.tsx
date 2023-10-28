@@ -13,6 +13,7 @@ import { getSpecificSorting } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
 import { getSectionTitle } from '../../utils/getSectionTitle';
+import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -31,12 +32,12 @@ export const PhonesPage: React.FC = () => {
   const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category') || '';
-  const sort = searchParams.get('sortBy') || '';
+  const sort = searchParams.get('sortBy') || sortDefault;
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
 
-    getSpecificSorting(category, sort, '16', '0')
+    getSpecificSorting(category, sort, limitDefault, offsetDefault)
       .then((data) => setCategoryProducts(data.rows))
       .finally(() => setHasCategoryProductsLoaded(false));
   }, [category, sort]);
