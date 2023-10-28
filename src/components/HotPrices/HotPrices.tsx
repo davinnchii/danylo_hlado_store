@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 import { SwiperCards } from '../SwiperCards';
-import { ProductType } from '../../types/ProductType';
 import './hotPrices.scss';
+import { ProductType } from '../../types/ProductType';
 
 type Props = {
   visibleProducts: ProductType[];

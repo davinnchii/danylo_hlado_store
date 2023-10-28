@@ -6,11 +6,12 @@ import './newModels.scss';
 
 type Props = {
   title: string;
-  visibleProducts?: ProductType[];
+  visibleProducts: ProductType[];
 };
 
 export const NewModels: React.FC<Props> = ({
-  title, visibleProducts = [],
+  title,
+  visibleProducts,
 }) => {
   return (
     <section className="new-models">

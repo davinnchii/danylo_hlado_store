@@ -1,53 +1,66 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 
 import { Main } from '../../components/Main';
 import { Categories } from '../../components/Categories';
 import { HotPrices } from '../../components/HotPrices';
-import { getAllProducts } from '../../api/products';
-import { ProductType } from '../../types/ProductType';
-import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import { NewModels } from '../../components/NewModels';
+import { getProductsWithDiscount, getProductsWithNewModels } from '../../api/products';
+import { ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
 import './HomePage.scss';
+import { getPreparedProducts } from '../../utils/getPreparedProducts';
 
 export const HomePage = () => {
-  const [allProducts, setAllProducts] = useState<ProductType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [
+    productsWithDiscount,
+    setProductsWithDiscount,
+  ] = useState<ProductType[]>([]);
+  const [
+    productsWithNewModels,
+    setProductsWithNewModels,
+  ] = useState<ProductType[]>([]);
+  const [isDiscountLoading, setIsDiscountLoading] = useState(false);
+  const [isNewModelsLoading, setIsNewModelsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsDiscountLoading(true);
+    setIsNewModelsLoading(true);
 
-    getAllProducts()
+    getProductsWithDiscount()
       .then((data) => {
-        setAllProducts(data.rows);
+        setProductsWithDiscount(data);
       })
-      .finally(() => setIsLoading(false));
-  }, []);
+      .finally(() => setIsDiscountLoading(false));
 
-  const newModelsVisibleProducts = getPreparedProducts('year', allProducts);
-  const hotPricesVisibleProducts = getPreparedProducts('price', allProducts);
+    getProductsWithNewModels()
+      .then((data) => {
+        setProductsWithNewModels(data);
+      })
+      .finally(() => setIsNewModelsLoading(false));
+  }, []);
 
   return (
     <div className="home-page">
       <Main />
 
-      {isLoading ? (
+      {isNewModelsLoading ? (
         <Loader />
       ) : (
         <NewModels
           title="Brand new models"
-          visibleProducts={newModelsVisibleProducts}
+          visibleProducts={getPreparedProducts(productsWithNewModels)}
         />
       )}
+
       <Categories />
 
-      {isLoading
-        ? (
-          <Loader />
-        ) : (
-          <HotPrices visibleProducts={hotPricesVisibleProducts} />
-        )}
+      {isDiscountLoading ? (
+        <Loader />
+      ) : (
+        <HotPrices visibleProducts={getPreparedProducts(productsWithDiscount)} />
+      )}
     </div>
   );
 };
