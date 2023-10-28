@@ -13,7 +13,6 @@ import { getSpecificSorting } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
 import { getSectionTitle } from '../../utils/getSectionTitle';
-import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -32,15 +31,17 @@ export const PhonesPage: React.FC = () => {
   const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category') || '';
-  const sort = searchParams.get('sortBy') || sortDefault;
+  const sort = searchParams.get('sortBy') || 'newest';
+  const limit = searchParams.get('limit') || '16';
+  const offset = searchParams.get('offset') || '0';
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
 
-    getSpecificSorting(category, sort, limitDefault, offsetDefault)
+    getSpecificSorting(category, sort, Number(limit), Number(offset))
       .then((data) => setCategoryProducts(data.rows))
       .finally(() => setHasCategoryProductsLoaded(false));
-  }, [category, sort]);
+  }, [category, sort, limit, offset]);
 
   const getPreparedCategoryProducts = (selectedCategory: ProductType[]) => {
     return selectedCategory;

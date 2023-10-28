@@ -67,14 +67,21 @@ export const CustomSelect: React.FC<Props> = ({
   defaultValue,
   options,
 }) => {
-  const [searchParams, setSeacrhParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
   const handleSelectChange = (selectedOption: any) => {
     const normalizedOption = selectedOption.value.replace(/[^a-zA-Z]/g, '');
 
-    params.set('sortBy', normalizedOption);
-    setSeacrhParams(params);
+    if (Number.isNaN(+selectedOption.value)) {
+      params.set('sortBy', normalizedOption);
+      setSearchParams(params);
+
+      return;
+    }
+
+    params.set('limit', selectedOption.value);
+    setSearchParams(params);
   };
 
   return (
