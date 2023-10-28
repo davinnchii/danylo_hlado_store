@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import homeIcon from '../../assets/icons/Home.svg';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
@@ -13,6 +15,7 @@ import { getSpecificSorting } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
 import { getSectionTitle } from '../../utils/getSectionTitle';
+import { Pagination } from '../../components/pagination/Pagination';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -29,19 +32,29 @@ const paginationOptions = [
 export const PhonesPage: React.FC = () => {
   const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
   const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category') || '';
   const sort = searchParams.get('sortBy') || 'newest';
   const limit = searchParams.get('limit') || '16';
   const offset = searchParams.get('offset') || '0';
+  const totalProducts = useRef({ value: 0 });
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
 
     getSpecificSorting(category, sort, Number(limit), Number(offset))
-      .then((data) => setCategoryProducts(data.rows))
+      .then((data) => {
+        setCategoryProducts(data.rows);
+        totalProducts.current.value = data.count;
+      })
       .finally(() => setHasCategoryProductsLoaded(false));
   }, [category, sort, limit, offset]);
+
+  const handleChangePage = useCallback((page: number) => {
+    setCurrentPage(page);
+    searchParams.set('offset', (Number(limit) * page).toString());
+  }, [searchParams, limit]);
 
   const getPreparedCategoryProducts = (selectedCategory: ProductType[]) => {
     return selectedCategory;
@@ -88,12 +101,14 @@ export const PhonesPage: React.FC = () => {
             defaultValue={sortOptions[0]}
             options={sortOptions}
             label="Sort by"
+            onChange={handleChangePage}
           />
 
           <SortSection
             defaultValue={paginationOptions[0]}
             options={paginationOptions}
             label="Items on page"
+            onChange={handleChangePage}
           />
         </article>
 
@@ -107,6 +122,12 @@ export const PhonesPage: React.FC = () => {
           </section>
         )}
       </section>
+
+      <Pagination
+        total={totalProducts.current.value}
+        currentPage={currentPage}
+        onPageChange={handleChangePage}
+      />
     </div>
   );
 };

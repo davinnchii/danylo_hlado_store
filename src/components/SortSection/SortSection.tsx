@@ -11,12 +11,14 @@ type Props = {
   defaultValue: Option;
   options: Option[];
   label: string;
+  onChange: (page: number) => void,
 };
 
 export const SortSection: React.FC<Props> = ({
   defaultValue,
   options,
   label,
+  onChange,
 }) => {
   const itemClassName = label === 'Sort by'
     ? 'sort__item--sort'
@@ -33,6 +35,7 @@ export const SortSection: React.FC<Props> = ({
       <CustomSelect
         defaultValue={defaultValue}
         options={options}
+        onChange={onChange}
       />
     </span>
   );

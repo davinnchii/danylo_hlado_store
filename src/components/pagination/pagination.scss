@@ -1,49 +1,60 @@
 .pagination {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 80px;
+  margin-top: 40px;
 
   &__button {
-    border-radius: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+
     width: 32px;
     height: 32px;
-    border: 1px solid #B4BDC3;
+    border: 1px solid #b4bdc3;
+    border-radius: 48px;
+    background-color: #ffffff;
 
-    &--active {
-      background-color: #0F0F11;
-    }
-  }
-
-  &__content {
     color: #0F0F11;
     text-align: center;
-
-    /* Body text 14 */
-    font-family: Mont-Regular;
+    font-family: Mont-Regular, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 21px;
-    /* 150% */
-
-    &--active {
-      color: #FFF;
-    }
+    cursor: pointer;
   }
 
   &__arrow {
     width: 16px;
     height: 16px;
-    fill: #0F0F11;
+
+    cursor: pointer;
+    border: none;
+    background-color: #ffffff;
 
     &--left {
-      background-image: url('../../assets/icons/Chevron\ \(Arrow\ Left\).svg');
+      background-image: url('../../assets/icons/arrow-left-black.svg');
     }
 
     &--right {
-      background-image: url('../../assets/icons/Chevron\ \(Arrow\ Right\).svg');
+      background-image: url('../../assets/icons/arrow-right-black.svg');
     }
+  }
+}
+
+.is-active {
+  background-color: #0f0f11;
+  color: #ffffff;
+}
+
+@media (min-width: 320px) {
+  .pagination {
+    margin-top: 24px;
+    margin-bottom: 64px;
   }
 }
