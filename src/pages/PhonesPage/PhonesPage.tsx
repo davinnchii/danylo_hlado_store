@@ -1,4 +1,7 @@
-import React from 'react';
+/* eslint-disable max-len */
+/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import homeIcon from '../../assets/icons/Home.svg';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
 import './PhonesPage.scss';
@@ -6,22 +9,10 @@ import '../../components/productCard/productCard.scss';
 
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
-
-const product = {
-  id: 1,
-  category: 'phones',
-  phoneId: 'apple-iphone-7-32gb-black',
-  itemId: 'apple-iphone-7-32gb-black',
-  name: 'Apple iPhone 7 32GB Black',
-  fullPrice: 400,
-  price: 375,
-  screen: '4.7\' IPS',
-  capacity: '32GB',
-  color: 'black',
-  ram: '2GB',
-  year: 2016,
-  image: 'img/phones/apple-iphone-7/black/00.webp',
-};
+import { getSpecificSorting } from '../../api/products';
+import { ProductType } from '../../types/ProductType';
+import { Loader } from '../../components/Loader';
+import { getSectionTitle } from '../../utils/getSectionTitle';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -36,6 +27,27 @@ const paginationOptions = [
 ];
 
 export const PhonesPage: React.FC = () => {
+  const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
+  const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category') || '';
+  const sort = searchParams.get('sortBy') || '';
+
+  useEffect(() => {
+    setHasCategoryProductsLoaded(true);
+
+    getSpecificSorting(category, sort, '16', '0')
+      .then((data) => setCategoryProducts(data.rows))
+      .finally(() => setHasCategoryProductsLoaded(false));
+  }, [category, sort]);
+
+  const getPreparedCategoryProducts = (selectedCategory: ProductType[]) => {
+    return selectedCategory;
+  };
+
+  const visibleProducts = getPreparedCategoryProducts(categoryProducts);
+  const normalizedCategoryLink = `${category[0].toUpperCase()}${category.slice(1)}`;
+
   return (
     <div className="container">
       <div className="top-bar">
@@ -56,18 +68,18 @@ export const PhonesPage: React.FC = () => {
           alt="home-icon"
         />
 
-        <a
-          href="/phones"
+        <Link
+          to="/"
           className="top-bar__link-text"
         >
-          Phones
-        </a>
+          {normalizedCategoryLink}
+        </Link>
       </div>
 
       <section className="section phones">
-        <h1 className="phones__title">Mobile phones</h1>
+        <h1 className="phones__title">{getSectionTitle(category)}</h1>
 
-        <p className="phones__amount">95 models</p>
+        <p className="phones__amount">{`${visibleProducts.length} models`}</p>
 
         <article className="phones__sort sort">
           <SortSection
@@ -83,24 +95,15 @@ export const PhonesPage: React.FC = () => {
           />
         </article>
 
-        <section className="catalog">
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-        </section>
+        {hasCategoryProductsLoaded ? (
+          <Loader />
+        ) : (
+          <section className="catalog">
+            {visibleProducts.map(product => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </section>
+        )}
       </section>
     </div>
   );

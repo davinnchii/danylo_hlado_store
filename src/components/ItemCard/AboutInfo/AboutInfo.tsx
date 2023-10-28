@@ -1,10 +1,10 @@
 import React from 'react';
 import './AboutInfo.scss';
-import { Phone } from '../../../types';
+import { ProductCartType } from '../../../types';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
 
 type Props = {
-  phone: Phone;
+  phone: ProductCartType;
   selectedCapacity: string;
 };
 

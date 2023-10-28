@@ -1,8 +1,8 @@
-/* eslint-disable max-len */
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import classnames from 'classnames';
 
 import logo from '../../assets/images/logo.png';
@@ -10,13 +10,23 @@ import logoBlack from '../../assets/images/logo-black.png';
 import './header.scss';
 
 export const Header: React.FC = () => {
+  const [searchParams, setSeacrhParams] = useSearchParams();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectMenuActive, setSelectMenuActive] = useState('home');
 
-  const handleMenuItemClick = (selectedItem: string) => {
+  const params = new URLSearchParams(searchParams);
+  const category = params.get('category') || '';
+
+  const handleMenuItemClick = (selectedItems: string) => {
+    params.set('category', selectedItems);
+    setSeacrhParams(params);
     setIsMenuOpen(false);
-    setSelectMenuActive(selectedItem);
   };
+
+  useEffect(() => {
+    setSelectMenuActive(category);
+  }, [category]);
 
   return (
     <header className="header">
@@ -24,7 +34,7 @@ export const Header: React.FC = () => {
         <Link
           className="header__logo"
           to="/"
-          onClick={() => handleMenuItemClick('home')}
+          onClick={() => handleMenuItemClick('')}
         >
           <img
             className="header__logo-img"
@@ -37,15 +47,15 @@ export const Header: React.FC = () => {
           <Link
             to="/home"
             className={classnames('header__menu-link', {
-              'active-menu-link': selectMenuActive === 'home',
+              'active-menu-link': selectMenuActive === '',
             })}
-            onClick={() => handleMenuItemClick('home')}
+            onClick={() => handleMenuItemClick('')}
           >
             home
           </Link>
 
           <Link
-            to="/phones"
+            to="/products?category=phones"
             className={classnames('header__menu-link', {
               'active-menu-link': selectMenuActive === 'phones',
             })}
@@ -55,7 +65,7 @@ export const Header: React.FC = () => {
           </Link>
 
           <Link
-            to="/tablets"
+            to="/products?category=tablets"
             className={classnames('header__menu-link', {
               'active-menu-link': selectMenuActive === 'tablets',
             })}
@@ -65,7 +75,7 @@ export const Header: React.FC = () => {
           </Link>
 
           <Link
-            to="/accessories"
+            to="/products?category=accessories"
             className={classnames('header__menu-link', {
               'active-menu-link': selectMenuActive === 'accessories',
             })}

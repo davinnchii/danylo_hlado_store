@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Select, { StylesConfig, Theme } from 'react-select';
 
 interface Option {
@@ -63,12 +66,25 @@ const theme = (baseTheme: Theme) => ({
 export const CustomSelect: React.FC<Props> = ({
   defaultValue,
   options,
-}) => (
-  <Select
-    className="sort__select"
-    defaultValue={defaultValue}
-    options={options}
-    styles={styles}
-    theme={theme}
-  />
-);
+}) => {
+  const [searchParams, setSeacrhParams] = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+
+  const handleSelectChange = (selectedOption: any) => {
+    const normalizedOption = selectedOption.value.replace(/[^a-zA-Z]/g, '');
+
+    params.set('sortBy', normalizedOption);
+    setSeacrhParams(params);
+  };
+
+  return (
+    <Select
+      className="sort__select"
+      defaultValue={defaultValue}
+      options={options}
+      styles={styles}
+      theme={theme}
+      onChange={handleSelectChange}
+    />
+  );
+};

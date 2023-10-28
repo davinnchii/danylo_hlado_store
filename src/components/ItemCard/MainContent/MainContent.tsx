@@ -1,29 +1,31 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import './MainContent.scss';
 import { Button } from '../../Button';
-import { Phone } from '../../../types';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
 import rightArrow from '../../../assets/icons/Chevron (Arrow Right).svg';
-
-const getImagelink = (img: string) => {
-  return `https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/${img}`;
-};
+import { ProductCartType } from '../../../types';
+import { getImageUrl } from '../../../utils/getImageUrl';
+import './MainContent.scss';
 
 type Props = {
-  phone: Phone;
+  product: ProductCartType | null;
   phoneId: number;
   selectedCapacity: string;
   onSelectCapacity: (selectedCapacity: string) => void;
 };
 
 export const MainContent: React.FC<Props> = ({
-  phone,
+  product,
   phoneId,
   selectedCapacity,
   onSelectCapacity,
 }) => {
+  if (!product) {
+    return <h1>hello</h1>;
+  }
+
   const {
     name,
     images,
@@ -36,9 +38,9 @@ export const MainContent: React.FC<Props> = ({
     resolution,
     processor,
     ram,
-  } = phone;
+  } = product;
 
-  const [selectedPhoto, setSelectedPhoto] = useState(getImagelink(images[0]));
+  const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
 
   const statsTableData = {
@@ -65,14 +67,14 @@ export const MainContent: React.FC<Props> = ({
           <div className="MainContent__photos">
             {images.map((image, index) => (
               <input
-                onClick={() => setSelectedPhoto(getImagelink(image))}
+                onClick={() => setSelectedPhoto(getImageUrl(image))}
                 key={image}
-                src={getImagelink(image)}
+                src={getImageUrl(image)}
                 alt={`${index}`}
                 type="image"
                 className={classNames('MainContent__photos__item', {
                   'MainContent__photos__item-selected':
-                    selectedPhoto === getImagelink(image),
+                    selectedPhoto === getImageUrl(image),
                 })}
               />
             ))}
