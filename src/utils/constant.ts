@@ -22,3 +22,7 @@ export const categories = [
     imgSrc: accessories,
   },
 ];
+
+export const offsetDefault = 0;
+export const limitDefault = 16;
+export const sortDefault = 'newest';

@@ -27,8 +27,10 @@ export const getRecommendedProducts = (id: string) => {
 export const getSpecificSorting = (
   category: string,
   sortField: string,
-  limit: string,
-  offset: string,
+  limit: number,
+  offset: number,
 ) => {
-  return client.get<ProductResponseType>(`/${BASE_PARAMETER}?category=${category}&limit=${limit}&offset=${offset}&sortBy=${sortField}`);
+  return client.get<ProductResponseType>(
+    `/${BASE_PARAMETER}?category=${category}&limit=${limit}&offset=${offset}&sortBy=${sortField}`,
+  );
 };
