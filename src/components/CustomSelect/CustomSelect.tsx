@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Select, { StylesConfig, Theme } from 'react-select';
 
@@ -12,6 +12,7 @@ interface Option {
 type Props = {
   defaultValue: Option;
   options: Option[];
+  onChange: (page: number) => void,
 };
 
 const optionStyles = {
@@ -66,16 +67,26 @@ const theme = (baseTheme: Theme) => ({
 export const CustomSelect: React.FC<Props> = ({
   defaultValue,
   options,
+  onChange,
 }) => {
-  const [searchParams, setSeacrhParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
-  const handleSelectChange = (selectedOption: any) => {
+  const handleSelectChange = useCallback((selectedOption: any) => {
     const normalizedOption = selectedOption.value.replace(/[^a-zA-Z]/g, '');
 
-    params.set('sortBy', normalizedOption);
-    setSeacrhParams(params);
-  };
+    onChange(1);
+
+    if (Number.isNaN(+selectedOption.value)) {
+      params.set('sortBy', normalizedOption);
+      setSearchParams(params);
+
+      return;
+    }
+
+    params.set('limit', selectedOption.value);
+    setSearchParams(params);
+  }, [searchParams, params, onChange]);
 
   return (
     <Select
