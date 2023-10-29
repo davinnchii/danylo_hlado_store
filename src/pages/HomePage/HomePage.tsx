@@ -9,8 +9,9 @@ import { NewModels } from '../../components/NewModels';
 import { getProductsWithDiscount, getProductsWithNewModels } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
-import './HomePage.scss';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
+import './HomePage.scss';
+import { MainLoader } from '../../components/MainLoader/MainLoader';
 
 export const HomePage = () => {
   const [
@@ -43,23 +44,21 @@ export const HomePage = () => {
 
   return (
     <div className="home-page">
-      <Main />
-
-      {isNewModelsLoading ? (
-        <Loader />
+      {isDiscountLoading && isNewModelsLoading ? (
+        <>
+          <Loader />
+          <MainLoader />
+        </>
       ) : (
-        <NewModels
-          title="Brand new models"
-          visibleProducts={getPreparedProducts(productsWithNewModels)}
-        />
-      )}
-
-      <Categories />
-
-      {isDiscountLoading ? (
-        <Loader />
-      ) : (
-        <HotPrices visibleProducts={getPreparedProducts(productsWithDiscount)} />
+        <>
+          <Main />
+          <NewModels
+            title="Brand new models"
+            visibleProducts={getPreparedProducts(productsWithNewModels)}
+          />
+          <Categories />
+          <HotPrices visibleProducts={getPreparedProducts(productsWithDiscount)} />
+        </>
       )}
     </div>
   );

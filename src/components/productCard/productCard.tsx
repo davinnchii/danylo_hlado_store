@@ -32,9 +32,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
   };
 
+  const handleScroll = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <section className="card">
-      <Link to={`/products/${product.id}`}>
+      <Link to={`/products/${product.id}`} onClick={handleScroll}>
         <span className="card__image-block">
           <img
             src={getImageUrl(product.image)}

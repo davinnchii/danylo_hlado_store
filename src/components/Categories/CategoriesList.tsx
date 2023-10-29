@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { categories } from '../../utils/constant';
+import {
+  categories,
+  limitDefault,
+  offsetDefault,
+  sortDefault,
+} from '../../utils/constant';
+import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 
 export const CategoriesList = () => {
   return (
@@ -12,7 +18,10 @@ export const CategoriesList = () => {
 
         return (
           <li className="categories__item" key={id}>
-            <Link to={`/products&${id}`}>
+            <Link to={normalizedMenuLink(
+              id, limitDefault, offsetDefault, sortDefault,
+            )}
+            >
               <div className="categories__item-picture-box">
                 <img
                   className="categories__item-picture"

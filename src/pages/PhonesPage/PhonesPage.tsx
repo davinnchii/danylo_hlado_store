@@ -3,19 +3,22 @@
 import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { Link, useSearchParams } from 'react-router-dom';
-import homeIcon from '../../assets/icons/Home.svg';
-import arrowRightIcon from '../../assets/icons/arrow-right.svg';
-import './PhonesPage.scss';
-import '../../components/productCard/productCard.scss';
 
+import arrowRightIcon from '../../assets/icons/arrow-right.svg';
+import homeIcon from '../../assets/icons/Home.svg';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 import { getSpecificSorting } from '../../api/products';
 import { ProductResponseType, ProductType } from '../../types/ProductType';
-import { Loader } from '../../components/Loader';
 import { getSectionTitle } from '../../utils/getSectionTitle';
 import { Pagination } from '../../components/pagination/Pagination';
+import { CartsLoader } from '../../components/CartsLoader/CartsLoader';
+import { Loader } from '../../components/Loader';
+import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
+import '../../components/productCard/productCard.scss';
+import './PhonesPage.scss';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -91,47 +94,68 @@ export const PhonesPage: React.FC = () => {
         </Link>
       </div>
 
+      {hasCategoryProductsLoaded && (
+        <Loader />
+      )}
+
       <section className="section phones">
-        <h1 className="phones__title">{getSectionTitle(category)}</h1>
+        <h1 className="phones__title">
+          {hasCategoryProductsLoaded
+            ? <Skeleton />
+            : getSectionTitle(category)}
+        </h1>
 
-        {hasCategoryProductsLoaded ? (
-          <Loader />
-        ) : (
-          <>
-            <p className="phones__amount">{`${visibleProducts.length} models`}</p>
+        <p className="phones__amount">
+          {hasCategoryProductsLoaded
+            ? <Skeleton />
+            : `${visibleProducts.length} models`}
+        </p>
 
-            <article className="phones__sort sort">
+        <article className="phones__sort sort">
+          {hasCategoryProductsLoaded
+            ? <Skeleton />
+            : (
               <SortSection
                 defaultValue={sortOptions[0]}
                 options={sortOptions}
                 label="Sort by"
                 onChange={handleChangePage}
               />
+            )}
 
+          {hasCategoryProductsLoaded
+            ? <Skeleton />
+            : (
               <SortSection
                 defaultValue={paginationOptions[0]}
                 options={paginationOptions}
                 label="Items on page"
                 onChange={handleChangePage}
               />
-            </article>
+            )}
+        </article>
 
+        {hasCategoryProductsLoaded
+          ? <CartsLoader />
+          : (
             <section className="catalog">
               {visibleProducts.map(product => (
                 <ProductCard product={product} key={product.id} />
               ))}
             </section>
-          </>
-        )}
+          )}
+
       </section>
 
-      {!hasCategoryProductsLoaded && (
-        <Pagination
-          total={totalProducts.current.value}
-          currentPage={currentPage}
-          onPageChange={handleChangePage}
-        />
-      )}
+      {hasCategoryProductsLoaded
+        ? <ArrowsLoader />
+        : (
+          <Pagination
+            total={totalProducts.current.value}
+            currentPage={currentPage}
+            onPageChange={handleChangePage}
+          />
+        )}
     </div>
   );
 };
