@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { Root } from './Root';
+import { ProductsContextProvider } from './context/ProductsContext';
+import { CartContextProvider } from './context/CartContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -9,6 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Root />
+    <CartContextProvider>
+      <ProductsContextProvider>
+        <Root />
+      </ProductsContextProvider>
+    </CartContextProvider>
   </React.StrictMode>,
 );

@@ -1,19 +1,37 @@
-import React, { useState, useContext } from 'react';
-import { ProductType } from '../Types/ProductType';
+import React, { useState, useContext, useEffect } from 'react';
+import { CartProduct } from '../Types/CartProduct';
 
 interface CartContextType {
-  cart: ProductType[],
-  setCart: React.Dispatch<React.SetStateAction<ProductType[]>>
+  cart: CartProduct[],
+  setCart: React.Dispatch<React.SetStateAction<CartProduct[]>>
 }
 
-const CartContext = React.createContext({} as CartContextType);
+export const CartContext = React.createContext({} as CartContextType);
 
 type Props = {
   children: React.ReactNode,
 };
 
 export const CartContextProvider: React.FC<Props> = ({ children }) => {
-  const [cart, setCart] = useState<ProductType[]>([]);
+  const [cart, setCart] = useState<CartProduct[]>(() => {
+    let stored: string | null;
+
+    try {
+      stored = localStorage.getItem('cart');
+    } catch {
+      return [];
+    }
+
+    if (!stored || !Array.isArray(JSON.parse(stored))) {
+      return [];
+    }
+
+    return JSON.parse(stored);
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   const value = {
     cart,

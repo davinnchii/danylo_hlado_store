@@ -13,7 +13,7 @@ const getImagelink = (img: string) => {
 
 type Props = {
   phone: Phone;
-  phoneId: number;
+  phoneId: string;
   selectedCapacity: string;
   onSelectCapacity: (selectedCapacity: string) => void;
 };
@@ -147,7 +147,16 @@ export const MainContent: React.FC<Props> = ({
             </div>
 
             <div className="MainContent__stats__buttons">
-              <Button content="Add to cart" />
+              <Button
+                content="Add to cart"
+                product={{
+                  name,
+                  id: phoneId,
+                  image: images[0],
+                  amount: 1,
+                  price: priceDiscount,
+                }}
+              />
 
               <HeartIcon />
             </div>

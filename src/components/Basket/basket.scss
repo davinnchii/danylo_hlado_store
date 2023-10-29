@@ -25,12 +25,34 @@
   &__card {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 752px;
     margin-right: 16px;
     padding: 24px 12px;
     border: 1px solid #E2E6E9;
     border-radius: 16px;
     margin-bottom: 16px;
+
+    &__icon {
+      height: 16px;
+      width: 16px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      background-image: url('../../assets/icons/close.svg');
+
+      &:hover {
+        background-image: url('../../assets/icons/close-none-active.svg');
+      }
+    }
+
+    &__phone-image {
+      object-fit: contain;
+      height: 80px;
+      width: 80px;
+      padding: 7px;
+      box-sizing: border-box;
+    }
 
     &__info {
       display: flex;
@@ -59,6 +81,8 @@
 
     &__quantity {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: 96px;
     }
 
@@ -70,6 +94,54 @@
       font-size: 22px;
       font-style: normal;
       font-weight: 800;
+
+      &::before {
+        content: '$';
+      }
+    }
+
+    &__icons {
+      cursor: pointer;
+      box-sizing: border-box;
+      border-radius: 50%;
+      padding: 8px;
+      border: 1px solid #B4BDC3;
+      background: none;
+      width: 32px;
+      height: 32px;
+
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-size: 16px;
+
+      transition: all 0.5s;
+
+      &:disabled {
+        border-color: #E2E6E9;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
+      &:hover {
+        border-color: #0F0F11;
+      }
+    }
+
+    &__icon-minus {
+      background-image: url(../../assets/icons/Minus.svg);
+
+      &:disabled {
+        background-image: url(../../assets/icons/Minus-none-active.svg);
+      }
+    }
+
+    &__icon-plus {
+      background-image: url(../../assets/icons/Plus.svg);
+
+      &:disabled {
+        background-image: url(../../assets/icons/Plus-none-active.svg);
+      }
     }
   }
 
@@ -97,6 +169,10 @@
         font-weight: 800;
         line-height: 41px;
         letter-spacing: -0.32px;
+
+        &::before {
+          content: '$';
+        }
       }
 
       &__subtitle {

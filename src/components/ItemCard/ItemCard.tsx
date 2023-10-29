@@ -14,7 +14,7 @@ export const ItemCard = () => {
     <article className="ItemCard">
       <MainContent
         phone={phone}
-        phoneId={1}
+        phoneId="1"
         selectedCapacity={selectedCapacity}
         onSelectCapacity={setSelectedCapacity}
       />
