@@ -94,40 +94,44 @@ export const PhonesPage: React.FC = () => {
       <section className="section phones">
         <h1 className="phones__title">{getSectionTitle(category)}</h1>
 
-        <p className="phones__amount">{`${visibleProducts.length} models`}</p>
-
-        <article className="phones__sort sort">
-          <SortSection
-            defaultValue={sortOptions[0]}
-            options={sortOptions}
-            label="Sort by"
-            onChange={handleChangePage}
-          />
-
-          <SortSection
-            defaultValue={paginationOptions[0]}
-            options={paginationOptions}
-            label="Items on page"
-            onChange={handleChangePage}
-          />
-        </article>
-
         {hasCategoryProductsLoaded ? (
           <Loader />
         ) : (
-          <section className="catalog">
-            {visibleProducts.map(product => (
-              <ProductCard product={product} key={product.id} />
-            ))}
-          </section>
+          <>
+            <p className="phones__amount">{`${visibleProducts.length} models`}</p>
+
+            <article className="phones__sort sort">
+              <SortSection
+                defaultValue={sortOptions[0]}
+                options={sortOptions}
+                label="Sort by"
+                onChange={handleChangePage}
+              />
+
+              <SortSection
+                defaultValue={paginationOptions[0]}
+                options={paginationOptions}
+                label="Items on page"
+                onChange={handleChangePage}
+              />
+            </article>
+
+            <section className="catalog">
+              {visibleProducts.map(product => (
+                <ProductCard product={product} key={product.id} />
+              ))}
+            </section>
+          </>
         )}
       </section>
 
-      <Pagination
-        total={totalProducts.current.value}
-        currentPage={currentPage}
-        onPageChange={handleChangePage}
-      />
+      {!hasCategoryProductsLoaded && (
+        <Pagination
+          total={totalProducts.current.value}
+          currentPage={currentPage}
+          onPageChange={handleChangePage}
+        />
+      )}
     </div>
   );
 };

@@ -34,7 +34,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <section className="card">
-      <Link to={`../products/${product.id}`}>
+      <Link to={`/products/${product.id}`}>
         <span className="card__image-block">
           <img
             src={getImageUrl(product.image)}
