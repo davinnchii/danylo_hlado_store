@@ -195,7 +195,16 @@ export const MainContent: React.FC<Props> = ({
             <div className="MainContent__stats__buttons">
               {(hasLoaded && !!product)
                 ? <Skeleton width={200} height={32} />
-                : <Button content="Add to cart" />}
+                : <Button
+                content="Add to cart"
+                product={{
+                  name,
+                  id: phoneId,
+                  image: images[0],
+                  amount: 1,
+                  price: priceDiscount,
+                }}
+              />}
 
               {(hasLoaded && !!product)
                 ? <Skeleton width={32} height={32} />
