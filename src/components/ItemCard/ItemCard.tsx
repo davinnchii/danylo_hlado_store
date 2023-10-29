@@ -6,29 +6,44 @@ import { AboutInfo } from './AboutInfo';
 import { MainContent } from './MainContent';
 import { NewModels } from '../NewModels';
 
-import phone from './temppublic/apple-iphone-11-128gb-black.json';
 import { getProductById, getRecommendedProducts } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
 import { Loader } from '../Loader';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './ItemCard.scss';
-import { ProductCartType } from '../../types';
+import { ProductCartResponseType, ProductCartType } from '../../types';
 
 export const ItemCard = () => {
-  const [selectedCapacity, setSelectedCapacity] = useState(phone.capacity);
+  const [selectedProduct, setSelectedProduct] = useState<ProductCartType | null>(null);
+  const [availableVariants, setAvailableVariants] = useState<ProductCartResponseType | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
   const [hasRecommendedProductsLoaded, setHasRecommendedProductsLoaded] = useState(false);
 
-  const [selectedProduct, setSelectedProduct] = useState<ProductCartType | null>(null);
-
   const { id } = useParams();
+  const handleChangeCapacity = (newCapacity: string) => {
+    const newProduct = availableVariants?.details.find(
+      ({ capacity, color }) => capacity === newCapacity
+        && color === selectedProduct?.color,
+    ) || null;
+
+    setSelectedProduct(newProduct);
+  };
+
+  const handleChangeColor = (newColor: string) => {
+    const newProduct = availableVariants?.details.find(
+      ({ color, capacity }) => color === newColor
+        && capacity === selectedProduct?.capacity,
+    ) || null;
+
+    setSelectedProduct(newProduct);
+  };
 
   useEffect(() => {
     if (id) {
       getProductById(id)
         .then((data) => {
-          setSelectedProduct(data.details[0]);
-          console.log(data.details);
+          setAvailableVariants(data);
+          setSelectedProduct(data.selectedProduct);
         });
     }
   }, [id]);
@@ -47,16 +62,18 @@ export const ItemCard = () => {
 
   return (
     <article className="ItemCard">
-      {selectedProduct && (
-        <MainContent
-          product={selectedProduct}
-          phoneId={1}
-          selectedCapacity={selectedCapacity}
-          onSelectCapacity={setSelectedCapacity}
-        />
+      {(selectedProduct) && (
+        <>
+          <MainContent
+            product={selectedProduct}
+            phoneId={1}
+            selectedCapacity={selectedProduct.capacity}
+            onSelectCapacity={handleChangeCapacity}
+            onSelectColor={handleChangeColor}
+          />
+          <AboutInfo phone={selectedProduct} selectedCapacity={selectedProduct.capacity} />
+        </>
       )}
-
-      <AboutInfo phone={phone} selectedCapacity={selectedCapacity} />
 
       {hasRecommendedProductsLoaded ? (
         <Loader />

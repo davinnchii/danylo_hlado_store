@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../Button';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
@@ -14,6 +15,7 @@ type Props = {
   phoneId: number;
   selectedCapacity: string;
   onSelectCapacity: (selectedCapacity: string) => void;
+  onSelectColor: (selectedColor: string) => void;
 };
 
 export const MainContent: React.FC<Props> = ({
@@ -21,6 +23,7 @@ export const MainContent: React.FC<Props> = ({
   phoneId,
   selectedCapacity,
   onSelectCapacity,
+  onSelectColor,
 }) => {
   if (!product) {
     return <h1>hello</h1>;
@@ -42,6 +45,7 @@ export const MainContent: React.FC<Props> = ({
 
   const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
+  const navigate = useNavigate();
 
   const statsTableData = {
     screen,
@@ -50,16 +54,30 @@ export const MainContent: React.FC<Props> = ({
     RAM: getSplitedGB(ram),
   };
 
+  useEffect(() => {
+    setSelectedColor(product.color);
+    setSelectedPhoto(getImageUrl(images[0]));
+  }, [product]);
+
+  const handleChangeColor = (newColor: string) => {
+    onSelectColor(newColor);
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
-        <a href="/" className="ItemCard__back-link">
+        <button
+          type="button"
+          aria-label="go-back-button"
+          className="ItemCard__back-link"
+          onClick={() => navigate(-1)}
+        >
           <img
             className="ItemCard__back-arrow"
             src={rightArrow}
             alt="back icon"
           />
-        </a>
+        </button>
 
         <section className="MainContent">
           <h1 className="MainContent__header">{name}</h1>
@@ -107,7 +125,7 @@ export const MainContent: React.FC<Props> = ({
                     'MainContent__stats__color-selected':
                       selectedColor === currentColor,
                   })}
-                  onClick={() => setSelectedColor(currentColor)}
+                  onClick={() => handleChangeColor(currentColor)}
                   aria-label={`color-${currentColor}`}
                   type="button"
                   style={{

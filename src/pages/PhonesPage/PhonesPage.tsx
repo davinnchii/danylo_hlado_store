@@ -12,7 +12,7 @@ import '../../components/productCard/productCard.scss';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 import { getSpecificSorting } from '../../api/products';
-import { ProductType } from '../../types/ProductType';
+import { ProductResponseType, ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
 import { getSectionTitle } from '../../utils/getSectionTitle';
 import { Pagination } from '../../components/pagination/Pagination';
@@ -44,7 +44,7 @@ export const PhonesPage: React.FC = () => {
     setHasCategoryProductsLoaded(true);
 
     getSpecificSorting(category, sort, Number(limit), Number(offset))
-      .then((data) => {
+      .then((data: ProductResponseType) => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
       })

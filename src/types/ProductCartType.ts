@@ -26,5 +26,6 @@ export interface ProductCartType {
 
 export interface ProductCartResponseType {
   product: ProductType;
+  selectedProduct: ProductCartType;
   details: ProductCartType[];
 }
