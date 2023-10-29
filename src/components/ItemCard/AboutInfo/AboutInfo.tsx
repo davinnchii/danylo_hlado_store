@@ -42,7 +42,9 @@ export const AboutInfo: React.FC<Props> = ({
         <article className="About-info">
           <div className="About-info__about">
             <h2 className="About-info__about-header About-info__header">
-              {hasLoaded ? <Skeleton /> : 'About'}
+              {(hasLoaded && !!phone)
+                ? <Skeleton />
+                : 'About'}
             </h2>
 
             <div className="About-info__about__description">
@@ -52,7 +54,9 @@ export const AboutInfo: React.FC<Props> = ({
                   key={title}
                 >
                   <h3 className="About-info__about__description__title">
-                    {hasLoaded ? <Skeleton /> : title}
+                    {(hasLoaded && !!phone)
+                      ? <Skeleton />
+                      : title}
                   </h3>
 
                   {text.map((paragraph) => (
@@ -60,7 +64,9 @@ export const AboutInfo: React.FC<Props> = ({
                       className="About-info__about__description__text"
                       key={paragraph}
                     >
-                      {hasLoaded ? <Skeleton height={100} /> : paragraph}
+                      {(hasLoaded && !!phone)
+                        ? <Skeleton height={100} />
+                        : paragraph}
                     </p>
                   ))}
                 </div>
@@ -70,7 +76,9 @@ export const AboutInfo: React.FC<Props> = ({
 
           <div className="About-info__tech-specs">
             <h2 className="About-info__tech-specs-header About-info__header">
-              {hasLoaded ? <Skeleton /> : 'Tech specs'}
+              {(hasLoaded && !!phone)
+                ? <Skeleton />
+                : 'Tech specs'}
             </h2>
 
             <div className="About-info__tech-specs__stats">
@@ -79,7 +87,7 @@ export const AboutInfo: React.FC<Props> = ({
                   return null;
                 }
 
-                return hasLoaded ? (
+                return (hasLoaded && !!phone) ? (
                   <Skeleton key={key} />
                 ) : (
                   <div className="About-info__tech-specs__stats__row" key={key}>

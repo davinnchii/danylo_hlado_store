@@ -85,12 +85,12 @@ export const MainContent: React.FC<Props> = ({
 
         <section className="MainContent">
           <h1 className="MainContent__header">
-            {hasLoaded ? <Skeleton /> : name}
+            {(hasLoaded && !!product) ? <Skeleton /> : name}
           </h1>
 
           <div className="MainContent__photos">
             {images.map((image, index) => (
-              hasLoaded ? (
+              (hasLoaded && !!product) ? (
                 <Skeleton key={image} width={50} height={50} />
               ) : (
                 <input
@@ -109,17 +109,19 @@ export const MainContent: React.FC<Props> = ({
           </div>
 
           <div className="MainContent__selected-photo">
-            {hasLoaded ? <Skeleton height={400} width={400} /> : (
-              <img
-                src={selectedPhoto}
-                alt="selected"
-                className="MainContent__selected-photo__image"
-              />
-            )}
+            {(hasLoaded && !!product)
+              ? <Skeleton height={400} width={400} />
+              : (
+                <img
+                  src={selectedPhoto}
+                  alt="selected"
+                  className="MainContent__selected-photo__image"
+                />
+              )}
           </div>
 
           <div className="MainContent__stats">
-            {hasLoaded ? <Skeleton width={50} /> : (
+            {(hasLoaded && !!product) ? <Skeleton width={50} /> : (
               <div className="MainContent__stats__colors-id">
                 <p className="MainContent__stats__colors-header">
                   Available colors
@@ -131,7 +133,7 @@ export const MainContent: React.FC<Props> = ({
               </div>
             )}
 
-            {hasLoaded ? <Skeleton width={50} /> : (
+            {(hasLoaded && !!product) ? <Skeleton width={50} /> : (
               <div className="MainContent__stats__colors">
                 {colorsAvailable.map((currentColor) => (
                   <button
@@ -152,12 +154,14 @@ export const MainContent: React.FC<Props> = ({
             )}
 
             <p className="MainContent__stats__capacity-header">
-              {hasLoaded ? <Skeleton width={100} /> : 'Select capacity'}
+              {(hasLoaded && !!product)
+                ? <Skeleton width={100} />
+                : 'Select capacity'}
             </p>
 
             <div className="MainContent__stats__capacites">
               {capacityAvailable.map((currentCapacity) => (
-                hasLoaded ? (
+                (hasLoaded && !!product) ? (
                   <Skeleton key={currentCapacity} width={40} />
                 ) : (
                   <button
@@ -176,7 +180,7 @@ export const MainContent: React.FC<Props> = ({
               ))}
             </div>
 
-            {hasLoaded ? <Skeleton width={50} /> : (
+            {(hasLoaded && !!product) ? <Skeleton width={50} /> : (
               <div className="MainContent__stats__prices">
                 <span className="MainContent__stats__price-discount">
                   {priceDiscount}
@@ -189,16 +193,18 @@ export const MainContent: React.FC<Props> = ({
             )}
 
             <div className="MainContent__stats__buttons">
-              {hasLoaded
+              {(hasLoaded && !!product)
                 ? <Skeleton width={200} height={32} />
                 : <Button content="Add to cart" />}
 
-              {hasLoaded ? <Skeleton width={32} height={32} /> : <HeartIcon />}
+              {(hasLoaded && !!product)
+                ? <Skeleton width={32} height={32} />
+                : <HeartIcon />}
             </div>
 
             <div className="MainContent__stats__short">
               {Object.entries(statsTableData).map(([key, value]) => (
-                hasLoaded ? (
+                ((hasLoaded && !!product)) ? (
                   <Skeleton key={key} />
                 ) : (
                   <div className="MainContent__stats__short__row" key={key}>
