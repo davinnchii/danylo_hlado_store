@@ -70,8 +70,15 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
 
             <div className="About-info__tech-specs__stats">
               {Object.entries(dataFormTable).map(([key, value]) => {
+                if (value === null) {
+                  return null;
+                }
+
                 return (
-                  <div className="About-info__tech-specs__stats__row" key={key}>
+                  <div
+                    className="About-info__tech-specs__stats__row"
+                    key={key}
+                  >
                     <span className="About-info__tech-specs__stats__title">
                       {key}
                     </span>
