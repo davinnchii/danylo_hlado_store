@@ -8,7 +8,7 @@ import { Button } from '../../Button';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
 import rightArrow from '../../../assets/icons/Chevron (Arrow Right).svg';
-import { ProductCartType } from '../../../types';
+import { ProductCartType, ProductType } from '../../../types';
 import { getImageUrl } from '../../../utils/getImageUrl';
 import './MainContent.scss';
 
@@ -19,6 +19,7 @@ type Props = {
   onSelectCapacity: (selectedCapacity: string) => void;
   onSelectColor: (selectedColor: string) => void;
   hasLoaded: boolean;
+  productInfo: ProductType;
 };
 
 export const MainContent: React.FC<Props> = ({
@@ -28,6 +29,7 @@ export const MainContent: React.FC<Props> = ({
   onSelectCapacity,
   onSelectColor,
   hasLoaded,
+  productInfo,
 }) => {
   if (!product) {
     return <h1>hello</h1>;
@@ -46,6 +48,8 @@ export const MainContent: React.FC<Props> = ({
     processor,
     ram,
   } = product;
+
+  const { id, price } = productInfo;
 
   const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
@@ -168,7 +172,7 @@ export const MainContent: React.FC<Props> = ({
                     key={currentCapacity}
                     className={classNames('MainContent__stats__capacity', {
                       'MainContent__stats__capacity-selected':
-                      selectedCapacity === currentCapacity,
+                        selectedCapacity === currentCapacity,
                     })}
                     onClick={() => onSelectCapacity(currentCapacity)}
                     aria-label={`capacity-${currentCapacity}`}
@@ -194,17 +198,20 @@ export const MainContent: React.FC<Props> = ({
 
             <div className="MainContent__stats__buttons">
               {(hasLoaded && !!product)
-                ? <Skeleton width={200} height={32} />
-                : <Button
-                content="Add to cart"
-                product={{
-                  name,
-                  id: phoneId,
-                  image: images[0],
-                  amount: 1,
-                  price: priceDiscount,
-                }}
-              />}
+                ? (
+                  <Skeleton width={200} height={32} />
+                ) : (
+                  <Button
+                    content="Add to cart"
+                    product={{
+                      id,
+                      amount: 1,
+                      price,
+                      image: productInfo.image,
+                      name,
+                    }}
+                  />
+                )}
 
               {(hasLoaded && !!product)
                 ? <Skeleton width={32} height={32} />

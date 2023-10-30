@@ -3,13 +3,9 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 
 import './basket.scss';
+import { getImageUrl } from '../../utils/getImageUrl';
 
-const getValidImageLink = (img: string) => {
-  // eslint-disable-next-line max-len
-  return `https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/${img}`;
-};
-
-export const Basket: React.FC = () => {
+export const Cart: React.FC = () => {
   const { cart, setCart } = useContext(CartContext);
 
   const getTotalPrice = () => {
@@ -78,7 +74,7 @@ export const Basket: React.FC = () => {
                 <div className="basket__card__phone padding">
                   <img
                     className="basket__card__phone-image"
-                    src={getValidImageLink(image)}
+                    src={getImageUrl(image)}
                     alt="product"
                   />
                 </div>
