@@ -1,0 +1,63 @@
+.favourites {
+  width: 1136px;
+  margin: 0 auto;
+
+  &__title {
+    font-family: Mont;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 56px;
+    margin-bottom: 8px;
+  }
+
+  &__items {
+    font-family: Mont;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: #89939A;
+  }
+
+  &__phones {
+    display: grid;
+    grid-template-columns: repeat(4, 268px);
+    gap: 30px;
+    margin: 20px 0;
+  }
+}
+
+
+@media (min-width: 950px) and (max-width: 1199px){
+  .favourites {
+    margin: 0 24px;
+
+    &__phones {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (min-width: 640px) and (max-width: 949px){
+  .favourites {
+    margin: 0 24px;
+
+    &__phones {
+      display: flex;
+      flex-wrap: wrap;
+      width: 650px;
+    }
+  }
+}
+
+@media (min-width: 50px) and (max-width: 639px) {
+  .favourites {
+    margin: 0 16px;
+
+    &__phones {
+      display: grid;
+      grid-template-columns: repeat(1, 288px);
+    }
+  }
+}
+
