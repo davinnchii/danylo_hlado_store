@@ -65,7 +65,7 @@ export const MainContent: React.FC<Props> = ({
   useEffect(() => {
     setSelectedColor(product.color);
     setSelectedPhoto(getImageUrl(images[0]));
-  }, [product]);
+  }, [product, images]);
 
   const handleChangeColor = (newColor: string) => {
     onSelectColor(newColor);
