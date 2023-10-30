@@ -168,26 +168,12 @@
 
     &__menu {
       display: none;
-      flex-direction: column;
-      height: 100vh;
-      gap: 16px;
-      top: 72px;
-      left: 0;
-      right: 0;
-      background-color: #fff;
-      position: absolute;
-      z-index: 999;
-
-      &-link {
-        padding-bottom: 8px;
-        height: 27px;
-      }
     }
   }
 
   .icon {
-    &--favourites__link,
-    &--shopping-bag__link {
+    &--favourites__link-header,
+    &--shopping-bag__link-header {
       display: none;
     }
 
@@ -207,10 +193,6 @@
   font-weight: 800;
   color: #0F0F11;
   border-color: #0F0F11;
-}
-
-.active-menu {
-  display: flex;
 }
 
 @keyframes icons-scale {
