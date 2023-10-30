@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './HeartIcon.scss';
 import heart_empty from '../../assets/icons/favouritesh-heart-like.svg';
 import heart_filled from '../../assets/icons/favourites-filled-heart-like.svg';
+import { FavouriteContext } from '../../context/FavouriteContext';
+import { ProductType } from '../../types';
 
-export const HeartIcon = () => {
-  const [isLiked, setIsLiked] = useState(false);
+type Props = {
+  product: ProductType,
+};
+
+export const HeartIcon: React.FC<Props> = ({ product }) => {
+  const { favourite, setFavourite } = useContext(FavouriteContext);
+
+  const isLiked = favourite.find(({ id }) => id === product.id);
+
+  const addToFavourites = () => {
+    if (isLiked) {
+      setFavourite(curFav => {
+        return curFav.filter(({ id }) => id !== product.id);
+      });
+
+      return;
+    }
+
+    setFavourite(curFav => {
+      return [...curFav, product];
+    });
+  };
 
   return (
     <button
       className="HeartIcon"
-      onClick={() => setIsLiked(!isLiked)}
+      onClick={addToFavourites}
       type="button"
     >
       <input
