@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { CartProduct } from '../types';
+import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 interface CartContextType {
   cart: CartProduct[],
@@ -13,25 +14,7 @@ type Props = {
 };
 
 export const CartContextProvider: React.FC<Props> = ({ children }) => {
-  const [cart, setCart] = useState<CartProduct[]>(() => {
-    let stored: string | null;
-
-    try {
-      stored = localStorage.getItem('cart');
-    } catch {
-      return [];
-    }
-
-    if (!stored || !Array.isArray(JSON.parse(stored))) {
-      return [];
-    }
-
-    return JSON.parse(stored);
-  });
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+  const [cart, setCart] = useLocalStorageState<CartProduct[]>('cart', []);
 
   const value = {
     cart,

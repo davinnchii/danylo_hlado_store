@@ -202,7 +202,7 @@ export const MainContent: React.FC<Props> = ({
 
               {(hasLoaded && !!product)
                 ? <Skeleton width={32} height={32} />
-                : <HeartIcon />}
+                : <HeartIcon product={productInfo} />}
             </div>
 
             <div className="MainContent__stats__short">

@@ -1,19 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ProductType } from '../types/ProductType';
+import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 interface FavouriteContextType {
   favourite: ProductType[],
   setFavourite: React.Dispatch<React.SetStateAction<ProductType[]>>
 }
 
-const FavouriteContext = React.createContext({} as FavouriteContextType);
+export const FavouriteContext = React.createContext({} as FavouriteContextType);
 
 type Props = {
   children: React.ReactNode,
 };
 
 export const FavouriteContextProvider: React.FC<Props> = ({ children }) => {
-  const [favourite, setFavourite] = useState<ProductType[]>([]);
+  const [
+    favourite,
+    setFavourite,
+  ] = useLocalStorageState<ProductType[]>('favourites', []);
 
   const value = {
     favourite,
