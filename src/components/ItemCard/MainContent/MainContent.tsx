@@ -32,6 +32,7 @@ export const MainContent: React.FC<Props> = ({
   }
 
   const {
+    id,
     name,
     images,
     colorsAvailable,
@@ -44,8 +45,6 @@ export const MainContent: React.FC<Props> = ({
     processor,
     ram,
   } = product;
-
-  const { id, price } = productInfo;
 
   const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
@@ -165,14 +164,18 @@ export const MainContent: React.FC<Props> = ({
                 content="Add to cart"
                 product={{
                   id,
-                  name: productInfo.name,
+                  name,
                   amount: 1,
-                  price,
-                  image: productInfo.image,
+                  price: priceDiscount,
+                  image: images[0],
                 }}
               />
 
-              <HeartIcon product={productInfo} />
+              <HeartIcon product={{
+                ...productInfo,
+                id,
+              }}
+              />
             </div>
 
             <div className="MainContent__stats__short">

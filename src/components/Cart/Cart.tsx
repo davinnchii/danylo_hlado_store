@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 
 import './Cart.scss';
@@ -73,18 +74,21 @@ export const Cart: React.FC = () => {
                       aria-label="button-close"
                     />
 
-                    <div className="basket__card__phone padding">
-                      <img
-                        className="basket__card__phone-image"
-                        src={getImageUrl(image)}
-                        alt="product"
-                      />
-                    </div>
+                    <Link to={`/products/${product.id}`} className="basket__card__info">
+                      <div className="basket__card__phone padding">
+                        <img
+                          className="basket__card__phone-image"
+                          src={getImageUrl(image)}
+                          alt="product"
+                        />
+                      </div>
 
-                    <div className="basket__card__title padding">
-                      {name}
-                    </div>
+                      <div className="basket__card__title padding">
+                        {name}
+                      </div>
+                    </Link>
                   </div>
+
                   <div className="basket__card__totally">
                     <div className="basket__card__quantity padding">
                       <button

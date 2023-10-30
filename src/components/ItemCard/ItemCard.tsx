@@ -80,7 +80,7 @@ export const ItemCard = () => {
         <>
           <MainContent
             product={selectedProduct}
-            phoneId={1}
+            phoneId={+productInfo.id}
             selectedCapacity={selectedProduct.capacity}
             onSelectCapacity={handleChangeCapacity}
             onSelectColor={handleChangeColor}
