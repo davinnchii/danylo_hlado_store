@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
+
 import { Button } from '../../Button';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
@@ -16,6 +18,7 @@ type Props = {
   selectedCapacity: string;
   onSelectCapacity: (selectedCapacity: string) => void;
   onSelectColor: (selectedColor: string) => void;
+  hasLoaded: boolean;
 };
 
 export const MainContent: React.FC<Props> = ({
@@ -24,6 +27,7 @@ export const MainContent: React.FC<Props> = ({
   selectedCapacity,
   onSelectCapacity,
   onSelectColor,
+  hasLoaded,
 }) => {
   if (!product) {
     return <h1>hello</h1>;
@@ -80,101 +84,129 @@ export const MainContent: React.FC<Props> = ({
         </button>
 
         <section className="MainContent">
-          <h1 className="MainContent__header">{name}</h1>
+          <h1 className="MainContent__header">
+            {(hasLoaded && !!product) ? <Skeleton /> : name}
+          </h1>
 
           <div className="MainContent__photos">
             {images.map((image, index) => (
-              <input
-                onClick={() => setSelectedPhoto(getImageUrl(image))}
-                key={image}
-                src={getImageUrl(image)}
-                alt={`${index}`}
-                type="image"
-                className={classNames('MainContent__photos__item', {
-                  'MainContent__photos__item-selected':
-                    selectedPhoto === getImageUrl(image),
-                })}
-              />
+              (hasLoaded && !!product) ? (
+                <Skeleton key={image} width={50} height={50} />
+              ) : (
+                <input
+                  onClick={() => setSelectedPhoto(getImageUrl(image))}
+                  key={image}
+                  src={getImageUrl(image)}
+                  alt={`${index}`}
+                  type="image"
+                  className={classNames('MainContent__photos__item', {
+                    'MainContent__photos__item-selected':
+                      selectedPhoto === getImageUrl(image),
+                  })}
+                />
+              )
             ))}
           </div>
 
           <div className="MainContent__selected-photo">
-            <img
-              src={selectedPhoto}
-              alt="selected"
-              className="MainContent__selected-photo__image"
-            />
+            {(hasLoaded && !!product)
+              ? <Skeleton height={400} width={400} />
+              : (
+                <img
+                  src={selectedPhoto}
+                  alt="selected"
+                  className="MainContent__selected-photo__image"
+                />
+              )}
           </div>
 
           <div className="MainContent__stats">
-            <div className="MainContent__stats__colors-id">
-              <p className="MainContent__stats__colors-header">
-                Available colors
-              </p>
+            {(hasLoaded && !!product) ? <Skeleton width={50} /> : (
+              <div className="MainContent__stats__colors-id">
+                <p className="MainContent__stats__colors-header">
+                  Available colors
+                </p>
 
-              <span className="MainContent__stats__id">
-                {`id:${phoneId}`}
-              </span>
-            </div>
+                <span className="MainContent__stats__id">
+                  {`id:${phoneId}`}
+                </span>
+              </div>
+            )}
 
-            <div className="MainContent__stats__colors">
-              {colorsAvailable.map((currentColor) => (
-                <button
-                  key={currentColor}
-                  className={classNames('MainContent__stats__color', {
-                    'MainContent__stats__color-selected':
-                      selectedColor === currentColor,
-                  })}
-                  onClick={() => handleChangeColor(currentColor)}
-                  aria-label={`color-${currentColor}`}
-                  type="button"
-                  style={{
-                    backgroundColor: currentColor,
-                  }}
-                />
-              ))}
-            </div>
+            {(hasLoaded && !!product) ? <Skeleton width={50} /> : (
+              <div className="MainContent__stats__colors">
+                {colorsAvailable.map((currentColor) => (
+                  <button
+                    key={currentColor}
+                    className={classNames('MainContent__stats__color', {
+                      'MainContent__stats__color-selected':
+                        selectedColor === currentColor,
+                    })}
+                    onClick={() => handleChangeColor(currentColor)}
+                    aria-label={`color-${currentColor}`}
+                    type="button"
+                    style={{
+                      backgroundColor: currentColor,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
 
             <p className="MainContent__stats__capacity-header">
-              Select capacity
+              {(hasLoaded && !!product)
+                ? <Skeleton width={100} />
+                : 'Select capacity'}
             </p>
 
             <div className="MainContent__stats__capacites">
               {capacityAvailable.map((currentCapacity) => (
-                <button
-                  key={currentCapacity}
-                  className={classNames('MainContent__stats__capacity', {
-                    'MainContent__stats__capacity-selected':
+                (hasLoaded && !!product) ? (
+                  <Skeleton key={currentCapacity} width={40} />
+                ) : (
+                  <button
+                    key={currentCapacity}
+                    className={classNames('MainContent__stats__capacity', {
+                      'MainContent__stats__capacity-selected':
                       selectedCapacity === currentCapacity,
-                  })}
-                  onClick={() => onSelectCapacity(currentCapacity)}
-                  aria-label={`capacity-${currentCapacity}`}
-                  type="button"
-                >
-                  {getSplitedGB(currentCapacity)}
-                </button>
+                    })}
+                    onClick={() => onSelectCapacity(currentCapacity)}
+                    aria-label={`capacity-${currentCapacity}`}
+                    type="button"
+                  >
+                    {getSplitedGB(currentCapacity)}
+                  </button>
+                )
               ))}
             </div>
 
-            <div className="MainContent__stats__prices">
-              <span className="MainContent__stats__price-discount">
-                {priceDiscount}
-              </span>
+            {(hasLoaded && !!product) ? <Skeleton width={50} /> : (
+              <div className="MainContent__stats__prices">
+                <span className="MainContent__stats__price-discount">
+                  {priceDiscount}
+                </span>
 
-              <span className="MainContent__stats__price-regular">
-                {priceRegular}
-              </span>
-            </div>
+                <span className="MainContent__stats__price-regular">
+                  {priceRegular}
+                </span>
+              </div>
+            )}
 
             <div className="MainContent__stats__buttons">
-              <Button content="Add to cart" />
+              {(hasLoaded && !!product)
+                ? <Skeleton width={200} height={32} />
+                : <Button content="Add to cart" />}
 
-              <HeartIcon />
+              {(hasLoaded && !!product)
+                ? <Skeleton width={32} height={32} />
+                : <HeartIcon />}
             </div>
 
             <div className="MainContent__stats__short">
-              {Object.entries(statsTableData).map(([key, value]) => {
-                return (
+              {Object.entries(statsTableData).map(([key, value]) => (
+                ((hasLoaded && !!product)) ? (
+                  <Skeleton key={key} />
+                ) : (
                   <div className="MainContent__stats__short__row" key={key}>
                     <span className="MainContent__stats__short__header">
                       {key}
@@ -184,8 +216,8 @@ export const MainContent: React.FC<Props> = ({
                       {value}
                     </span>
                   </div>
-                );
-              })}
+                )
+              ))}
             </div>
           </div>
         </section>

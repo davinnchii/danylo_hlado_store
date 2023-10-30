@@ -8,6 +8,7 @@ import logo from '../../assets/images/logo.png';
 import logoBlack from '../../assets/images/logo-black.png';
 import './header.scss';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
+import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 
 enum CategoryType {
   Phones = 'phones',
@@ -34,15 +35,6 @@ export const Header: React.FC = () => {
   useEffect(() => {
     setSelectMenuActive(category);
   }, [category]);
-
-  const normalizedMenuLink = (
-    categoryItem: string,
-    limit: number,
-    offset: number,
-    sortField: string,
-  ) => {
-    return `/products?category=${categoryItem}&limit=${limit}&offset=${offset}&sortBy=${sortField}`;
-  };
 
   return (
     <header className="header">

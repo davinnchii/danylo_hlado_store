@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -8,10 +7,11 @@ import { NewModels } from '../NewModels';
 
 import { getProductById, getRecommendedProducts } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
-import { Loader } from '../Loader';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './ItemCard.scss';
 import { ProductCartResponseType, ProductCartType } from '../../types';
+import { Loader } from '../Loader';
+import { CartsLoader } from '../CartsLoader/CartsLoader';
 
 export const ItemCard = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductCartType | null>(null);
@@ -62,6 +62,10 @@ export const ItemCard = () => {
 
   return (
     <article className="ItemCard">
+      {hasRecommendedProductsLoaded && (
+        <Loader />
+      )}
+
       {(selectedProduct) && (
         <>
           <MainContent
@@ -70,13 +74,20 @@ export const ItemCard = () => {
             selectedCapacity={selectedProduct.capacity}
             onSelectCapacity={handleChangeCapacity}
             onSelectColor={handleChangeColor}
+            hasLoaded={hasRecommendedProductsLoaded}
           />
-          <AboutInfo phone={selectedProduct} selectedCapacity={selectedProduct.capacity} />
+          <AboutInfo
+            phone={selectedProduct}
+            selectedCapacity={selectedProduct.capacity}
+            hasLoaded={hasRecommendedProductsLoaded}
+          />
         </>
       )}
 
       {hasRecommendedProductsLoaded ? (
-        <Loader />
+        <div className="container">
+          <CartsLoader />
+        </div>
       ) : (
         <NewModels
           title="You may also like"

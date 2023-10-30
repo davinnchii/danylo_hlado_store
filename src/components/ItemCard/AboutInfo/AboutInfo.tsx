@@ -1,14 +1,19 @@
 import React from 'react';
-import './AboutInfo.scss';
-import { ProductCartType } from '../../../types';
+import Skeleton from 'react-loading-skeleton';
+
 import { getSplitedGB } from '../../../utils/getSplitedGB';
+import { ProductCartType } from '../../../types';
+import './AboutInfo.scss';
 
 type Props = {
   phone: ProductCartType;
   selectedCapacity: string;
+  hasLoaded: boolean;
 };
 
-export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
+export const AboutInfo: React.FC<Props> = ({
+  phone, selectedCapacity, hasLoaded,
+}) => {
   const {
     description,
     screen,
@@ -37,7 +42,9 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
         <article className="About-info">
           <div className="About-info__about">
             <h2 className="About-info__about-header About-info__header">
-              About
+              {(hasLoaded && !!phone)
+                ? <Skeleton />
+                : 'About'}
             </h2>
 
             <div className="About-info__about__description">
@@ -47,7 +54,9 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
                   key={title}
                 >
                   <h3 className="About-info__about__description__title">
-                    {title}
+                    {(hasLoaded && !!phone)
+                      ? <Skeleton />
+                      : title}
                   </h3>
 
                   {text.map((paragraph) => (
@@ -55,7 +64,9 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
                       className="About-info__about__description__text"
                       key={paragraph}
                     >
-                      {paragraph}
+                      {(hasLoaded && !!phone)
+                        ? <Skeleton height={100} />
+                        : paragraph}
                     </p>
                   ))}
                 </div>
@@ -65,7 +76,9 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
 
           <div className="About-info__tech-specs">
             <h2 className="About-info__tech-specs-header About-info__header">
-              Tech specs
+              {(hasLoaded && !!phone)
+                ? <Skeleton />
+                : 'Tech specs'}
             </h2>
 
             <div className="About-info__tech-specs__stats">
@@ -74,15 +87,13 @@ export const AboutInfo: React.FC<Props> = ({ phone, selectedCapacity }) => {
                   return null;
                 }
 
-                return (
-                  <div
-                    className="About-info__tech-specs__stats__row"
-                    key={key}
-                  >
+                return (hasLoaded && !!phone) ? (
+                  <Skeleton key={key} />
+                ) : (
+                  <div className="About-info__tech-specs__stats__row" key={key}>
                     <span className="About-info__tech-specs__stats__title">
                       {key}
                     </span>
-
                     <span className="About-info__tech-specs__stats__data">
                       {value}
                     </span>
