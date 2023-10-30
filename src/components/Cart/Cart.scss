@@ -221,34 +221,34 @@
       "card"
       "totalyCount";
 
-      &__cards {
-        grid-area: card;
+    &__cards {
+      grid-area: card;
+    }
+
+    &__card {
+      width: 588px;
+
+      &__title {
+        width: 160px;
       }
+    }
 
-      &__card {
-          width: 588px;
+    &__totally {
+      grid-area: totalyCount;
+      display: flex;
 
-        &__title {
-          width: 160px;
-        }
-      }
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
 
-      &__totally {
-        grid-area: totalyCount;
-        display: flex;
+      width: 565px;
+      height: 175px;
 
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-
-        width: 565px;
-        height: 175px;
-
-        padding: 24px;
-        margin: 32px 0 64px 0;
-        border: 1px solid #E2E6E9;
-        border-radius: 16px;
-      }
+      padding: 24px;
+      margin: 32px 0 64px 0;
+      border: 1px solid #E2E6E9;
+      border-radius: 16px;
+    }
   }
 
 }
@@ -266,42 +266,41 @@
       "card"
       "totalyCount";
 
-      &__cards {
-        grid-area: card;
+    &__cards {
+      grid-area: card;
+    }
+
+    &__card {
+      width: 288px;
+      display: flex;
+      flex-direction: column;
+
+      &__title {
+        width: 128px;
       }
-
-      &__card {
-          width: 288px;
-          display: flex;
-          flex-direction: column;
-
-        &__title {
-          width: 128px;
-        }
-
-        &__totally {
-          margin: 16px -10px 0;
-          width: 100%;
-          justify-content: space-between;
-        }
-        }
 
       &__totally {
-        grid-area: totalyCount;
-        display: flex;
-
-        flex-direction: column;
-        align-items: center;
+        margin: 16px -10px 0;
+        width: 100%;
         justify-content: space-between;
-
-        width: 288px;
-        height: 190px;
-
-        padding: 24px;
-        margin: 32px 0 64px 0;
-        border: 1px solid #E2E6E9;
-        border-radius: 16px;
       }
-  }
+    }
 
+    &__totally {
+      grid-area: totalyCount;
+      display: flex;
+
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 288px;
+      height: 190px;
+
+      padding: 24px;
+      margin: 32px 0 64px 0;
+      border: 1px solid #E2E6E9;
+      border-radius: 16px;
+    }
+  }
 }

@@ -2,15 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../Button';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
-import rightArrow from '../../../assets/icons/Chevron (Arrow Right).svg';
 import { ProductCartType, ProductType } from '../../../types';
 import { getImageUrl } from '../../../utils/getImageUrl';
 import './MainContent.scss';
+import { BackButton } from '../../BackButton/BackButton';
 
 type Props = {
   product: ProductCartType | null;
@@ -53,7 +52,6 @@ export const MainContent: React.FC<Props> = ({
 
   const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
-  const navigate = useNavigate();
 
   const statsTableData = {
     screen,
@@ -74,18 +72,7 @@ export const MainContent: React.FC<Props> = ({
   return (
     <div className="container">
       <div className="wrapper">
-        <button
-          type="button"
-          aria-label="go-back-button"
-          className="ItemCard__back-link"
-          onClick={() => navigate(-1)}
-        >
-          <img
-            className="ItemCard__back-arrow"
-            src={rightArrow}
-            alt="back icon"
-          />
-        </button>
+        <BackButton />
 
         <section className="MainContent">
           <h1 className="MainContent__header">

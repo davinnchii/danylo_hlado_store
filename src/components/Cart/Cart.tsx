@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-
 import { CartContext } from '../../context/CartContext';
 
-import './basket.scss';
+import './Cart.scss';
 import { getImageUrl } from '../../utils/getImageUrl';
+import { EmptyCart } from '../ItemCard/EmptyCart';
 
 export const Cart: React.FC = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -49,84 +49,90 @@ export const Cart: React.FC = () => {
   };
 
   return (
-    <section className="basket">
-      <div className="basket__title">Cart</div>
-      <div className="basket__cards">
-        {cart.map(product => {
-          const {
-            id,
-            image,
-            name,
-            price,
-            amount,
-          } = product;
+    <>
+      {cart.length ? (
+        <section className="basket">
+          <div className="basket__title">Cart</div>
+          <div className="basket__cards">
+            {cart.map(product => {
+              const {
+                id,
+                image,
+                name,
+                price,
+                amount,
+              } = product;
 
-          return (
-            <div className="basket__card" key={id}>
-              <div className="basket__card__info">
-                <button
-                  type="button"
-                  className="basket__card__icon padding"
-                  onClick={() => deleteProductsClick(id)}
-                  aria-label="button-close"
-                />
+              return (
+                <div className="basket__card" key={id}>
+                  <div className="basket__card__info">
+                    <button
+                      type="button"
+                      className="basket__card__icon padding"
+                      onClick={() => deleteProductsClick(id)}
+                      aria-label="button-close"
+                    />
 
-                <div className="basket__card__phone padding">
-                  <img
-                    className="basket__card__phone-image"
-                    src={getImageUrl(image)}
-                    alt="product"
-                  />
+                    <div className="basket__card__phone padding">
+                      <img
+                        className="basket__card__phone-image"
+                        src={getImageUrl(image)}
+                        alt="product"
+                      />
+                    </div>
+
+                    <div className="basket__card__title padding">
+                      {name}
+                    </div>
+                  </div>
+                  <div className="basket__card__totally">
+                    <div className="basket__card__quantity padding">
+                      <button
+                        className="basket__card__icon-minus
+                        basket__card__icons"
+                        type="button"
+                        aria-label="button-minus"
+                        disabled={amount === 1}
+                        onClick={() => removeOneProductClick(id)}
+                      />
+
+                      <span className="basket__card__count">
+                        {amount}
+                      </span>
+
+                      <button
+                        className="basket__card__icon-plus
+                        basket__card__icons"
+                        type="button"
+                        aria-label="button-plus"
+                        onClick={() => addOneProductClick(id)}
+                      />
+
+                    </div>
+
+                    <div className="basket__card__sum padding">
+                      {price}
+                    </div>
+                  </div>
                 </div>
-
-                <div className="basket__card__title padding">
-                  {name}
-                </div>
-              </div>
-              <div className="basket__card__totally">
-                <div className="basket__card__quantity padding">
-                  <button
-                    className="basket__card__icon-minus
-                      basket__card__icons"
-                    type="button"
-                    aria-label="button-minus"
-                    disabled={amount === 1}
-                    onClick={() => removeOneProductClick(id)}
-                  />
-
-                  <span className="basket__card__count">
-                    {amount}
-                  </span>
-
-                  <button
-                    className="basket__card__icon-plus
-                      basket__card__icons"
-                    type="button"
-                    aria-label="button-plus"
-                    onClick={() => addOneProductClick(id)}
-                  />
-
-                </div>
-
-                <div className="basket__card__sum padding">
-                  {price}
-                </div>
-              </div>
+              );
+            })}
+          </div>
+          <div className="basket__totally totally">
+            <div className="totally__title">
+              {getTotalPrice()}
             </div>
-          );
-        })}
-      </div>
-      <div className="basket__totally totally">
-        <div className="totally__title">
-          {getTotalPrice()}
-        </div>
 
-        <div className="totally__subtitle">
-          {`Total for ${getTotalAmount()} items`}
-        </div>
+            <div className="totally__subtitle">
+              {`Total for ${getTotalAmount()} items`}
+            </div>
 
-        <a className="totally__button" href="/">Checkout</a>
-      </div>
-    </section>
+            <a className="totally__button" href="/">Checkout</a>
+          </div>
+        </section>
+      ) : (
+        <EmptyCart />
+      )}
+    </>
   );
 };
