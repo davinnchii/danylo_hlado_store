@@ -85,7 +85,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           content="Add to cart"
           product={
             {
-              id: product.id,
+              id: product.itemId,
               amount: 1,
               price: product.price,
               name: product.name,
@@ -94,7 +94,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           }
         />
 
-        <HeartIcon product={product} />
+        <HeartIcon product={{
+          ...product,
+          id: product.itemId,
+        }}
+        />
       </span>
     </section>
   );
