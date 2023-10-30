@@ -11,13 +11,13 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <FavouriteContextProvider>
-      <CartContextProvider>
-        <ProductsContextProvider>
-          <Root />
-        </ProductsContextProvider>
-      </CartContextProvider>
-    </FavouriteContextProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <FavouriteContextProvider>
+    <CartContextProvider>
+      <ProductsContextProvider>
+        <Root />
+      </ProductsContextProvider>
+    </CartContextProvider>
+  </FavouriteContextProvider>,
+  // </React.StrictMode>,
 );

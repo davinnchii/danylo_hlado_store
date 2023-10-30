@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Main } from '../../components/Main';
 import { Categories } from '../../components/Categories';
-import { HotPrices } from '../../components/HotPrices';
-import { NewModels } from '../../components/NewModels';
+import { ProductsCarousel } from '../../components/ProductsCarousel';
 import { getProductsWithDiscount, getProductsWithNewModels } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
 import { Loader } from '../../components/Loader';
@@ -52,12 +51,15 @@ export const HomePage = () => {
       ) : (
         <>
           <Main />
-          <NewModels
+          <ProductsCarousel
             title="Brand new models"
             visibleProducts={getPreparedProducts(productsWithNewModels)}
           />
           <Categories />
-          <HotPrices visibleProducts={getPreparedProducts(productsWithDiscount)} />
+          <ProductsCarousel
+            title="Hot prices"
+            visibleProducts={getPreparedProducts(productsWithDiscount)}
+          />
         </>
       )}
     </div>

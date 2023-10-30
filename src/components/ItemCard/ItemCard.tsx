@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import { AboutInfo } from './AboutInfo';
 import { MainContent } from './MainContent';
-import { NewModels } from '../NewModels';
+import { ProductsCarousel } from '../ProductsCarousel';
 
 import { getProductById, getRecommendedProducts } from '../../api/products';
 import { ProductType } from '../../types/ProductType';
@@ -18,61 +23,57 @@ export const ItemCard = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductCartType | null>(null);
   const [availableVariants, setAvailableVariants] = useState<ProductCartResponseType | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
-  const [hasRecommendedProductsLoaded, setHasRecommendedProductsLoaded] = useState(false);
   const [productInfo, setProductInfo] = useState<ProductType | null>(null);
-  const [hasSelectedProductLoaded, setHasSelectedProductLoaded] = useState(false);
+  const [hasDataLoaded, setDataHasLoaded] = useState(false);
 
   const { id } = useParams();
-  const handleChangeCapacity = (newCapacity: string) => {
+  const handleChangeCapacity = useCallback((newCapacity: string) => {
     const newProduct = availableVariants?.details.find(
       ({ capacity, color }) => capacity === newCapacity
         && color === selectedProduct?.color,
     ) || null;
 
     setSelectedProduct(newProduct);
-  };
+  }, [availableVariants, selectedProduct]);
 
-  const handleChangeColor = (newColor: string) => {
+  const handleChangeColor = useCallback((newColor: string) => {
     const newProduct = availableVariants?.details.find(
       ({ color, capacity }) => color === newColor
         && capacity === selectedProduct?.capacity,
     ) || null;
 
     setSelectedProduct(newProduct);
-  };
+  }, [availableVariants, selectedProduct]);
 
   useEffect(() => {
-    setHasSelectedProductLoaded(true);
+    setDataHasLoaded(true);
 
     if (id) {
-      getProductById(id)
-        .then((data) => {
-          setAvailableVariants(data);
-          setSelectedProduct(data.selectedProduct);
-          setProductInfo(data.product);
+      Promise.all([
+        getProductById(id),
+        getRecommendedProducts(id),
+      ])
+        .then(([selectedProductData, recommendedProductData]) => {
+          setAvailableVariants(selectedProductData);
+          setSelectedProduct(selectedProductData.selectedProduct);
+          setProductInfo(selectedProductData.product);
+          setRecommendedProducts(recommendedProductData);
         })
-        .finally(() => setHasSelectedProductLoaded(false));
-    }
-  }, [id]);
-
-  useEffect(() => {
-    setHasRecommendedProductsLoaded(true);
-
-    if (id) {
-      getRecommendedProducts(id)
-        .then((data) => {
-          setRecommendedProducts(data);
-        })
-        .finally(() => setHasRecommendedProductsLoaded(false));
+        .finally(() => {
+          setDataHasLoaded(false);
+        });
     }
   }, [id]);
 
   return (
     <article className="ItemCard">
-      {hasRecommendedProductsLoaded && (
+      {hasDataLoaded && (
         <>
           <Loader />
           <ItemCardLoader />
+          <div className="container">
+            <CartsLoader />
+          </div>
         </>
       )}
 
@@ -86,22 +87,17 @@ export const ItemCard = () => {
             onSelectColor={handleChangeColor}
             productInfo={productInfo}
           />
+
           <AboutInfo
             phone={selectedProduct}
             selectedCapacity={selectedProduct.capacity}
           />
-        </>
-      )}
 
-      {hasRecommendedProductsLoaded && hasSelectedProductLoaded ? (
-        <div className="container">
-          <CartsLoader />
-        </div>
-      ) : (
-        <NewModels
-          title="You may also like"
-          visibleProducts={getPreparedProducts(recommendedProducts)}
-        />
+          <ProductsCarousel
+            title="You may also like"
+            visibleProducts={getPreparedProducts(recommendedProducts)}
+          />
+        </>
       )}
     </article>
   );
