@@ -13,7 +13,7 @@ import { NavigationMobile } from '../NavigationMobile';
 import { CategoryType } from '../../types/CategoryType';
 
 export const Header: React.FC = () => {
-  const [searchParams, setSeacrhParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectMenuActive, setSelectMenuActive] = useState<string>('');
@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
 
   const handleMenuItemClick = (selectedItems: string) => {
     params.set('category', selectedItems);
-    setSeacrhParams(params);
+    setSearchParams(params);
     setIsMenuOpen(false);
   };
 
