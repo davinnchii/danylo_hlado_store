@@ -11,4 +11,10 @@ export interface ProductType {
   ram: string;
   year: number;
   image: string;
+  phoneId?: string;
+}
+
+export interface ProductResponseType {
+  count: number;
+  rows: ProductType[];
 }

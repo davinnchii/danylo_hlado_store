@@ -10,6 +10,9 @@ import { App } from './App';
 
 import { HomePage } from './pages/HomePage/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { PhonesPage } from './pages/PhonesPage/PhonesPage';
+import { ItemCard } from './components/ItemCard';
+import { Cart } from './components/Cart/Cart';
 
 export const Root = () => {
   return (
@@ -18,18 +21,17 @@ export const Root = () => {
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
 
-          <Route path="phones">
-            <Route index element={<h1>phones</h1>} />
-            <Route path=":id?" element={<h1>phone number</h1>} />
+          <Route path="products">
+            <Route index element={<PhonesPage />} />
+            <Route path=":id?" element={<ItemCard />} />
           </Route>
 
-          <Route path="tablets" element={<h1>tablets</h1>} />
-          <Route path="accessories" element={<h1>accessories</h1>} />
           <Route path="favourites" element={<h1>favourites</h1>} />
-          <Route path="cart" element={<h1>shopping-bag</h1>} />
+          <Route path="cart" element={<Cart />} />
 
-          <Route path="home" element={<Navigate to="/" />} />
+          <Route path="home" element={<Navigate to="/" replace />} />
         </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

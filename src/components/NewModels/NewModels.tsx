@@ -1,15 +1,18 @@
 import React from 'react';
 
 import { SwiperCards } from '../SwiperCards';
+import { ProductType } from '../../types/ProductType';
 import './newModels.scss';
-import { ProductCard } from '../productCard/productCard';
-import products from '../productCard/productData';
 
 type Props = {
   title: string;
+  visibleProducts: ProductType[];
 };
 
-export const NewModels: React.FC<Props> = ({ title }) => {
+export const NewModels: React.FC<Props> = ({
+  title,
+  visibleProducts,
+}) => {
   return (
     <section className="new-models">
       <div className="container">
@@ -37,13 +40,8 @@ export const NewModels: React.FC<Props> = ({ title }) => {
         <SwiperCards
           arrowLeftClassName="new-models__arrow-left"
           arrowRightClassName="new-models__arrow-right"
-        >
-          <>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </>
-        </SwiperCards>
+          visibleProducts={visibleProducts}
+        />
       </div>
     </section>
   );

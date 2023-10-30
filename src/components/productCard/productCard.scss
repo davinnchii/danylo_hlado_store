@@ -2,9 +2,8 @@
 @import "./styles/variables.scss";
 
 .card {
+  box-sizing: border-box;
   display: flex;
-  width: 288px;
-  height: auto;
   padding: 32px;
   flex-direction: column;
 
@@ -13,6 +12,12 @@
   cursor: pointer;
 
   transition: box-shadow 0.4s ease-in;
+
+  grid-column: 1 / -1;
+
+  @include onTablet {
+    grid-column: span 6;
+  }
 
   &:hover {
     box-shadow: inset rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
@@ -33,6 +38,7 @@
   }
 
   &__title {
+    height: 63px;
     display: flex;
     text-align: start;
     padding-top: 16px;
@@ -132,6 +138,7 @@
 
   &__info-item {
     margin: 0;
+    color: $primaryColor;
 
     &--gray {
       margin: 0;
@@ -168,6 +175,7 @@
     text-decoration: none;
 
     &:hover {
+      cursor: pointer;
       box-shadow: 1px 4px 16px 0 rgba(232, 232, 240, 0.4);
 
       animation-name: button-add;
@@ -211,6 +219,7 @@
     background: #fff;
 
     &:hover {
+      cursor: pointer;
       border: 1px solid $primaryColor;
     }
 
