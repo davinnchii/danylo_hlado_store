@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import './productCard.scss';
-import { ProductType } from '../../types/ProductType';
+import { ProductType } from '../../types';
 import { getImageUrl } from '../../utils/getImageUrl';
-import { Button } from '../Button/Button';
+import { Button } from '../Button';
 import { HeartIcon } from '../HeartIcon';
 
 type ProductCardProps = {
@@ -12,6 +12,10 @@ type ProductCardProps = {
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const handleScroll = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <section className="card">
       <Link to={`/products/${product.id}`} onClick={handleScroll}>
@@ -79,9 +83,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <span className="card__buttons">
         <Button
           content="Add to cart"
+          product={
+            {
+              id: product.id,
+              amount: 1,
+              price: product.price,
+              name: product.name,
+              image: product.image,
+            }
+          }
         />
 
-        <HeartIcon />
+        <HeartIcon product={product} />
       </span>
     </section>
   );
