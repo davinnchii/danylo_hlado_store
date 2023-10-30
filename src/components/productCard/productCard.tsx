@@ -1,37 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 import './productCard.scss';
-import addToFavorite from '../../assets/images/phoneImages/addToFavorite.svg';
-import addedToFavorite from
-  '../../assets/images/phoneImages/addedToFavorite.svg';
-import { ProductType } from '../../types/ProductType';
+import { ProductType } from '../../types';
 import { getImageUrl } from '../../utils/getImageUrl';
+import { Button } from '../Button';
+import { HeartIcon } from '../HeartIcon';
 
 type ProductCardProps = {
   product: ProductType;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [isAdded, setAdded] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const handleAddToCart = () => {
-    if (isAdded) {
-      setAdded(false);
-    } else {
-      setAdded(true);
-    }
-  };
-
-  const handleAddToFavorite = () => {
-    if (isFavorite) {
-      setIsFavorite(false);
-    } else {
-      setIsFavorite(true);
-    }
-  };
-
   const handleScroll = () => {
     window.scrollTo(0, 0);
   };
@@ -98,29 +78,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </p>
           </span>
         </div>
-
-        <span className="card__buttons">
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            className={`card__button ${isAdded ? 'added' : ''}`}
-          >
-            {isAdded ? 'Added' : 'Add to cart'}
-          </button>
-
-          <button
-            type="button"
-            onClick={handleAddToFavorite}
-            className={`card__favorite ${isFavorite ? 'added' : ''}`}
-          >
-            <img
-              src={isFavorite ? addedToFavorite : addToFavorite}
-              alt="add to favorite"
-              className="card__favorite--img"
-            />
-          </button>
-        </span>
       </Link>
+
+      <span className="card__buttons">
+        <Button
+          content="Add to cart"
+          product={
+            {
+              id: product.id,
+              amount: 1,
+              price: product.price,
+              name: product.name,
+              image: product.image,
+            }
+          }
+        />
+
+        <HeartIcon product={product} />
+      </span>
     </section>
   );
 };
