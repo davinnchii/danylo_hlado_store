@@ -84,7 +84,6 @@ export const ItemCard = () => {
             selectedCapacity={selectedProduct.capacity}
             onSelectCapacity={handleChangeCapacity}
             onSelectColor={handleChangeColor}
-            hasLoaded={hasRecommendedProductsLoaded}
             productInfo={productInfo}
           />
           <AboutInfo

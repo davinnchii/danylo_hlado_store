@@ -8,7 +8,7 @@ import { getSplitedGB } from '../../../utils/getSplitedGB';
 import { ProductCartType, ProductType } from '../../../types';
 import { getImageUrl } from '../../../utils/getImageUrl';
 import './MainContent.scss';
-import { BackButton } from '../../BackButton/BackButton';
+import { BackButton } from '../../BackButton';
 
 type Props = {
   product: ProductCartType | null;
@@ -49,7 +49,6 @@ export const MainContent: React.FC<Props> = ({
 
   const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
-  const navigate = useNavigate();
 
   const statsTableData = {
     screen,
@@ -140,7 +139,7 @@ export const MainContent: React.FC<Props> = ({
                   key={currentCapacity}
                   className={classNames('MainContent__stats__capacity', {
                     'MainContent__stats__capacity-selected':
-                    selectedCapacity === currentCapacity,
+                      selectedCapacity === currentCapacity,
                   })}
                   onClick={() => onSelectCapacity(currentCapacity)}
                   aria-label={`capacity-${currentCapacity}`}
@@ -162,9 +161,18 @@ export const MainContent: React.FC<Props> = ({
             </div>
 
             <div className="MainContent__stats__buttons">
-              <Button content="Add to cart" />
+              <Button
+                content="Add to cart"
+                product={{
+                  id,
+                  name: productInfo.name,
+                  amount: 1,
+                  price,
+                  image: productInfo.image,
+                }}
+              />
 
-              <HeartIcon />
+              <HeartIcon product={productInfo} />
             </div>
 
             <div className="MainContent__stats__short">
