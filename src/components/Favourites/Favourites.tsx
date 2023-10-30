@@ -3,7 +3,7 @@ import { ProductCard } from '../productCard/productCard';
 import './main.scss';
 
 const product = {
-  id: 151,
+  id: '151',
   category: 'accessories',
   itemId: 'apple-watch-se-40mm-gold',
   name: 'Apple Watch SE 40mm Gold',
