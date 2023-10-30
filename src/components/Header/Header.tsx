@@ -9,12 +9,8 @@ import logoBlack from '../../assets/images/logo-black.png';
 import './header.scss';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
-
-enum CategoryType {
-  Phones = 'phones',
-  Tablets = 'tablets',
-  Accessories = 'accessories',
-}
+import { NavigationMobile } from '../NavigationMobile';
+import { CategoryType } from '../../types/CategoryType';
 
 export const Header: React.FC = () => {
   const [searchParams, setSeacrhParams] = useSearchParams();
@@ -51,7 +47,7 @@ export const Header: React.FC = () => {
           />
         </Link>
 
-        <nav className={`header__menu ${isMenuOpen ? 'active-menu' : ''}`}>
+        <nav className="header__menu">
           <Link
             to="/"
             className={classnames('header__menu-link', {
@@ -84,15 +80,19 @@ export const Header: React.FC = () => {
             onClick={() => setIsMenuOpen(prev => !prev)}
           />
 
-          <Link to="/favourites" className="icon icon--favourites__link">
+          <Link to="/favourites" className="icon icon--favourites__link-header">
             <i className="icon--favourites" />
           </Link>
 
-          <Link to="/cart" className="icon icon--shopping-bag__link">
+          <Link to="/cart" className="icon icon--shopping-bag__link-header">
             <i className="icon--shopping-bag" />
           </Link>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <NavigationMobile onMenuOpen={() => setIsMenuOpen(false)} />
+      )}
     </header>
   );
 };

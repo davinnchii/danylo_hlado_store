@@ -1,0 +1,79 @@
+.navigation-mobile {
+  margin-top: 50px;
+  padding-top: 24px;
+  height: 100vh;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    &-link {
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      height: 27px;
+      line-height: 27px;
+      color: #89939A;
+      font-size: 12px;
+    }
+  }
+
+  &__icons {
+    position: absolute;
+    bottom: 64px;
+
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #E2E6E9;
+  }
+}
+
+.icon {
+  &--favourites__link-navigation-mobile,
+  &--shopping-bag__link-navigation-mobile {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+ }
+
+  &--favourites,
+  &--shopping-bag {
+    z-index: 999;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  &--favourites {
+    background-image: url(../../assets/icons/favouritesh-heart-like.svg);
+    transition: background-image 0.3s ease;
+
+    &:hover {
+      animation: icons-scale 1s infinite;
+      background-image: url(../../assets/icons/favourites-filled-heart-like.svg);
+    }
+  }
+
+  &--shopping-bag {
+    background-image: url(../../assets/icons/shopping-bag-cart.svg);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      animation: icons-shop 1s infinite alternate-reverse;
+    }
+  }
+}
+
+html:has(.navigation-mobile) {
+  overflow: hidden;
+}
