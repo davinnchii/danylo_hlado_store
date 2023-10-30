@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
             <i className="icon--favourites" />
           </Link>
 
-          <Link to="/shopping-bag" className="icon icon--shopping-bag__link">
+          <Link to="/cart" className="icon icon--shopping-bag__link">
             <i className="icon--shopping-bag" />
           </Link>
         </div>

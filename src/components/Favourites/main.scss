@@ -1,0 +1,58 @@
+.favourites {
+
+  &__title {
+    font-family: 'Mont-Bold', serif;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 56px;
+    margin-bottom: 8px;
+  }
+
+  &__items {
+    font-family: 'Mont-Regular', serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: #89939A;
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(24, 32px);
+    gap: 16px;
+    margin: 20px 0;
+  }
+}
+
+
+@media (min-width: 950px) and (max-width: 1199px){
+  .favourites {
+
+    &__products {
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+    }
+  }
+}
+
+@media (min-width: 640px) and (max-width: 949px){
+  .favourites {
+
+    &__products {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
+}
+
+@media (min-width: 50px) and (max-width: 639px) {
+  .favourites {
+
+    &__products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+  }
+}
+

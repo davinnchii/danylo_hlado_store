@@ -18,6 +18,7 @@ export const ItemCard = () => {
   const [availableVariants, setAvailableVariants] = useState<ProductCartResponseType | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
   const [hasRecommendedProductsLoaded, setHasRecommendedProductsLoaded] = useState(false);
+  const [productInfo, setProductInfo] = useState<ProductType | null>(null);
 
   const { id } = useParams();
   const handleChangeCapacity = (newCapacity: string) => {
@@ -44,6 +45,7 @@ export const ItemCard = () => {
         .then((data) => {
           setAvailableVariants(data);
           setSelectedProduct(data.selectedProduct);
+          setProductInfo(data.product);
         });
     }
   }, [id]);
@@ -66,7 +68,7 @@ export const ItemCard = () => {
         <Loader />
       )}
 
-      {(selectedProduct) && (
+      {(selectedProduct && productInfo) && (
         <>
           <MainContent
             product={selectedProduct}
@@ -75,6 +77,7 @@ export const ItemCard = () => {
             onSelectCapacity={handleChangeCapacity}
             onSelectColor={handleChangeColor}
             hasLoaded={hasRecommendedProductsLoaded}
+            productInfo={productInfo}
           />
           <AboutInfo
             phone={selectedProduct}
