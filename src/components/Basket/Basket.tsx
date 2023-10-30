@@ -1,147 +1,133 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import phoneimage from '../../assets/images/Basket/first.png';
-import close from '../../assets/icons/close.svg';
-import plus from '../../assets/icons/Plus.svg';
-import minus from '../../assets/icons/Minus.svg';
+import { CartContext } from '../../context/CartContext';
 
 import './basket.scss';
 
-export const Basket = () => {
+const getValidImageLink = (img: string) => {
+  // eslint-disable-next-line max-len
+  return `https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/${img}`;
+};
+
+export const Basket: React.FC = () => {
+  const { cart, setCart } = useContext(CartContext);
+
+  const getTotalPrice = () => {
+    return cart.reduce((totalPrice, { price, amount }) => (
+      totalPrice + price * amount
+    ), 0);
+  };
+
+  const getTotalAmount = () => {
+    return cart.reduce((totalAmount, { amount }) => (
+      totalAmount + amount
+    ), 0);
+  };
+
+  const deleteProductsClick = (productId: string) => {
+    setCart(curCard => {
+      return curCard.filter(({ id }) => id !== productId);
+    });
+  };
+
+  const addOneProductClick = (productId: string) => {
+    setCart(curCard => {
+      return curCard.map((prod) => {
+        return prod.id === productId ? ({
+          ...prod,
+          amount: prod.amount + 1,
+        }) : prod;
+      });
+    });
+  };
+
+  const removeOneProductClick = (productId: string) => {
+    setCart(curCard => {
+      return curCard.map((prod) => {
+        return prod.id === productId ? ({
+          ...prod,
+          amount: prod.amount - 1,
+        }) : prod;
+      });
+    });
+  };
+
   return (
     <section className="basket">
       <div className="basket__title">Cart</div>
       <div className="basket__cards">
-        <div className="basket__card">
-          <div className="basket__card__info">
-            <img
-              className="basket__card__icon padding"
-              src={close}
-              alt=""
-            />
+        {cart.map(product => {
+          const {
+            id,
+            image,
+            name,
+            price,
+            amount,
+          } = product;
 
-            <img
-              className="basket__card__phone padding"
-              src={phoneimage}
-              alt=""
-            />
+          return (
+            <div className="basket__card" key={id}>
+              <div className="basket__card__info">
+                <button
+                  type="button"
+                  className="basket__card__icon padding"
+                  onClick={() => deleteProductsClick(id)}
+                  aria-label="button-close"
+                />
 
-            <div className="basket__card__title padding">
-              Apple iPhone 14 Pro 128GB Silver (MQ023)
+                <div className="basket__card__phone padding">
+                  <img
+                    className="basket__card__phone-image"
+                    src={getValidImageLink(image)}
+                    alt="product"
+                  />
+                </div>
+
+                <div className="basket__card__title padding">
+                  {name}
+                </div>
+              </div>
+              <div className="basket__card__totally">
+                <div className="basket__card__quantity padding">
+                  <button
+                    className="basket__card__icon-minus
+                      basket__card__icons"
+                    type="button"
+                    aria-label="button-minus"
+                    disabled={amount === 1}
+                    onClick={() => removeOneProductClick(id)}
+                  />
+
+                  <span className="basket__card__count">
+                    {amount}
+                  </span>
+
+                  <button
+                    className="basket__card__icon-plus
+                      basket__card__icons"
+                    type="button"
+                    aria-label="button-plus"
+                    onClick={() => addOneProductClick(id)}
+                  />
+
+                </div>
+
+                <div className="basket__card__sum padding">
+                  {price}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="basket__card__totally">
-            <div className="basket__card__quantity padding">
-              <img
-                className="basket__card__icon-minus padding"
-                src={minus}
-                alt=""
-              />
-
-              <div className="basket__card__count padding">1</div>
-
-              <img
-                className="basket__card__icon-plus padding"
-                src={plus}
-                alt=""
-              />
-
-            </div>
-
-            <div className="basket__card__sum padding">
-              $999
-            </div>
-          </div>
-        </div>
-
-        <div className="basket__card">
-          <div className="basket__card__info">
-            <img
-              className="basket__card__icon padding"
-              src={close}
-              alt=""
-            />
-
-            <img
-              className="basket__card__phone padding"
-              src={phoneimage}
-              alt=""
-            />
-
-            <div className="basket__card__title padding">
-              Apple iPhone 14 Pro 128GB Silver (MQ023)
-            </div>
-          </div>
-          <div className="basket__card__totally">
-            <div className="basket__card__quantity padding">
-              <img
-                className="basket__card__icon-minus padding"
-                src={minus}
-                alt=""
-              />
-
-              <div className="basket__card__count padding">1</div>
-
-              <img
-                className="basket__card__icon-plus padding"
-                src={plus}
-                alt=""
-              />
-
-            </div>
-
-            <div className="basket__card__sum padding">
-              $999
-            </div>
-          </div>
-        </div>
-
-        <div className="basket__card">
-          <div className="basket__card__info">
-            <img
-              className="basket__card__icon padding"
-              src={close}
-              alt=""
-            />
-
-            <img
-              className="basket__card__phone padding"
-              src={phoneimage}
-              alt=""
-            />
-
-            <div className="basket__card__title padding">
-              Apple iPhone 14 Pro 128GB Silver (MQ023)
-            </div>
-          </div>
-          <div className="basket__card__totally">
-            <div className="basket__card__quantity padding">
-              <img
-                className="basket__card__icon-minus padding"
-                src={minus}
-                alt=""
-              />
-
-              <div className="basket__card__count padding">1</div>
-
-              <img
-                className="basket__card__icon-plus padding"
-                src={plus}
-                alt=""
-              />
-
-            </div>
-
-            <div className="basket__card__sum padding">
-              $999
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
       <div className="basket__totally totally">
-        <div className="totally__title">$2657</div>
+        <div className="totally__title">
+          {getTotalPrice()}
+        </div>
 
-        <div className="totally__subtitle">Total for 3 items</div>
+        <div className="totally__subtitle">
+          {`Total for ${getTotalAmount()} items`}
+        </div>
 
         <a className="totally__button" href="/">Checkout</a>
       </div>

@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './Button.scss';
 import classNames from 'classnames';
+import { CartContext } from '../../context/CartContext';
+import { CartProduct } from '../../types';
 
 type Props = {
   content: string;
+  product: CartProduct,
 };
 
-export const Button: React.FC<Props> = ({ content }) => {
-  const [isInCart, setIstInCart] = useState(false);
+export const Button: React.FC<Props> = ({ content, product }) => {
+  const { cart, setCart } = useContext(CartContext);
+
+  const isInCart = cart.find(({ id }) => id === product.id);
+
+  const toggleButton = () => {
+    if (isInCart) {
+      setCart(curCart => (
+        curCart.filter(({ id }) => id !== product.id)));
+
+      return;
+    }
+
+    setCart(curCart => ([
+      ...curCart,
+      product,
+    ]));
+  };
 
   return (
     <button
@@ -15,9 +34,9 @@ export const Button: React.FC<Props> = ({ content }) => {
         Selected: isInCart,
       })}
       type="button"
-      onClick={() => setIstInCart(!isInCart)}
+      onClick={toggleButton}
     >
-      {content}
+      {isInCart ? 'Remove from cart' : content}
     </button>
   );
 };

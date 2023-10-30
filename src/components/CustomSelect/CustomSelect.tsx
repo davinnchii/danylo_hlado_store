@@ -86,7 +86,7 @@ export const CustomSelect: React.FC<Props> = ({
 
     params.set('limit', selectedOption.value);
     setSearchParams(params);
-  }, [searchParams, params, onChange]);
+  }, [params, onChange]);
 
   return (
     <Select
