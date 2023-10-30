@@ -1,5 +1,4 @@
 import React from 'react';
-import Skeleton from 'react-loading-skeleton';
 
 import { getSplitedGB } from '../../../utils/getSplitedGB';
 import { ProductCartType } from '../../../types';
@@ -8,11 +7,10 @@ import './AboutInfo.scss';
 type Props = {
   phone: ProductCartType;
   selectedCapacity: string;
-  hasLoaded: boolean;
 };
 
 export const AboutInfo: React.FC<Props> = ({
-  phone, selectedCapacity, hasLoaded,
+  phone, selectedCapacity,
 }) => {
   const {
     description,
@@ -42,9 +40,7 @@ export const AboutInfo: React.FC<Props> = ({
         <article className="About-info">
           <div className="About-info__about">
             <h2 className="About-info__about-header About-info__header">
-              {(hasLoaded && !!phone)
-                ? <Skeleton />
-                : 'About'}
+              About
             </h2>
 
             <div className="About-info__about__description">
@@ -54,9 +50,7 @@ export const AboutInfo: React.FC<Props> = ({
                   key={title}
                 >
                   <h3 className="About-info__about__description__title">
-                    {(hasLoaded && !!phone)
-                      ? <Skeleton />
-                      : title}
+                    {title}
                   </h3>
 
                   {text.map((paragraph) => (
@@ -64,9 +58,7 @@ export const AboutInfo: React.FC<Props> = ({
                       className="About-info__about__description__text"
                       key={paragraph}
                     >
-                      {(hasLoaded && !!phone)
-                        ? <Skeleton height={100} />
-                        : paragraph}
+                      {paragraph}
                     </p>
                   ))}
                 </div>
@@ -76,9 +68,7 @@ export const AboutInfo: React.FC<Props> = ({
 
           <div className="About-info__tech-specs">
             <h2 className="About-info__tech-specs-header About-info__header">
-              {(hasLoaded && !!phone)
-                ? <Skeleton />
-                : 'Tech specs'}
+              Tech specs
             </h2>
 
             <div className="About-info__tech-specs__stats">
@@ -87,9 +77,7 @@ export const AboutInfo: React.FC<Props> = ({
                   return null;
                 }
 
-                return (hasLoaded && !!phone) ? (
-                  <Skeleton key={key} />
-                ) : (
+                return (
                   <div className="About-info__tech-specs__stats__row" key={key}>
                     <span className="About-info__tech-specs__stats__title">
                       {key}

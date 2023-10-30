@@ -12,6 +12,7 @@ import './ItemCard.scss';
 import { ProductCartResponseType, ProductCartType } from '../../types';
 import { Loader } from '../Loader';
 import { CartsLoader } from '../CartsLoader/CartsLoader';
+import { ItemCardLoader } from '../ItemCardLoader/ItemCardLoader';
 
 export const ItemCard = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductCartType | null>(null);
@@ -19,6 +20,7 @@ export const ItemCard = () => {
   const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
   const [hasRecommendedProductsLoaded, setHasRecommendedProductsLoaded] = useState(false);
   const [productInfo, setProductInfo] = useState<ProductType | null>(null);
+  const [hasSelectedProductLoaded, setHasSelectedProductLoaded] = useState(false);
 
   const { id } = useParams();
   const handleChangeCapacity = (newCapacity: string) => {
@@ -40,13 +42,16 @@ export const ItemCard = () => {
   };
 
   useEffect(() => {
+    setHasSelectedProductLoaded(true);
+
     if (id) {
       getProductById(id)
         .then((data) => {
           setAvailableVariants(data);
           setSelectedProduct(data.selectedProduct);
           setProductInfo(data.product);
-        });
+        })
+        .finally(() => setHasSelectedProductLoaded(false));
     }
   }, [id]);
 
@@ -65,7 +70,10 @@ export const ItemCard = () => {
   return (
     <article className="ItemCard">
       {hasRecommendedProductsLoaded && (
-        <Loader />
+        <>
+          <Loader />
+          <ItemCardLoader />
+        </>
       )}
 
       {(selectedProduct && productInfo) && (
@@ -76,18 +84,16 @@ export const ItemCard = () => {
             selectedCapacity={selectedProduct.capacity}
             onSelectCapacity={handleChangeCapacity}
             onSelectColor={handleChangeColor}
-            hasLoaded={hasRecommendedProductsLoaded}
             productInfo={productInfo}
           />
           <AboutInfo
             phone={selectedProduct}
             selectedCapacity={selectedProduct.capacity}
-            hasLoaded={hasRecommendedProductsLoaded}
           />
         </>
       )}
 
-      {hasRecommendedProductsLoaded ? (
+      {hasRecommendedProductsLoaded && hasSelectedProductLoaded ? (
         <div className="container">
           <CartsLoader />
         </div>
