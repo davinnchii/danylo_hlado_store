@@ -13,6 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { PhonesPage } from './pages/PhonesPage/PhonesPage';
 import { ItemCard } from './components/ItemCard';
 import { Cart } from './components/Cart/Cart';
+import { Favourites } from './components/Favourites/Favourites';
 
 export const Root = () => {
   return (
@@ -26,8 +27,8 @@ export const Root = () => {
             <Route path=":id?" element={<ItemCard />} />
           </Route>
 
-          <Route path="favourites" element={<h1>favourites</h1>} />
           <Route path="cart" element={<Cart />} />
+          <Route path="favourites" element={<Favourites />} />
 
           <Route path="home" element={<Navigate to="/" replace />} />
         </Route>
