@@ -1,3 +1,29 @@
 .ErrorPopUp {
-  margin: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+
+  padding: 16px;
+}
+
+.ErrorPopUp__header {
+  font-family: 'Mont-Bold';
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.32px;
+  color: #0F0F11;
+
+  margin-bottom: 16px;
+}
+
+.ErrorPopUp__timer {
+  color: #89939A;
+  font-family: 'Mont-SemiBold';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px;
 }

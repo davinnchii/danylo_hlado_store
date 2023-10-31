@@ -17,7 +17,7 @@ import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
 import '../../components/productCard/productCard.scss';
 import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
 import './PhonesPage.scss';
-import { realoadPage } from '../../utils/reloadPage';
+import { ErrorPopUp } from '../../components/ErrorPopUp';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -41,6 +41,8 @@ export const PhonesPage: React.FC = () => {
   const limit = searchParams.get('limit') || '16';
   const offset = searchParams.get('offset') || '0';
   const totalProducts = useRef({ value: 0 });
+  const [isError, setIserror] = useState(false);
+  const [updateRequest, setUpdateRequest] = useState(new Date());
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
@@ -50,9 +52,16 @@ export const PhonesPage: React.FC = () => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
       })
-      .catch(realoadPage)
+      .catch((error) => {
+        setIserror(true);
+        setTimeout(() => {
+          setUpdateRequest(new Date());
+        }, 3000);
+        // eslint-disable-next-line no-console
+        console.error(error);
+      })
       .finally(() => setHasCategoryProductsLoaded(false));
-  }, [category, sort, limit, offset]);
+  }, [category, sort, limit, offset, updateRequest]);
 
   const handleChangePage = useCallback((page: number) => {
     setCurrentPage(page);
@@ -68,6 +77,8 @@ export const PhonesPage: React.FC = () => {
 
   return (
     <div className="container">
+      <ErrorPopUp open={isError} />
+
       <BreadcrumbsNav
         links={[
           <Link

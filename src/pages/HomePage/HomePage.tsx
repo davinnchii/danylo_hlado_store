@@ -12,7 +12,7 @@ import { Loader } from '../../components/Loader';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './HomePage.scss';
 import { MainLoader } from '../../components/MainLoader/MainLoader';
-import { realoadPage } from '../../utils/reloadPage';
+import { ErrorPopUp } from '../../components/ErrorPopUp';
 
 export const HomePage = () => {
   const [
@@ -25,6 +25,8 @@ export const HomePage = () => {
   ] = useState<ProductType[]>([]);
   const [isDiscountLoading, setIsDiscountLoading] = useState(false);
   const [isNewModelsLoading, setIsNewModelsLoading] = useState(false);
+  const [isError, setIserror] = useState(false);
+  const [updateRequest, setUpdateRequest] = useState(new Date());
 
   useEffect(() => {
     setIsDiscountLoading(true);
@@ -34,19 +36,35 @@ export const HomePage = () => {
       .then((data) => {
         setProductsWithDiscount(data);
       })
-      .catch(realoadPage)
+      .catch((error) => {
+        setIserror(true);
+        setTimeout(() => {
+          setUpdateRequest(new Date());
+        }, 3000);
+        // eslint-disable-next-line no-console
+        console.error(error);
+      })
       .finally(() => setIsDiscountLoading(false));
 
     getProductsWithNewModels()
       .then((data) => {
         setProductsWithNewModels(data);
       })
-      .catch(realoadPage)
+      .catch((error) => {
+        setIserror(true);
+        setTimeout(() => {
+          setUpdateRequest(new Date());
+        }, 3000);
+        // eslint-disable-next-line no-console
+        console.error(error);
+      })
       .finally(() => setIsNewModelsLoading(false));
-  }, []);
+  }, [updateRequest]);
 
   return (
     <div className="home-page">
+      <ErrorPopUp open={isError} />
+
       {isDiscountLoading && isNewModelsLoading ? (
         <>
           <Loader />
