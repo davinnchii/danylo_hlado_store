@@ -19,6 +19,7 @@ import { Loader } from '../../components/Loader';
 import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
 import '../../components/productCard/productCard.scss';
 import './PhonesPage.scss';
+import { realoadPage } from '../../utils/reloadPage';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -51,6 +52,7 @@ export const PhonesPage: React.FC = () => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
       })
+      .catch(realoadPage)
       .finally(() => setHasCategoryProductsLoaded(false));
   }, [category, sort, limit, offset]);
 

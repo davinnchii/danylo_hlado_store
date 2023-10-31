@@ -12,6 +12,7 @@ import { Loader } from '../../components/Loader';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './HomePage.scss';
 import { MainLoader } from '../../components/MainLoader/MainLoader';
+import { realoadPage } from '../../utils/reloadPage';
 
 export const HomePage = () => {
   const [
@@ -33,12 +34,14 @@ export const HomePage = () => {
       .then((data) => {
         setProductsWithDiscount(data);
       })
+      .catch(realoadPage)
       .finally(() => setIsDiscountLoading(false));
 
     getProductsWithNewModels()
       .then((data) => {
         setProductsWithNewModels(data);
       })
+      .catch(realoadPage)
       .finally(() => setIsNewModelsLoading(false));
   }, []);
 
