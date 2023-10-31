@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import {
   Navigate,
@@ -17,8 +16,6 @@ import { Cart } from './components/Cart/Cart';
 import { Favourites } from './components/Favourites/Favourites';
 
 export const Root = () => {
-  console.log('Root render');
-
   return (
     <Router>
       <Routes>
