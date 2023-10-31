@@ -1,23 +1,24 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { CustomSelect } from '../CustomSelect/CustomSelect';
-
-interface Option {
-  value: string;
-  label: string;
-}
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 
 type Props = {
-  defaultValue: Option;
-  options: Option[];
-  label: string;
-  onChange: (page: number) => void,
+  value: string;
+  onChange: (newValue: SelectChangeEvent) => void,
+  label: string,
+  options: string[],
 };
 
 export const SortSection: React.FC<Props> = ({
-  defaultValue,
-  options,
+  value,
   label,
+  options,
   onChange,
 }) => {
   const itemClassName = label === 'Sort by'
@@ -25,18 +26,33 @@ export const SortSection: React.FC<Props> = ({
     : 'sort__item--pagination';
 
   return (
-    <span className={`sort__item ${itemClassName}`}>
-      <p
-        className="sort__item-text"
-        style={{ marginBottom: '4px' }}
-      >
-        {label}
-      </p>
-      <CustomSelect
-        defaultValue={defaultValue}
-        options={options}
+    <FormControl
+      sx={{ m: 1, minWidth: 120 }}
+      className={`sort__item ${itemClassName}`}
+    >
+      <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
+      <Select
+        labelId="demo-simple-select-helper-label"
+        id="demo-simple-select-helper"
+        value={value}
+        label="Age"
         onChange={onChange}
-      />
-    </span>
+      >
+        {options.map(data => (
+          <MenuItem
+            value={data}
+            key={data}
+            className={`sort__item ${itemClassName}`}
+          >
+            <p
+              className="sort__item-text"
+              style={{ marginBottom: '4px' }}
+            >
+              {`${data[0].toUpperCase()}${data.slice(1)}`}
+            </p>
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
