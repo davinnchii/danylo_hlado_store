@@ -55,6 +55,8 @@ export const SwiperMain = () => {
       }}
       pagination={{ clickable: true }}
       navigation={{ nextEl: '.swiper-slide__main-arrow-right', prevEl: '.swiper-slide__main-arrow-left' }}
+      mousewheel
+      loop
     >
       {banners.map(item => (
         <SwiperSlide key={item.id}>
