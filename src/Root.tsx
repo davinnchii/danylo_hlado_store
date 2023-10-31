@@ -29,9 +29,9 @@ export const Root = () => {
           <Route path="cart" element={<h1>shopping-bag</h1>} />
 
           <Route path="home" element={<Navigate to="/" replace />} />
-        </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </Router>
   );

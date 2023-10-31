@@ -13,6 +13,10 @@
   gap: 8px;
   margin: 24px 0px 25px 15px;
 
+  // @include onDesktop {
+  //   margin-left: 0;
+  // }
+
   &__icon {
     display: flex;
     align-items: center;
@@ -29,10 +33,10 @@
 
 .phones {
   margin-bottom: 24px;
+  margin-left: 15px;
 
   &__amount {
     margin-bottom: 32px;
-    margin-left: 15px;
     font-family: 'Mont-Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
@@ -41,14 +45,12 @@
   }
 
   &__title {
-    margin-left: 15px;
     margin-bottom: 8px;
   }
 }
 
 .sort {
   @include PageGrid;
-  margin-inline: 12px;
   margin-bottom: 24px;
 
   &__item {
