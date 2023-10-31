@@ -4,6 +4,7 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { SelectChangeEvent } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
@@ -19,23 +20,23 @@ import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
 import './PhonesPage.scss';
 import { ErrorPopUp } from '../../components/ErrorPopUp';
 
-const sortOptions = [
-  { value: 'newest', label: 'Newest' },
-  { value: 'alphabetically ', label: 'Alphabetically ' },
-  { value: 'cheapest ', label: 'Cheapest ' },
-];
-
-const paginationOptions = [
-  { value: '16', label: '16' },
-  { value: '8', label: '8' },
-  { value: '4', label: '4' },
-];
+// const sortOptions = [
+//   { value: 'newest', label: 'Newest' },
+//   { value: 'alphabetically ', label: 'Alphabetically ' },
+//   { value: 'cheapest ', label: 'Cheapest ' },
+// ];
+//
+// const paginationOptions = [
+//   { value: '16', label: '16' },
+//   { value: '8', label: '8' },
+//   { value: '4', label: '4' },
+// ];
 
 export const PhonesPage: React.FC = () => {
   const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
   const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get('category') || '';
   const sort = searchParams.get('sortBy') || 'newest';
   const limit = searchParams.get('limit') || '16';
@@ -67,6 +68,23 @@ export const PhonesPage: React.FC = () => {
     setCurrentPage(page);
     searchParams.set('offset', (Number(limit) * page).toString());
   }, [searchParams, limit]);
+
+  const handleChangeParams = useCallback((event: SelectChangeEvent) => {
+    const params = new URLSearchParams(searchParams);
+    const normalizedOption = event.target.value.replace(/[^a-zA-Z]/g, '');
+
+    handleChangePage(1);
+
+    if (Number.isNaN(+event.target.value)) {
+      params.set('sortBy', normalizedOption);
+      setSearchParams(params);
+
+      return;
+    }
+
+    params.set('limit', event.target.value);
+    setSearchParams(params);
+  }, [sort, limit]);
 
   const getPreparedCategoryProducts = (selectedCategory: ProductType[]) => {
     return selectedCategory;
@@ -112,10 +130,10 @@ export const PhonesPage: React.FC = () => {
             ? <Skeleton />
             : (
               <SortSection
-                defaultValue={sortOptions[0]}
-                options={sortOptions}
+                value={sort}
+                onChange={handleChangeParams}
+                options={['newest', 'alphabetically', 'cheapest']}
                 label="Sort by"
-                onChange={handleChangePage}
               />
             )}
 
@@ -123,10 +141,10 @@ export const PhonesPage: React.FC = () => {
             ? <Skeleton />
             : (
               <SortSection
-                defaultValue={paginationOptions[0]}
-                options={paginationOptions}
+                options={['16', '8', '4']}
+                value={limit}
+                onChange={handleChangeParams}
                 label="Items on page"
-                onChange={handleChangePage}
               />
             )}
         </article>

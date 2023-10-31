@@ -53,14 +53,16 @@
 .sort {
   @include PageGrid;
   margin-bottom: 24px;
+  display: flex;
 
   &__item {
+    width: 176px;
 
     &--sort {
       grid-column: 1 / 3;
 
       @include onTablet {
-        grid-column: span 4;
+        grid-column: 1 / 8;
       }
     }
 
@@ -68,15 +70,34 @@
       grid-column: 3 / 5;
 
       @include onTablet {
-        grid-column: span 3;
+        grid-column: 9 / 15;
       }
     }
 
     &-text {
       font-family: 'Mont-Regular', sans-serif;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
-      color: #89939a;
+      color: #0F0F11;
+      line-height: 21px;
     }
+  }
+
+  &__select {
+    height: 40px;
+  }
+
+  &__item-text {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item-label {
+    margin-left: 8px;
+    color: #89939A;
+    font-family: "Mont-SemiBold";
+    font-size: 12px;
+    line-height: 15.34px;
   }
 }
