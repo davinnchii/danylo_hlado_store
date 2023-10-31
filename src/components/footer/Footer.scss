@@ -1,93 +1,149 @@
 .footer {
-    padding: 32px;
-    box-shadow: 0px -1px 0px 0px #E2E6E9;
+  height: auto;
+  width: 100%;
+  padding: 16px;
+  box-shadow: 0px -1px 0px 0px #e2e6e9;
 
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-around;
+
+  &__logo-link {
+    text-decoration: none;
+    height: 32px;
+    width: 89px;
+  }
+
+  &__logo-image {
+    text-align: center;
+    height: 32px;
+    width: 89px;
+  }
+
+  &__links {
+    text-transform: uppercase;
     display: flex;
-    box-sizing: border-box;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
+    flex-grow: 0.2;
+    margin-right: 100px;
 
-    &__logo-link {
-        text-decoration: none;
-        height: 32px;
-        width: 89px;
+    font-family: 'Mont-Bold';
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.48px;
+    color: #89939a;
+
+    position: relative;
+    text-decoration: none;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      top: 18px;
+      background: #89939a;
+      height: 1.5px;
+      transition: right 0.4s;
     }
 
-    &__logo-image {
-      text-align: center;
-      height: 32px;
-      width: 89px;
+    &:hover::before {
+      right: 0;
     }
+  }
 
-    &__links {
-        text-transform: uppercase;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-grow: 0.2;
-        margin-right: 100px;
+  &__back-button {
+    display: block;
+    height: 32px;
+    width: 32px;
+    position: relative;
+    background-image: url('../../../public/icons/Slider\ button\ -\ Default\ \(right\).png');
 
-        font-family: 'Mont-Bold';
+    &::before {
+      position: absolute;
+      transform: translateX(-130%) translateY(50%);
+      white-space: nowrap;
+      content: 'Back to top';
+
+      font-family: 'Mont-SemiBold';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      color: #89939A;
     }
+  }
+}
 
-    &__link {
-        text-decoration: none;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 11px;
-        letter-spacing: 0.48px;
-        color: #89939A;
+.support_ukraine {
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:hover {
+    background: linear-gradient(to right, yellow, blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    animation: colorChange 2s linear infinite;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    top: 0;
+    background: none;
+    height: 0;
+    transition: 0;
+  }
+
+  @keyframes colorChange {
+    0% {
+      background-position: 100%;
     }
-
-    &__back-button {
-        display: block;
-        height: 32px;
-        width: 32px;
-        position: relative;
-        background-image: url('../../../public/icons/Slider\ button\ -\ Default\ \(right\).png');
-
-        &::before {
-            position: absolute;
-            transform: translateX(-130%) translateY(50%);
-            white-space: nowrap;
-            content: 'Back to top';
-
-            font-family: 'Mont-SemiBold';
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            color: #89939A;
-        }
+    100% {
+      background-position: -100%;
     }
+  }
 }
 
 @media screen and (max-width: 639px) {
-    .footer {
-        height: auto;
-        padding: 32px 16px;
-        gap: 32px;
-        flex-direction: column;
-        align-items: flex-start;
+  .footer {
+    height: auto;
+    padding: 16px;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
 
-        &__links {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 16px;
-        }
-
-        &__back-block {
-            width: 100%;
-        }
-
-        &__back-button {
-            margin: auto;
-        }
-
-        &__links {
-            margin-right: 0;
-        }
-
+    &__links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
     }
+
+    &__back-block {
+      width: 100%;
+    }
+
+    &__back-button {
+      margin: auto;
+    }
+
+    &__links {
+      margin-right: 0;
+    }
+
+  }
 }

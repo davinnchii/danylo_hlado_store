@@ -1,6 +1,8 @@
 import React from 'react';
 import './EmptyCart.scss';
 import { BackButton } from '../../BackButton';
+import emptyCart from '../../../assets/images/empty-cart.png';
+import { HomeButton } from '../../HomeButton/HomeButton';
 
 export const EmptyCart = () => {
   return (
@@ -9,9 +11,19 @@ export const EmptyCart = () => {
         <section className="Empty-cart">
           <BackButton />
 
-          <h1 className="Empty-cart__header">
-            The cart is Empty
-          </h1>
+          {/* <h1 className="Empty-cart__header">
+            Press the button to add item to cart
+          </h1> */}
+
+          <img
+            src={emptyCart}
+            alt="your cart is empty"
+            className="img-cart"
+          />
+
+          <div className="button-home">
+            <HomeButton />
+          </div>
         </section>
       </div>
     </div>
