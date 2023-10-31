@@ -53,6 +53,7 @@
 .sort {
   @include PageGrid;
   margin-bottom: 24px;
+  display: flex;
 
   &__item {
     width: 176px;
@@ -80,5 +81,23 @@
       color: #0F0F11;
       line-height: 21px;
     }
+  }
+
+  &__select {
+    height: 40px;
+  }
+
+  &__item-text {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item-label {
+    margin-left: 8px;
+    color: #89939A;
+    font-family: "Mont-SemiBold";
+    font-size: 12px;
+    line-height: 15.34px;
   }
 }

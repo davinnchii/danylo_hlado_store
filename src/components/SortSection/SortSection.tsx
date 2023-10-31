@@ -1,8 +1,6 @@
-/* eslint-disable no-console */
 import React from 'react';
 import {
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -26,33 +24,34 @@ export const SortSection: React.FC<Props> = ({
     : 'sort__item--pagination';
 
   return (
-    <FormControl
-      sx={{ m: 1, minWidth: 120 }}
-      className={`sort__item ${itemClassName}`}
-    >
-      <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
-      <Select
-        labelId="demo-simple-select-helper-label"
-        id="demo-simple-select-helper"
-        value={value}
-        label="Age"
-        onChange={onChange}
+    <section className="sort__section">
+      <p className="sort__item-label">{label}</p>
+
+      <FormControl
+        sx={{ m: 1, minWidth: 120 }}
+        className={`sort__item ${itemClassName}`}
       >
-        {options.map(data => (
-          <MenuItem
-            value={data}
-            key={data}
-            className={`sort__item ${itemClassName}`}
-          >
-            <p
-              className="sort__item-text"
-              style={{ marginBottom: '4px' }}
+        <Select
+          id="demo-simple-select-helper"
+          value={value}
+          onChange={onChange}
+          className="sort__select"
+        >
+          {options.map(data => (
+            <MenuItem
+              value={data}
+              key={data}
+              className={`sort__item ${itemClassName} test2`}
             >
-              {`${data[0].toUpperCase()}${data.slice(1)}`}
-            </p>
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+              <p
+                className="sort__item-text"
+              >
+                {`${data[0].toUpperCase()}${data.slice(1)}`}
+              </p>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </section>
   );
 };

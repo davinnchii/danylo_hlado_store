@@ -133,7 +133,7 @@ export const PhonesPage: React.FC = () => {
                 value={sort}
                 onChange={handleChangeParams}
                 options={['newest', 'alphabetically', 'cheapest']}
-                label="Sort"
+                label="Sort by"
               />
             )}
 
@@ -144,7 +144,7 @@ export const PhonesPage: React.FC = () => {
                 options={['16', '8', '4']}
                 value={limit}
                 onChange={handleChangeParams}
-                label="Limit"
+                label="Items on page"
               />
             )}
         </article>
