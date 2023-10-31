@@ -19,11 +19,16 @@
   }
 
   &__link-text {
-    font-family: 'Mont-Regular', sans-serif;
-    color: #89939a;
+    font-family: 'Mont-SemiBold', sans-serif;
+    color: #0f0f11;
     padding-top: 4px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 12px;
+
+    &--last {
+      color: #89939a;
+      font-weight: 600;
+    }
   }
 }
 

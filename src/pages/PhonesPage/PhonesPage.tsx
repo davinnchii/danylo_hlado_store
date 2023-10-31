@@ -4,20 +4,18 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 import { getSpecificSorting } from '../../api/products';
-import { ProductResponseType, ProductType } from '../../types/ProductType';
+import { ProductResponseType, ProductType } from '../../types';
 import { getSectionTitle } from '../../utils/getSectionTitle';
 import { Pagination } from '../../components/pagination/Pagination';
 import { CartsLoader } from '../../components/CartsLoader/CartsLoader';
 import { Loader } from '../../components/Loader';
 import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
 import '../../components/productCard/productCard.scss';
-import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
-import arrowRightIcon from '../../assets/icons/arrow-right.svg';
-import homeIcon from '../../assets/icons/Home.svg';
+import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
 import './PhonesPage.scss';
 import { realoadPage } from '../../utils/reloadPage';
 
@@ -70,31 +68,17 @@ export const PhonesPage: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="top-bar">
-        <a
-          href="/"
-          className="top-bar__link"
-        >
-          <img
-            className="top-bar__icon"
-            src={homeIcon}
-            alt="home-icon"
-          />
-        </a>
-
-        <img
-          className="top-bar__icon"
-          src={arrowRightIcon}
-          alt="home-icon"
-        />
-
-        <Breadcrumbs
-          path={`?category=${category}`}
-          className="top-bar__link-text"
-          normalizedCategoryLink={normalizedCategoryLink}
-        />
-      </div>
-
+      <BreadcrumbsNav
+        links={[
+          <Link
+            to={`?category=${category}&limit=${limit}&offset=${offset}&sortBy=${sort}`}
+            key={normalizedCategoryLink}
+            className="top-bar__link-text top-bar__link-text--last"
+          >
+            {normalizedCategoryLink}
+          </Link>,
+        ]}
+      />
       {hasCategoryProductsLoaded && (
         <Loader />
       )}
