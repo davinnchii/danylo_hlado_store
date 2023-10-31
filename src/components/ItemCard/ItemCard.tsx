@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import React, {
   useState,
@@ -17,6 +16,7 @@ import './ItemCard.scss';
 import { ProductCartResponseType, ProductCartType } from '../../types';
 import { Loader } from '../Loader';
 import { CartsLoader } from '../CartsLoader/CartsLoader';
+import { realoadPage } from '../../utils/reloadPage';
 import { ItemCardLoader } from '../ItemCardLoader/ItemCardLoader';
 
 export const ItemCard = () => {
@@ -59,6 +59,7 @@ export const ItemCard = () => {
           setProductInfo(selectedProductData.product);
           setRecommendedProducts(recommendedProductData);
         })
+        .catch(realoadPage)
         .finally(() => {
           setDataHasLoaded(false);
         });
