@@ -16,7 +16,7 @@ import './ItemCard.scss';
 import { ProductCartResponseType, ProductCartType } from '../../types';
 import { Loader } from '../Loader';
 import { CartsLoader } from '../CartsLoader/CartsLoader';
-import { realoadPage } from '../../utils/reloadPage';
+import { ErrorPopUp } from '../ErrorPopUp';
 import { ItemCardLoader } from '../ItemCardLoader/ItemCardLoader';
 
 export const ItemCard = () => {
@@ -24,6 +24,8 @@ export const ItemCard = () => {
   const [availableVariants, setAvailableVariants] = useState<ProductCartResponseType | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
   const [productInfo, setProductInfo] = useState<ProductType | null>(null);
+  const [isError, setIserror] = useState(false);
+  const [updateRequest, setUpdateRequest] = useState(new Date());
   const [hasDataLoaded, setDataHasLoaded] = useState(false);
 
   const { id } = useParams();
@@ -48,6 +50,8 @@ export const ItemCard = () => {
   useEffect(() => {
     setDataHasLoaded(true);
 
+    setIserror(false);
+
     if (id) {
       Promise.all([
         getProductById(id),
@@ -59,15 +63,24 @@ export const ItemCard = () => {
           setProductInfo(selectedProductData.product);
           setRecommendedProducts(recommendedProductData);
         })
-        .catch(realoadPage)
+        .catch((error) => {
+          setIserror(true);
+          setTimeout(() => {
+            setUpdateRequest(new Date());
+          }, 3000);
+          // eslint-disable-next-line no-console
+          console.error(error);
+        })
         .finally(() => {
           setDataHasLoaded(false);
         });
     }
-  }, [id]);
+  }, [id, updateRequest]);
 
   return (
     <article className="ItemCard">
+      <ErrorPopUp open={isError} />
+
       {hasDataLoaded && (
         <>
           <Loader />
