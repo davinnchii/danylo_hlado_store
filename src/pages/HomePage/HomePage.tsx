@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 
 import { Main } from '../../components/Main';
 import { Categories } from '../../components/Categories';
@@ -50,16 +51,27 @@ export const HomePage = () => {
         </>
       ) : (
         <>
-          <Main />
-          <ProductsCarousel
-            title="Brand new models"
-            visibleProducts={getPreparedProducts(productsWithNewModels)}
-          />
-          <Categories />
-          <ProductsCarousel
-            title="Hot prices"
-            visibleProducts={getPreparedProducts(productsWithDiscount)}
-          />
+          <Fade direction="up" triggerOnce>
+            <Main />
+          </Fade>
+
+          <Fade direction="up" triggerOnce>
+            <ProductsCarousel
+              title="Brand new models"
+              visibleProducts={getPreparedProducts(productsWithNewModels)}
+            />
+          </Fade>
+
+          <Fade direction="up" triggerOnce>
+            <Categories />
+          </Fade>
+
+          <Fade direction="up" triggerOnce>
+            <ProductsCarousel
+              title="Hot prices"
+              visibleProducts={getPreparedProducts(productsWithDiscount)}
+            />
+          </Fade>
         </>
       )}
     </div>

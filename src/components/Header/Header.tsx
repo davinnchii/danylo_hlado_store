@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import classnames from 'classnames';
+import { Fade } from 'react-awesome-reveal';
 
 import logo from '../../assets/images/logo.png';
 import logoBlack from '../../assets/images/logo-black.png';
@@ -40,54 +41,64 @@ export const Header: React.FC = () => {
           to="/"
           onClick={() => handleMenuItemClick('')}
         >
-          <img
-            className="header__logo-img"
-            src={isMenuOpen ? logo : logoBlack}
-            alt="logo"
-          />
+          <Fade direction="left" triggerOnce>
+            <img
+              className="header__logo-img"
+              src={isMenuOpen ? logo : logoBlack}
+              alt="logo"
+            />
+          </Fade>
         </Link>
 
         <nav className="header__menu">
-          <Link
-            to="/"
-            className={classnames('header__menu-link', {
-              'active-menu-link': selectMenuActive === '',
-            })}
-            onClick={() => handleMenuItemClick('')}
-          >
-            home
-          </Link>
+          <Fade direction="down" triggerOnce>
 
-          {Object.values(CategoryType).map(item => (
             <Link
-              key={item}
-              to={normalizedMenuLink(item, limitDefault, offsetDefault, sort)}
+              to="/"
               className={classnames('header__menu-link', {
-                'active-menu-link': selectMenuActive === item,
+                'active-menu-link': selectMenuActive === '',
               })}
-              onClick={() => handleMenuItemClick(item)}
+              onClick={() => handleMenuItemClick('')}
             >
-              {item}
+              home
             </Link>
-          ))}
+
+            {Object.values(CategoryType).map(item => (
+              <Link
+                key={item}
+                to={normalizedMenuLink(item, limitDefault, offsetDefault, sort)}
+                className={classnames('header__menu-link', {
+                  'active-menu-link': selectMenuActive === item,
+                })}
+                onClick={() => handleMenuItemClick(item)}
+              >
+                {item}
+              </Link>
+            ))}
+          </Fade>
         </nav>
       </div>
 
       <div className="header__right">
-        <div className="header__icons">
-          <i
-            className={`icon icon--${!isMenuOpen ? 'menu' : 'close'}`}
-            onClick={() => setIsMenuOpen(prev => !prev)}
-          />
+        <Fade direction="right" triggerOnce>
+          <div className="header__icons">
+            <i
+              className={`icon icon--${!isMenuOpen ? 'menu' : 'close'}`}
+              onClick={() => setIsMenuOpen(prev => !prev)}
+            />
 
-          <Link to="/favourites" className="icon icon--favourites__link-header">
-            <i className="icon--favourites" />
-          </Link>
+            <Link
+              to="/favourites"
+              className="icon icon--favourites__link-header"
+            >
+              <i className="icon--favourites" />
+            </Link>
 
-          <Link to="/cart" className="icon icon--shopping-bag__link-header">
-            <i className="icon--shopping-bag" />
-          </Link>
-        </div>
+            <Link to="/cart" className="icon icon--shopping-bag__link-header">
+              <i className="icon--shopping-bag" />
+            </Link>
+          </div>
+        </Fade>
       </div>
 
       {isMenuOpen && (
