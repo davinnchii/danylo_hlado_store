@@ -4,10 +4,7 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Link, useSearchParams } from 'react-router-dom';
-
-import arrowRightIcon from '../../assets/icons/arrow-right.svg';
-import homeIcon from '../../assets/icons/Home.svg';
+import { useSearchParams } from 'react-router-dom';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 import { getSpecificSorting } from '../../api/products';
@@ -18,6 +15,9 @@ import { CartsLoader } from '../../components/CartsLoader/CartsLoader';
 import { Loader } from '../../components/Loader';
 import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
 import '../../components/productCard/productCard.scss';
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
+import arrowRightIcon from '../../assets/icons/arrow-right.svg';
+import homeIcon from '../../assets/icons/Home.svg';
 import './PhonesPage.scss';
 import { realoadPage } from '../../utils/reloadPage';
 
@@ -72,7 +72,7 @@ export const PhonesPage: React.FC = () => {
     <div className="container">
       <div className="top-bar">
         <a
-          href="/home"
+          href="/"
           className="top-bar__link"
         >
           <img
@@ -88,12 +88,11 @@ export const PhonesPage: React.FC = () => {
           alt="home-icon"
         />
 
-        <Link
-          to="/"
+        <Breadcrumbs
+          path={`?category=${category}`}
           className="top-bar__link-text"
-        >
-          {normalizedCategoryLink}
-        </Link>
+          normalizedCategoryLink={normalizedCategoryLink}
+        />
       </div>
 
       {hasCategoryProductsLoaded && (
@@ -110,7 +109,7 @@ export const PhonesPage: React.FC = () => {
         <p className="phones__amount">
           {hasCategoryProductsLoaded
             ? <Skeleton />
-            : `${visibleProducts.length} models`}
+            : `${totalProducts.current.value} models`}
         </p>
 
         <article className="phones__sort sort">

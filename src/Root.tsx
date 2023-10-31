@@ -31,9 +31,9 @@ export const Root = () => {
           <Route path="favourites" element={<Favourites />} />
 
           <Route path="home" element={<Navigate to="/" replace />} />
-        </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </Router>
   );
