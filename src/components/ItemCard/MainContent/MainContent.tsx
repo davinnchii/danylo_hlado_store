@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import { Button } from '../../Button';
 import { HeartIcon } from '../../HeartIcon';
@@ -9,6 +10,7 @@ import { ProductCartType, ProductType } from '../../../types';
 import { getImageUrl } from '../../../utils/getImageUrl';
 import './MainContent.scss';
 import { BackButton } from '../../BackButton';
+import { BreadcrumbsNav } from '../../Breadcrumbs/Breadcrumbs';
 
 type Props = {
   product: ProductCartType | null;
@@ -30,6 +32,9 @@ export const MainContent: React.FC<Props> = ({
   if (!product) {
     return <h1>hello</h1>;
   }
+
+  const normalizedCategoryLink = `${productInfo.category[0].toUpperCase()}`
+    + `${productInfo.category.slice(1)}`;
 
   const {
     id,
@@ -68,6 +73,24 @@ export const MainContent: React.FC<Props> = ({
   return (
     <div className="container">
       <div className="wrapper">
+        <BreadcrumbsNav
+          links={[
+            <Link
+              to={`/products?category=${productInfo.category}`}
+              className="top-bar__link-text"
+              key={normalizedCategoryLink}
+            >
+              {normalizedCategoryLink}
+            </Link>,
+            <Link
+              to={`/products/${productInfo.id}`}
+              className="top-bar__link-text top-bar__link-text--last"
+              key={productInfo.name}
+            >
+              {product.name}
+            </Link>,
+          ]}
+        />
         <BackButton />
 
         <section className="MainContent">
