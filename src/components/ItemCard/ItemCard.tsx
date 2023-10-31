@@ -89,7 +89,7 @@ export const ItemCard = () => {
             <CartsLoader />
           </div>
         </>
-
+      )}
 
       {(selectedProduct && productInfo) && (
         <>
