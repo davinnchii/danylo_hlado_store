@@ -1,4 +1,10 @@
+$headerHeight: 65px;
+$footerHeight: 65px;
+$imageHeight: 50vh;
+
 .Empty-cart {
+  height: calc(100vh - $headerHeight - $footerHeight);
+
   &__header {
     color: #0F0F11;
     text-align: center;
@@ -9,4 +15,17 @@
     line-height: 41px;
     letter-spacing: -0.32px;
   }
+
+  &__button-home {
+    margin: 0 auto;
+    display: block;
+    padding: 1px;
+  }
+}
+
+.img-cart {
+  padding: 1px;
+  margin: 0 auto;
+  display: block;
+  height: $imageHeight;
 }

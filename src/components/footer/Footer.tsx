@@ -16,11 +16,26 @@ export const Footer = () => {
       </Link>
 
       <div className="footer__links">
-        <a href="/" className="footer__link">github</a>
+        <a
+          href="https://github.com/Peppers-Team"
+          className="footer__link"
+        >
+          github
+        </a>
 
-        <a href="/" className="footer__link">contacts</a>
+        <a
+          href="https://maps.app.goo.gl/XNh35WymPsc6GJDJA"
+          className="footer__link"
+        >
+          contacts
+        </a>
 
-        <a href="/" className="footer__link">rights</a>
+        <a
+          href="https://savelife.in.ua/donate/#donate-army-card-monthly"
+          className="footer__link support_ukraine"
+        >
+          support_ukraine
+        </a>
       </div>
 
       <div className="footer__back-block">
