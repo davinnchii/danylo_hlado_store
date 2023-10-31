@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
 import React, { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Select, { StylesConfig, Theme } from 'react-select';
@@ -71,7 +70,6 @@ export const CustomSelect: React.FC<Props> = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
-
   const handleSelectChange = useCallback((selectedOption: any) => {
     const normalizedOption = selectedOption.value.replace(/[^a-zA-Z]/g, '');
 

@@ -12,6 +12,7 @@ import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { NavigationMobile } from '../NavigationMobile';
 import { CategoryType } from '../../types/CategoryType';
+import { SearchBar } from '../SearchBar/SearchBar';
 
 export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -82,6 +83,8 @@ export const Header: React.FC = () => {
       <div className="header__right">
         <Fade direction="right" triggerOnce>
           <div className="header__icons">
+            <SearchBar />
+
             <i
               className={`icon icon--${!isMenuOpen ? 'menu' : 'close'}`}
               onClick={() => setIsMenuOpen(prev => !prev)}
