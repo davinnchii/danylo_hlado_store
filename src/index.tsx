@@ -19,5 +19,6 @@ root.render(
         </ProductsContextProvider>
       </CartContextProvider>
     </FavouriteContextProvider>
+    ,
   </React.StrictMode>,
 );
