@@ -59,10 +59,25 @@
     align-items: center;
     height: 100%;
   }
+
+
+  &__search-bar {
+    display: flex;
+    align-items: center;
+    transition: width 5s ease-in;
+
+    &-input {
+      display: none;
+      border: none;
+      outline: none;
+      margin-left: 10px;
+      font-family: 'Mont-Regular', sans-serif;
+    }
+  }
 }
 
 .icon {
-  display: block;
+  display: flex;
   position: relative;
   margin: 24px;
   cursor: pointer;
@@ -81,6 +96,7 @@
     top: -24px;
   }
 
+  &--search,
   &--favourites,
   &--shopping-bag {
     z-index: 999;
@@ -88,7 +104,15 @@
     width: 16px;
     height: 16px;
     background-size: cover;
-    cursor: pointer;
+  }
+
+  &--search {
+    background-image: url(../../assets/icons/Search.svg);
+    transition: background-image 0.3s ease;
+
+    &:hover {
+      animation: icons-search 1s infinite alternate-reverse;
+    }
   }
 
   &--favourites {
@@ -104,6 +128,15 @@
   &--shopping-bag {
     background-image: url(../../assets/icons/shopping-bag-cart.svg);
     transition: transform 0.3s ease;
+
+    &__link-header {
+      cursor: pointer;
+
+      &:hover .icon--favourites {
+        animation: icons-scale 1s infinite;
+        background-image: url(../../assets/icons/favourites-filled-heart-like.svg);
+      }
+    }
 
     &:hover {
       animation: icons-shop 1s infinite alternate-reverse;
@@ -195,6 +228,14 @@
   border-color: #0F0F11;
 }
 
+.is-search-bar-active {
+  display: flex;
+}
+
+html:has(.is-search-bar-active) .header__search-bar {
+  animation: 2s search-bar;
+}
+
 @keyframes icons-scale {
   0% {
     transform: scale(1);
@@ -215,3 +256,25 @@
     transform: rotate(-50deg) scale(1);
   }
 }
+
+@keyframes icons-search {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes search-bar {
+  0% {
+    transform: translateX(30%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
