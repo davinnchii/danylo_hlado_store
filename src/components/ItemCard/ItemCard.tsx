@@ -62,13 +62,8 @@ export const ItemCard = () => {
           setProductInfo(selectedProductData.product);
           setRecommendedProducts(recommendedProductData);
         })
-        .catch((error) => {
+        .catch(() => {
           setIserror(true);
-          setTimeout(() => {
-            setUpdateRequest(new Date());
-          }, 3000);
-          // eslint-disable-next-line no-console
-          console.error(error);
         })
         .finally(() => {
           setDataHasLoaded(false);
@@ -78,7 +73,7 @@ export const ItemCard = () => {
 
   return (
     <article className="ItemCard">
-      <ErrorPopUp open={isError} />
+      <ErrorPopUp open={isError} onUpdatePage={setUpdateRequest} />
 
       {hasDataLoaded && (
         <>
