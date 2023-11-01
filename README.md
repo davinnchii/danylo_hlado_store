@@ -1,4 +1,4 @@
-# Project Title
+# PT Nice Gadgets Shop
 
 The project aim was to create a shop of Apple products, with both back-end and front-end, using React & NodeJs + Express + Sequelize.
 - [Deploy link](https://peppers-team.github.io/pt_product_catalog_fe/)
