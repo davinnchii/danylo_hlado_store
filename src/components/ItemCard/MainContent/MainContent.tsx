@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../Button';
 import { HeartIcon } from '../../HeartIcon';
 import { getSplitedGB } from '../../../utils/getSplitedGB';
-import { ProductCartType, ProductType } from '../../../Types';
+import { ProductCartType, ProductType } from '../../../types';
 import { getImageUrl } from '../../../utils/getImageUrl';
 import './MainContent.scss';
 import { BackButton } from '../../BackButton';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SwiperCards } from '../SwiperCards';
-import { ProductType } from '../../Types/ProductType';
+import { ProductType } from '../../types';
 import './productsCarousel.scss';
 
 type Props = {

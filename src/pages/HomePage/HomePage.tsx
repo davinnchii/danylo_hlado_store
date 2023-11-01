@@ -7,7 +7,7 @@ import { Main } from '../../components/Main';
 import { Categories } from '../../components/Categories';
 import { ProductsCarousel } from '../../components/ProductsCarousel';
 import { getProductsWithDiscount, getProductsWithNewModels } from '../../api/products';
-import { ProductType } from '../../Types/ProductType';
+import { ProductType } from '../../types';
 import { Loader } from '../../components/Loader';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './HomePage.scss';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { CategoryType } from '../../Types/CategoryType';
+import { CategoryType } from '../../types/CategoryType';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import './navigationMobile.scss';

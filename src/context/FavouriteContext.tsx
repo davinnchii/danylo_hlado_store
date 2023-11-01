@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ProductType } from '../Types/ProductType';
+import { ProductType } from '../types/ProductType';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 interface FavouriteContextType {

@@ -11,10 +11,11 @@ import './header.scss';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { NavigationMobile } from '../NavigationMobile';
-import { CategoryType } from '../../Types/CategoryType';
+import { CategoryType } from '../../types/CategoryType';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { useFavourite } from '../../context/FavouriteContext';
 import { useCart } from '../../context/CartContext';
+import { CounterIcon } from '../CounterIcon/CounterIcon';
 
 export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -98,19 +99,17 @@ export const Header: React.FC = () => {
               to="/favourites"
               className="icon icon--favourites__link-header"
             >
-              <i className="icon--favourites">
-                {favourite.length > 0 && (
-                  <p className="icon--count">{favourite.length}</p>
-                )}
-              </i>
+              <CounterIcon
+                iconClassName="icon--favourites"
+                amount={favourite.length}
+              />
             </Link>
 
             <Link to="/cart" className="icon icon--shopping-bag__link-header">
-              <i className="icon--shopping-bag">
-                {cart.length > 0 && (
-                  <p className="icon--cart">{cart.length}</p>
-                )}
-              </i>
+              <CounterIcon
+                iconClassName="icon--shopping-bag"
+                amount={cart.length}
+              />
             </Link>
           </div>
         </Fade>

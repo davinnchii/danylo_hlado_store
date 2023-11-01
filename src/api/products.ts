@@ -1,5 +1,8 @@
-import { ProductCartResponseType } from '../Types';
-import { ProductResponseType, ProductType } from '../Types/ProductType';
+import {
+  ProductResponseType,
+  ProductType,
+  ProductCartResponseType,
+} from '../types';
 import { client } from '../utils/fetchClient';
 
 const BASE_PARAMETER = 'products';

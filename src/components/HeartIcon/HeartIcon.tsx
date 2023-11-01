@@ -3,7 +3,7 @@ import './HeartIcon.scss';
 import heart_empty from '../../assets/icons/favouritesh-heart-like.svg';
 import heart_filled from '../../assets/icons/favourites-filled-heart-like.svg';
 import { FavouriteContext } from '../../context/FavouriteContext';
-import { ProductType } from '../../Types';
+import { ProductType } from '../../types';
 
 type Props = {
   product: ProductType,
