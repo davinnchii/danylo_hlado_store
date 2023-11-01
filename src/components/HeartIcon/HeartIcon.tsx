@@ -12,19 +12,19 @@ type Props = {
 export const HeartIcon: React.FC<Props> = ({ product }) => {
   const { favourite, setFavourite } = useContext(FavouriteContext);
 
-  const isLiked = favourite.find(({ id }) => id === product.id);
+  const isLiked = favourite.find(({ itemId }) => itemId === product.itemId);
 
   const addToFavourites = () => {
     if (isLiked) {
       setFavourite(curFav => {
-        return curFav.filter(({ id }) => id !== product.id);
+        return curFav.filter(({ itemId }) => itemId !== product.itemId);
       });
 
       return;
     }
 
     setFavourite(curFav => {
-      return [...curFav, product];
+      return [...curFav, { ...product, id: product.itemId }];
     });
   };
 

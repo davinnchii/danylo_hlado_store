@@ -32,7 +32,7 @@ export const Favourites = () => {
           </div>
           <div className="favourites__products">
             {favourite.map((prod) => (
-              <ProductCard product={prod} key={prod.id} />
+              <ProductCard product={prod} key={prod.itemId} />
             ))}
           </div>
         </>
