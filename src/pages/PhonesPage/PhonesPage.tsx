@@ -42,13 +42,8 @@ export const PhonesPage: React.FC = () => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
       })
-      .catch((error) => {
+      .catch(() => {
         setIserror(true);
-        setTimeout(() => {
-          setUpdateRequest(new Date());
-        }, 3000);
-        // eslint-disable-next-line no-console
-        console.error(error);
       })
       .finally(() => setHasCategoryProductsLoaded(false));
   }, [category, sort, limit, offset, updateRequest]);
@@ -84,7 +79,7 @@ export const PhonesPage: React.FC = () => {
 
   return (
     <div className="container">
-      <ErrorPopUp open={isError} />
+      <ErrorPopUp open={isError} onUpdatePage={setUpdateRequest} />
 
       <BreadcrumbsNav
         className="top-bar"
