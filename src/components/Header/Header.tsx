@@ -13,9 +13,14 @@ import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { NavigationMobile } from '../NavigationMobile';
 import { CategoryType } from '../../types/CategoryType';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { useFavourite } from '../../context/FavouriteContext';
+import { useCart } from '../../context/CartContext';
+import { CounterIcon } from '../CounterIcon/CounterIcon';
 
 export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { favourite } = useFavourite();
+  const { cart } = useCart();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectMenuActive, setSelectMenuActive] = useState<string>('');
@@ -94,11 +99,17 @@ export const Header: React.FC = () => {
               to="/favourites"
               className="icon icon--favourites__link-header"
             >
-              <i className="icon--favourites" />
+              <CounterIcon
+                iconClassName="icon--favourites"
+                amount={favourite.length}
+              />
             </Link>
 
             <Link to="/cart" className="icon icon--shopping-bag__link-header">
-              <i className="icon--shopping-bag" />
+              <CounterIcon
+                iconClassName="icon--shopping-bag"
+                amount={cart.length}
+              />
             </Link>
           </div>
         </Fade>

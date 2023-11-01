@@ -20,18 +20,6 @@ import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
 import './PhonesPage.scss';
 import { ErrorPopUp } from '../../components/ErrorPopUp';
 
-// const sortOptions = [
-//   { value: 'newest', label: 'Newest' },
-//   { value: 'alphabetically ', label: 'Alphabetically ' },
-//   { value: 'cheapest ', label: 'Cheapest ' },
-// ];
-//
-// const paginationOptions = [
-//   { value: '16', label: '16' },
-//   { value: '8', label: '8' },
-//   { value: '4', label: '4' },
-// ];
-
 export const PhonesPage: React.FC = () => {
   const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
   const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
