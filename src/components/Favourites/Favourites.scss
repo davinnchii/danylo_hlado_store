@@ -1,20 +1,14 @@
 $headerHeight: 65px;
 $footerHeight: 65px;
-$imageHeight: 50%;
+$imageHeight: 50vh;
 $backButtonHeight: 17px;
 $titleHeight: auto;
 $paddingsImg: 2px;
 $buttonHeight: 48px;
+$breadcrumbsNav: 24px;
 
 .favourites {
-  height: calc(100vh - $headerHeight - $footerHeight);
-
-  &__title {
-    font-family: 'Mont-Bold', serif;
-    font-size: $titleHeight;
-    font-weight: 800;
-    margin-bottom: 8px;
-  }
+  min-height: calc(100vh - $headerHeight - $footerHeight - $breadcrumbsNav);
 
   &__items {
     font-family: 'Mont-Regular', serif;
