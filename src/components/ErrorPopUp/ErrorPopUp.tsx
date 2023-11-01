@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Popup from 'reactjs-popup';
 import './ErrorPopUp.scss';
 
 type Props = {
   open: boolean,
+  onUpdatePage: (date: Date) => void,
 };
 
-export const ErrorPopUp: React.FC<Props> = ({ open }) => {
-  const [timer, setTimer] = useState(3);
-
-  useEffect(() => {
-    if (timer > 0 && open) {
-      setTimeout(() => {
-        setTimer(timer - 1);
-      }, 1000);
-    }
-  }, [open, timer]);
-
+export const ErrorPopUp: React.FC<Props> = ({ open, onUpdatePage }) => {
   return (
     <>
       <Popup open={open} position="center center">
@@ -25,9 +16,13 @@ export const ErrorPopUp: React.FC<Props> = ({ open }) => {
             Something went wrong
           </h2>
 
-          <span className="ErrorPopUp__timer">
-            {`Reload in ${timer}`}
-          </span>
+          <button
+            className="ErrorPopUp__button"
+            type="button"
+            onClick={() => onUpdatePage(new Date())}
+          >
+            Reload
+          </button>
         </div>
       </Popup>
     </>
