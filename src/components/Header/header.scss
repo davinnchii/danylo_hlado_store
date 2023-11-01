@@ -106,42 +106,6 @@
     background-size: cover;
   }
 
-  &--count {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #F447AF;
-    color: #FFF;
-    font-family: Mont;
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 12px;
-
-    margin: -7px 0 0 9px;
-    border-radius: 50%;
-    height: 16px;
-    width: 16px;
-  }
-
-  &--cart {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #F447AF;
-    color: #FFF;
-    font-family: Mont;
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 12px;
-
-    margin: -7px 0 0 9px;
-    border-radius: 50%;
-    height: 16px;
-    width: 16px;
-  }
-
   &--search {
     background-image: url(../../assets/icons/Search.svg);
     transition: background-image 0.3s ease;
