@@ -1,4 +1,10 @@
+$headerHeight: 65px;
+$footerHeight: 65px;
+$breadcrumbsNav: 48px;
+
 .basket {
+  min-height: calc(100vh - $headerHeight - $footerHeight - $breadcrumbsNav);
+
   a {
     color: inherit;
   }

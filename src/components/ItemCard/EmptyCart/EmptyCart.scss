@@ -3,7 +3,7 @@ $footerHeight: 65px;
 $imageHeight: 50vh;
 
 .Empty-cart {
-  height: calc(100vh - $headerHeight - $footerHeight);
+  min-height: calc(100vh - $headerHeight - $footerHeight);
 
   &__header {
     color: #0F0F11;

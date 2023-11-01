@@ -1,13 +1,13 @@
 .footer {
   height: auto;
-  width: 100%;
   padding: 16px;
   box-shadow: 0px -1px 0px 0px #e2e6e9;
 
   display: flex;
-  box-sizing: border-box;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
+
+  margin: 0;
 
   &__logo-link {
     text-decoration: none;
@@ -16,18 +16,23 @@
   }
 
   &__logo-image {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+
     text-align: center;
     height: 32px;
     width: 89px;
   }
 
   &__links {
-    text-transform: uppercase;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    text-transform: uppercase;
     flex-grow: 0.2;
-    margin-right: 100px;
 
     font-family: 'Mont-Bold';
   }
@@ -60,27 +65,55 @@
       right: 0;
     }
   }
+}
 
-  &__back-button {
-    display: block;
-    height: 32px;
-    width: 32px;
-    position: relative;
-    background-image: url('../../../public/icons/Slider\ button\ -\ Default\ \(right\).png');
+.top-button {
+  background-color: #fff;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 
-    &::before {
-      position: absolute;
-      transform: translateX(-130%) translateY(50%);
-      white-space: nowrap;
-      content: 'Back to top';
+  &__wrap {
+    display: flex;
+    align-items: center;
 
-      font-family: 'Mont-SemiBold';
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      color: #89939A;
+    &:hover .top-button__img,
+    &:hover .top-button__text {
+      animation: bounce 1.5s;
     }
+
+    @keyframes bounce {
+      0%, 20%, 60%, 100% {
+        transform: translateY(0);
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+        transform: translateY(-10px);
+      }
+
+      80% {
+        transform: translateY(-10px);
+        transform: translateY(-10px);
+      }
+    }
+  }
+
+  &__img {
+    height: 25px;
+  }
+
+  &__text {
+    text-decoration: none;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.48px;
+    color: #89939a;
+
+    padding-right: 6px;
   }
 }
 
@@ -113,6 +146,7 @@
     0% {
       background-position: 100%;
     }
+
     100% {
       background-position: -100%;
     }
@@ -144,6 +178,5 @@
     &__links {
       margin-right: 0;
     }
-
   }
 }
