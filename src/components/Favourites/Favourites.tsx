@@ -41,10 +41,6 @@ export const Favourites = () => {
         <>
           <BackButton />
 
-          <h1 className="favourites__title">
-            You have no favourites
-          </h1>
-
           <img
             src={HaveNoFavourites}
             alt="You have no favourites"
