@@ -73,9 +73,13 @@ export const PhonesPage: React.FC = () => {
   }, [category, sort, limit, offset, updateRequest, query, priceFrom, priceTo]);
 
   const handleChangePage = useCallback((page: number) => {
+    const params = new URLSearchParams(searchParams);
+
     setCurrentPage(page);
-    searchParams.set('offset', (Number(limit) * page - 1).toString());
-  }, [searchParams, limit]);
+    params.set('offset', (Number(limit) * (page - 1)).toString());
+    params.set('page', page.toString());
+    setSearchParams(params);
+  }, [limit, sort]);
 
   const handleChangeParams = useCallback((event: SelectChangeEvent) => {
     const params = new URLSearchParams(searchParams);
