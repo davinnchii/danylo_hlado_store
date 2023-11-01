@@ -49,7 +49,7 @@ export const PhonesPage: React.FC = () => {
         totalProducts.current.value = data.count;
       })
       .catch(() => {
-        setIserror(true);
+        setIsError(true);
       })
       .finally(() => {
         setHasCategoryProductsLoaded(false);
