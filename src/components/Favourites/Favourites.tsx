@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ProductCard } from '../productCard/productCard';
 import './Favourites.scss';
 import { FavouriteContext } from '../../context/FavouriteContext';
-import { BackButton } from '../BackButton';
 import HaveNoFavourites from '../../assets/images/no-favourites.png';
 import { HomeButton } from '../HomeButton/HomeButton';
 import { BreadcrumbsNav } from '../Breadcrumbs/Breadcrumbs';
@@ -39,7 +38,6 @@ export const Favourites = () => {
         </>
       ) : (
         <>
-          <BackButton />
 
           <img
             src={HaveNoFavourites}
