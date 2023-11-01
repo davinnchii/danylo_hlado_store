@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '@mui/material';
+import './Breadcrumbs.scss';
 import homeIcon from '../../assets/icons/Home.svg';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
 
 type Props = {
+  className: string;
   links: JSX.Element[];
 };
 
 export const BreadcrumbsNav: React.FC<Props> = ({
   links,
+  className,
 }) => {
   return (
-    <div className="top-bar">
+    <div className={className}>
       <Breadcrumbs
         separator={
           (

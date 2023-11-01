@@ -99,6 +99,7 @@ export const PhonesPage: React.FC = () => {
       <ErrorPopUp open={isError} />
 
       <BreadcrumbsNav
+        className="top-bar"
         links={[
           <Link
             to={`?category=${category}&limit=${limit}&offset=${offset}&sortBy=${sort}`}
