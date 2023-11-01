@@ -5,9 +5,11 @@ import { CartContext } from '../../context/CartContext';
 import './Cart.scss';
 import { getImageUrl } from '../../utils/getImageUrl';
 import { EmptyCart } from '../ItemCard/EmptyCart';
+import { SuccessModal } from './SuccessModal';
 
 export const Cart: React.FC = () => {
   const { cart, setCart } = useContext(CartContext);
+  const [open, setOpen] = React.useState(false);
 
   const getTotalPrice = () => {
     return cart.reduce((totalPrice, { price, amount }) => (
@@ -131,7 +133,10 @@ export const Cart: React.FC = () => {
               {`Total for ${getTotalAmount()} items`}
             </div>
 
-            <a className="totally__button" href="/">Checkout</a>
+            <SuccessModal
+              open={open}
+              setOpen={setOpen}
+            />
           </div>
         </section>
       ) : (
