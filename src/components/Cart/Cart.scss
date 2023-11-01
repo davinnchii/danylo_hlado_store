@@ -189,12 +189,13 @@ $breadcrumbsNav: 48px;
         font-size: 14px;
         font-weight: 500;
         line-height: 21px;
-        padding-bottom: 25px;
         border-bottom: 1px solid #E2E6E9;
         text-align: center;
-        width: 321px;
+        width: 100%;
+        padding: 0 24px 25px 24px;
         color: #89939A;
         font-family: Mont-Regular, serif;
+        box-sizing: border-box;
       }
 
       &__button {
@@ -307,7 +308,7 @@ $breadcrumbsNav: 48px;
       width: 288px;
       height: 190px;
 
-      padding: 24px;
+      padding: 24px 12px;
       margin: 32px 0 64px 0;
       border: 1px solid #E2E6E9;
       border-radius: 16px;
