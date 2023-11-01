@@ -10,10 +10,10 @@ import { MainContent } from './MainContent';
 import { ProductsCarousel } from '../ProductsCarousel';
 
 import { getProductById, getRecommendedProducts } from '../../api/products';
-import { ProductType } from '../../types/ProductType';
+import { ProductType } from '../../Types/ProductType';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './ItemCard.scss';
-import { ProductCartResponseType, ProductCartType } from '../../types';
+import { ProductCartResponseType, ProductCartType } from '../../Types';
 import { Loader } from '../Loader';
 import { CartsLoader } from '../CartsLoader/CartsLoader';
 import { ErrorPopUp } from '../ErrorPopUp';

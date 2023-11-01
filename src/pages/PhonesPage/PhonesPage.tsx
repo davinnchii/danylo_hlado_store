@@ -9,7 +9,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/productCard/productCard';
 import { getSpecificSorting } from '../../api/products';
-import { ProductResponseType, ProductType } from '../../types';
+import { ProductResponseType, ProductType } from '../../Types';
 import { getSectionTitle } from '../../utils/getSectionTitle';
 import { Pagination } from '../../components/pagination/Pagination';
 import { CartsLoader } from '../../components/CartsLoader/CartsLoader';

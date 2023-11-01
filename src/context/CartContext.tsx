@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CartProduct } from '../types';
+import { CartProduct } from '../Types';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 interface CartContextType {

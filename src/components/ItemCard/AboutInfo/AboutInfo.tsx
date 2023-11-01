@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getSplitedGB } from '../../../utils/getSplitedGB';
-import { ProductCartType } from '../../../types';
+import { ProductCartType } from '../../../Types';
 import './AboutInfo.scss';
 
 type Props = {

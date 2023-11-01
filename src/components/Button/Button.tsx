@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './Button.scss';
 import classNames from 'classnames';
 import { CartContext } from '../../context/CartContext';
-import { CartProduct } from '../../types';
+import { CartProduct } from '../../Types';
 
 type Props = {
   content: string;

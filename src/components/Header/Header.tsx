@@ -11,11 +11,15 @@ import './header.scss';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { NavigationMobile } from '../NavigationMobile';
-import { CategoryType } from '../../types/CategoryType';
+import { CategoryType } from '../../Types/CategoryType';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { useFavourite } from '../../context/FavouriteContext';
+import { useCart } from '../../context/CartContext';
 
 export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { favourite } = useFavourite();
+  const { cart } = useCart();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectMenuActive, setSelectMenuActive] = useState<string>('');
@@ -94,11 +98,19 @@ export const Header: React.FC = () => {
               to="/favourites"
               className="icon icon--favourites__link-header"
             >
-              <i className="icon--favourites" />
+              <i className="icon--favourites">
+                {favourite.length > 0 && (
+                  <p className="icon--count">{favourite.length}</p>
+                )}
+              </i>
             </Link>
 
             <Link to="/cart" className="icon icon--shopping-bag__link-header">
-              <i className="icon--shopping-bag" />
+              <i className="icon--shopping-bag">
+                {cart.length > 0 && (
+                  <p className="icon--cart">{cart.length}</p>
+                )}
+              </i>
             </Link>
           </div>
         </Fade>

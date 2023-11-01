@@ -7,7 +7,7 @@ import { ProductCard } from '../productCard/productCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './swiperCards.scss';
-import { ProductType } from '../../types/ProductType';
+import { ProductType } from '../../Types/ProductType';
 
 type Props = {
   arrowLeftClassName: string,
