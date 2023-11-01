@@ -22,10 +22,9 @@ export const SuccessModal: React.FC<Props> = ({ open, setOpen }) => {
   const handleClose = () => {
     setOpen(false);
     setTimeout(() => {
+      navigate('/');
       setCart([]);
-    }, 0);
-
-    navigate('/');
+    }, 500);
   };
 
   return (
