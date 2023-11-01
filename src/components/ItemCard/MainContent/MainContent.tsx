@@ -74,6 +74,7 @@ export const MainContent: React.FC<Props> = ({
     <div className="container">
       <div className="wrapper">
         <BreadcrumbsNav
+          className="top-bar"
           links={[
             <Link
               to={`/products?category=${productInfo.category}`}
