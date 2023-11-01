@@ -47,6 +47,7 @@ export const PhonesPage: React.FC = () => {
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
+    setIserror(false);
 
     getSpecificSorting(category, sort, Number(limit), Number(offset))
       .then((data: ProductResponseType) => {

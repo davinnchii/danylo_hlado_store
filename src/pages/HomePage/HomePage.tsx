@@ -31,6 +31,7 @@ export const HomePage = () => {
   useEffect(() => {
     setIsDiscountLoading(true);
     setIsNewModelsLoading(true);
+    setIserror(false);
 
     getProductsWithDiscount()
       .then((data) => {
