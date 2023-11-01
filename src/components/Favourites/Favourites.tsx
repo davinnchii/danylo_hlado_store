@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ProductCard } from '../productCard/productCard';
+import { ProductCard } from '../ProductCard/ProductCard';
 import './Favourites.scss';
 import { FavouriteContext } from '../../context/FavouriteContext';
 import HaveNoFavourites from '../../assets/images/no-favourites.png';

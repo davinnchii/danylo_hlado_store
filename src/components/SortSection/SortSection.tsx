@@ -21,7 +21,7 @@ export const SortSection: React.FC<Props> = ({
 }) => {
   const itemClassName = label === 'Sort by'
     ? 'sort__item--sort'
-    : 'sort__item--pagination';
+    : 'sort__item--Pagination';
 
   return (
     <section className="sort__section">

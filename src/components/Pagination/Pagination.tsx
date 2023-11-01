@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import './pagination.scss';
+import './Pagination.scss';
 import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { getPagesCount } from '../../utils/getPagesCount';
