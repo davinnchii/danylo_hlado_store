@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
       <div className="header__right">
         <Fade direction="right" triggerOnce>
           <div className="header__icons">
-            <SearchBar />
+            {category && <SearchBar />}
 
             <i
               className={`icon icon--${!isMenuOpen ? 'menu' : 'close'}`}
