@@ -37,13 +37,8 @@ export const HomePage = () => {
       .then((data) => {
         setProductsWithDiscount(data);
       })
-      .catch((error) => {
+      .catch(() => {
         setIserror(true);
-        setTimeout(() => {
-          setUpdateRequest(new Date());
-        }, 3000);
-        // eslint-disable-next-line no-console
-        console.error(error);
       })
       .finally(() => setIsDiscountLoading(false));
 
@@ -51,20 +46,15 @@ export const HomePage = () => {
       .then((data) => {
         setProductsWithNewModels(data);
       })
-      .catch((error) => {
+      .catch(() => {
         setIserror(true);
-        setTimeout(() => {
-          setUpdateRequest(new Date());
-        }, 3000);
-        // eslint-disable-next-line no-console
-        console.error(error);
       })
       .finally(() => setIsNewModelsLoading(false));
   }, [updateRequest]);
 
   return (
     <div className="home-page">
-      <ErrorPopUp open={isError} />
+      <ErrorPopUp open={isError} onUpdatePage={setUpdateRequest} />
 
       {isDiscountLoading && isNewModelsLoading ? (
         <>
