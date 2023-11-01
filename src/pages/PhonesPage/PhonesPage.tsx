@@ -79,7 +79,7 @@ export const PhonesPage: React.FC = () => {
 
   const handleChangePage = useCallback((page: number) => {
     setCurrentPage(page);
-    searchParams.set('offset', (Number(limit) * page).toString());
+    searchParams.set('offset', (Number(limit) * page - 1).toString());
   }, [searchParams, limit]);
 
   const handleChangeParams = useCallback((event: SelectChangeEvent) => {
