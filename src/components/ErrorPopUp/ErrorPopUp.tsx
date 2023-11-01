@@ -1,6 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import './ErrorPopUp.scss';
+import { ModalButton } from '../ModalButton';
 
 type Props = {
   open: boolean,
@@ -16,13 +17,10 @@ export const ErrorPopUp: React.FC<Props> = ({ open, onUpdatePage }) => {
             Something went wrong
           </h2>
 
-          <button
-            className="ErrorPopUp__button"
-            type="button"
+          <ModalButton
+            title="Reload"
             onClick={() => onUpdatePage(new Date())}
-          >
-            Reload
-          </button>
+          />
         </div>
       </Popup>
     </>
