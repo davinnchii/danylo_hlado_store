@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import './productCard.scss';
+import './ProductCard.scss';
 import { ProductType } from '../../types';
 import { getImageUrl } from '../../utils/getImageUrl';
 import { Button } from '../Button';

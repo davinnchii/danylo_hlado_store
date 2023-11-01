@@ -8,15 +8,15 @@ import { SelectChangeEvent } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { SortSection } from '../../components/SortSection/SortSection';
-import { ProductCard } from '../../components/productCard/productCard';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { getSpecificSorting } from '../../api/products';
 import { ProductResponseType, ProductType } from '../../types';
 import { getSectionTitle } from '../../utils/getSectionTitle';
-import { Pagination } from '../../components/pagination/Pagination';
+import { Pagination } from '../../components/Pagination/Pagination';
 import { CartsLoader } from '../../components/CartsLoader/CartsLoader';
 import { Loader } from '../../components/Loader';
 import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
-import '../../components/productCard/productCard.scss';
+import '../../components/ProductCard/ProductCard.scss';
 import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
 import './PhonesPage.scss';
 import { ErrorPopUp } from '../../components/ErrorPopUp';
