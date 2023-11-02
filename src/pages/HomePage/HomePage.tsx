@@ -1,12 +1,13 @@
-/* eslint-disable no-console */
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 
 import { Main } from '../../components/Main';
 import { Categories } from '../../components/Categories';
 import { ProductsCarousel } from '../../components/ProductsCarousel';
-import { getProductsWithDiscount, getProductsWithNewModels } from '../../api/products';
+import {
+  getProductsWithDiscount,
+  getProductsWithNewModels,
+} from '../../api/products';
 import { ProductType } from '../../types';
 import { Loader } from '../../components/Loader';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
@@ -25,20 +26,20 @@ export const HomePage = () => {
   ] = useState<ProductType[]>([]);
   const [isDiscountLoading, setIsDiscountLoading] = useState(false);
   const [isNewModelsLoading, setIsNewModelsLoading] = useState(false);
-  const [isError, setIserror] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [updateRequest, setUpdateRequest] = useState(new Date());
 
   useEffect(() => {
     setIsDiscountLoading(true);
     setIsNewModelsLoading(true);
-    setIserror(false);
+    setIsError(false);
 
     getProductsWithDiscount()
       .then((data) => {
         setProductsWithDiscount(data);
       })
       .catch(() => {
-        setIserror(true);
+        setIsError(true);
       })
       .finally(() => setIsDiscountLoading(false));
 
@@ -47,7 +48,7 @@ export const HomePage = () => {
         setProductsWithNewModels(data);
       })
       .catch(() => {
-        setIserror(true);
+        setIsError(true);
       })
       .finally(() => setIsNewModelsLoading(false));
   }, [updateRequest]);

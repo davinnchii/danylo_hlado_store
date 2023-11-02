@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import classnames from 'classnames';
@@ -33,14 +32,21 @@ export const Header: React.FC = () => {
   const category = params.get('category') || '';
   const sort = params.get('sortBy') || sortDefault;
 
+  const isDark = theme.theme === 'dark';
+  const isLight = theme.theme === 'light';
+
+  const logo = isDark ? logoDarkMode : logoLightMode;
+
   const handleSwitchTheme = () => {
-    setTheme(theme.theme === 'light'
+    const toggleTheme = isLight
       ? { theme: 'dark' }
-      : { theme: 'light' });
+      : { theme: 'light' };
+
+    setTheme(toggleTheme);
   };
 
   useEffect(() => {
-    const backgroundColor = theme.theme === 'light'
+    const backgroundColor = isLight
       ? '#fafbfc'
       : '#0f1121';
 
@@ -88,7 +94,7 @@ export const Header: React.FC = () => {
           <Fade direction="left" triggerOnce>
             <img
               className="header__logo-img"
-              src={theme.theme === 'dark' ? logoDarkMode : logoLightMode}
+              src={logo}
               alt="logo"
             />
           </Fade>
@@ -135,10 +141,10 @@ export const Header: React.FC = () => {
             >
               <i
                 className={classnames({
-                  'icon--sun': true && theme.theme === 'light',
-                  'icon--sun-dark': true && theme.theme === 'dark',
-                  'icon--moon': false && theme.theme === 'light',
-                  'icon--moon-dark': false && theme.theme === 'dark',
+                  'icon--sun': true && isLight,
+                  'icon--sun-dark': true && isDark,
+                  'icon--moon': false && isLight,
+                  'icon--moon-dark': false && isDark,
                 })}
               />
             </div>
@@ -146,10 +152,10 @@ export const Header: React.FC = () => {
             <div className="icon icon--menu__link">
               <i
                 className={classnames('', {
-                  'icon--menu': !isMenuOpen && theme.theme === 'light',
-                  'icon--close': isMenuOpen && theme.theme === 'light',
-                  'icon--menu-dark': !isMenuOpen && theme.theme === 'dark',
-                  'icon--close-dark': isMenuOpen && theme.theme === 'dark',
+                  'icon--menu': !isMenuOpen && isLight,
+                  'icon--close': isMenuOpen && isLight,
+                  'icon--menu-dark': !isMenuOpen && isDark,
+                  'icon--close-dark': isMenuOpen && isDark,
                 })}
                 onClick={() => setIsMenuOpen(prev => !prev)}
               />
@@ -163,7 +169,7 @@ export const Header: React.FC = () => {
             >
               <CounterIcon
                 iconClassName={classnames('icon--favourites', {
-                  'icon--favourites-dark': theme.theme === 'dark',
+                  'icon--favourites-dark': isDark,
                 })}
                 amount={favourite.length}
               />
@@ -178,7 +184,7 @@ export const Header: React.FC = () => {
               <CounterIcon
                 iconClassName={classnames('icon--shopping-bag', {
                   'icon--shopping-bag-dark':
-                    !isMenuOpen && theme.theme === 'dark',
+                    !isMenuOpen && isDark,
                 })}
                 amount={cart.length}
               />

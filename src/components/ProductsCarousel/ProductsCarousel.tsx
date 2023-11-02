@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import classnames from 'classnames';
 
@@ -18,7 +17,8 @@ export const ProductsCarousel: React.FC<Props> = ({
 }) => {
   const { theme } = useTheme();
 
-  console.log(theme);
+  const isDark = theme.theme === 'dark';
+  const isLight = theme.theme === 'light';
 
   return (
     <section className="products-carousel">
@@ -35,8 +35,8 @@ export const ProductsCarousel: React.FC<Props> = ({
                   className={classnames(
                     'products-carousel__arrow-left arrow',
                     {
-                      'arrow-left': theme.theme === 'light',
-                      'arrow-left-dark': theme.theme === 'dark',
+                      'arrow-left': isLight,
+                      'arrow-left-dark': isDark,
                     },
                   )}
                   type="button"
@@ -46,8 +46,8 @@ export const ProductsCarousel: React.FC<Props> = ({
                   className={classnames(
                     'products-carousel__arrow-right arrow',
                     {
-                      'arrow-right': theme.theme === 'light',
-                      'arrow-right-dark': theme.theme === 'dark',
+                      'arrow-right': isLight,
+                      'arrow-right-dark': isDark,
                     },
                   )}
                   type="button"

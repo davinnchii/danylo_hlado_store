@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, {
   useState,
   useEffect,
@@ -12,16 +11,29 @@ import { ProductsCarousel } from '../ProductsCarousel';
 import { getProductById, getRecommendedProducts } from '../../api/products';
 import { getPreparedProducts } from '../../utils/getPreparedProducts';
 import './ItemCard.scss';
-import { ProductCartResponseType, ProductCartType, ProductType } from '../../types';
+import {
+  ProductCartResponseType,
+  ProductCartType,
+  ProductType,
+} from '../../types';
 import { Loader } from '../Loader';
 import { CartsLoader } from '../CartsLoader/CartsLoader';
 import { ErrorPopUp } from '../ErrorPopUp';
 import { ItemCardLoader } from '../ItemCardLoader/ItemCardLoader';
 
 export const ItemCard = () => {
-  const [selectedProduct, setSelectedProduct] = useState<ProductCartType | null>(null);
-  const [availableVariants, setAvailableVariants] = useState<ProductCartResponseType | null>(null);
-  const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
+  const [
+    selectedProduct,
+    setSelectedProduct,
+  ] = useState<ProductCartType | null>(null);
+  const [
+    availableVariants,
+    setAvailableVariants,
+  ] = useState<ProductCartResponseType | null>(null);
+  const [
+    recommendedProducts,
+    setRecommendedProducts,
+  ] = useState<ProductType[]>([]);
   const [productInfo, setProductInfo] = useState<ProductType | null>(null);
   const [isError, setIsError] = useState(false);
   const [updateRequest, setUpdateRequest] = useState(new Date());

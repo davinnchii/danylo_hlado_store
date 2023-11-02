@@ -16,6 +16,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     window.scrollTo(0, 0);
   };
 
+  const cartProduct = {
+    id: product.itemId,
+    amount: 1,
+    price: product.price,
+    name: product.name,
+    image: product.image,
+  };
+
   return (
     <section className="card">
       <Link
@@ -87,21 +95,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <span className="card__buttons">
         <Button
           content="Add to cart"
-          product={
-            {
-              id: product.itemId,
-              amount: 1,
-              price: product.price,
-              name: product.name,
-              image: product.image,
-            }
-          }
+          product={cartProduct}
         />
 
-        <HeartIcon product={{
-          ...product,
-        }}
-        />
+        <HeartIcon product={product} />
       </span>
     </section>
   );

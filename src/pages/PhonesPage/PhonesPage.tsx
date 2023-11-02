@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-console */
 import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
@@ -25,7 +23,10 @@ import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 
 export const PhonesPage: React.FC = () => {
   const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
-  const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
+  const [
+    hasCategoryProductsLoaded,
+    setHasCategoryProductsLoaded,
+  ] = useState(false);
   const [isError, setIsError] = useState(false);
   const [updateRequest, setUpdateRequest] = useState(new Date());
 
@@ -44,7 +45,8 @@ export const PhonesPage: React.FC = () => {
   const [priceRange, setPriceRange] = useState<number[]>([0, 0]);
 
   useEffect(() => {
-    getSpecificSorting(category, sort, currentPage, Number(limit), Number(offset), query, '', '')
+    getSpecificSorting(category, sort, currentPage,
+      Number(limit), Number(offset), query, '', '')
       .then((data: ProductResponseType) => {
         const prices = [...data.rows.map(({ price }) => price)];
         const min = Math.min(...prices);
@@ -58,7 +60,8 @@ export const PhonesPage: React.FC = () => {
     setHasCategoryProductsLoaded(true);
     setIsError(false);
 
-    getSpecificSorting(category, sort, currentPage, Number(limit), Number(offset), query, priceFrom, priceTo)
+    getSpecificSorting(category, sort, currentPage,
+      Number(limit), Number(offset), query, priceFrom, priceTo)
       .then((data: ProductResponseType) => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
@@ -101,7 +104,18 @@ export const PhonesPage: React.FC = () => {
   const visibleProducts = getPreparedCategoryProducts(categoryProducts);
   const normalizedCategoryLink = `${category[0].toUpperCase()}${category.slice(1)}`;
 
-  console.log(searchParams.get('category'));
+  const breadcrumbsLinks = [
+    <Link
+      to={normalizedMenuLink(category, Number(limit), Number(offset), sort)}
+      key={normalizedCategoryLink}
+      className="top-bar__link-text top-bar__link-text--last"
+    >
+      {normalizedCategoryLink}
+    </Link>,
+  ];
+
+  const sortOptions = ['newest', 'alphabetically', 'cheapest'];
+  const limitOptions = ['16', '8', '4'];
 
   return (
     <div className="container">
@@ -109,15 +123,7 @@ export const PhonesPage: React.FC = () => {
 
       <BreadcrumbsNav
         className="top-bar"
-        links={[
-          <Link
-            to={normalizedMenuLink(category, Number(limit), Number(offset), sort)}
-            key={normalizedCategoryLink}
-            className="top-bar__link-text top-bar__link-text--last"
-          >
-            {normalizedCategoryLink}
-          </Link>,
-        ]}
+        links={breadcrumbsLinks}
       />
       {hasCategoryProductsLoaded && (
         <Loader />
@@ -143,7 +149,7 @@ export const PhonesPage: React.FC = () => {
               <SortSection
                 value={sort}
                 onChange={handleChangeParams}
-                options={['newest', 'alphabetically', 'cheapest']}
+                options={sortOptions}
                 label="Sort by"
               />
             )}
@@ -152,7 +158,7 @@ export const PhonesPage: React.FC = () => {
             ? <Skeleton />
             : (
               <SortSection
-                options={['16', '8', '4']}
+                options={limitOptions}
                 value={limit}
                 onChange={handleChangeParams}
                 label="Items on page"

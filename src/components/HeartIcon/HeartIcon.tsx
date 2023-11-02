@@ -1,8 +1,8 @@
-/* eslint-disable max-len */
 import React, { useContext } from 'react';
 import './HeartIcon.scss';
 import heartEmpty from '../../assets/icons/favouritesh-heart-like.svg';
-import heartEmptyDarkMode from '../../assets/icons-dark-mode/favourites-heart-like.svg';
+import heartEmptyDarkMode from
+  '../../assets/icons-dark-mode/favourites-heart-like.svg';
 import heartFilled from '../../assets/icons/favourites-filled-heart-like.svg';
 import { FavouriteContext } from '../../context/FavouriteContext';
 import { ProductType } from '../../types';
