@@ -17,11 +17,11 @@ import { Loader } from '../../components/Loader';
 import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
 import '../../components/ProductCard/ProductCard.scss';
 import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
-import './PhonesPage.scss';
+import './Catalog.scss';
 import { ErrorPopUp } from '../../components/ErrorPopUp';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 
-export const PhonesPage: React.FC = () => {
+export const Catalog: React.FC = () => {
   const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
   const [
     hasCategoryProductsLoaded,
@@ -97,11 +97,6 @@ export const PhonesPage: React.FC = () => {
     setSearchParams(params);
   }, [sort, limit, category]);
 
-  const getPreparedCategoryProducts = (selectedCategory: ProductType[]) => {
-    return selectedCategory;
-  };
-
-  const visibleProducts = getPreparedCategoryProducts(categoryProducts);
   const normalizedCategoryLink = `${category[0].toUpperCase()}${category.slice(1)}`;
 
   const breadcrumbsLinks = [
@@ -174,7 +169,7 @@ export const PhonesPage: React.FC = () => {
           ? <CartsLoader />
           : (
             <section className="catalog">
-              {visibleProducts.map(product => (
+              {categoryProducts.map(product => (
                 <ProductCard product={product} key={product.id} />
               ))}
             </section>

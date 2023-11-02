@@ -10,7 +10,7 @@ import { App } from './App';
 
 import { HomePage } from './pages/HomePage/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { PhonesPage } from './pages/PhonesPage/PhonesPage';
+import { Catalog } from './pages/PhonesPage/Catalog';
 import { ItemCard } from './components/ItemCard';
 import { Cart } from './components/Cart/Cart';
 import { Favourites } from './components/Favourites/Favourites';
@@ -24,7 +24,7 @@ export const Root = () => {
           <Route index element={<HomePage />} />
 
           <Route path="products">
-            <Route index element={<PhonesPage />} />
+            <Route index element={<Catalog />} />
             <Route path=":id?" element={<ItemCard />} />
           </Route>
 
