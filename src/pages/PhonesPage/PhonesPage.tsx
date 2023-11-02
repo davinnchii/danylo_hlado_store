@@ -8,7 +8,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { SortSection } from '../../components/SortSection/SortSection';
-import { ProductCard } from '../../components/productCard/productCard';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { RangePrice } from '../../components/RangePrice';
 import { getSpecificSorting } from '../../api/products';
 import { ProductResponseType, ProductType } from '../../types';

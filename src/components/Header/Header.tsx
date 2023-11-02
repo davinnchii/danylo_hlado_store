@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import classnames from 'classnames';
 import { Fade } from 'react-awesome-reveal';
 
@@ -18,12 +19,15 @@ import { useCart } from '../../context/CartContext';
 import { CounterIcon } from '../CounterIcon/CounterIcon';
 
 export const Header: React.FC = () => {
+  const location = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const { favourite } = useFavourite();
   const { cart } = useCart();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectMenuActive, setSelectMenuActive] = useState<string>('');
+  const [themeToggle, setThemeToggle] = useState(false);
+  const [selectActiveLink, setSelectActiveLink] = useState<string>('');
 
   const params = new URLSearchParams(searchParams);
   const category = params.get('category') || '';
@@ -36,8 +40,24 @@ export const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    setSelectMenuActive(category);
-  }, [category]);
+    const { pathname } = location;
+
+    if (pathname.slice(1) === '') {
+      setSelectActiveLink('');
+    }
+
+    if (pathname.slice(1) === 'products') {
+      setSelectActiveLink(category);
+    }
+
+    if (pathname.slice(1) === 'cart') {
+      setSelectActiveLink('cart');
+    }
+
+    if (pathname.slice(1) === 'favourites') {
+      setSelectActiveLink('favourites');
+    }
+  }, [location]);
 
   return (
     <header className="header">
@@ -60,7 +80,7 @@ export const Header: React.FC = () => {
           <Link
             to="/"
             className={classnames('header__menu-link', {
-              'active-menu-link': selectMenuActive === '',
+              'active-menu-link': selectActiveLink === '',
             })}
             onClick={() => handleMenuItemClick('')}
           >
@@ -74,7 +94,7 @@ export const Header: React.FC = () => {
               key={item}
               to={normalizedMenuLink(item, limitDefault, offsetDefault, sort)}
               className={classnames('header__menu-link', {
-                'active-menu-link': selectMenuActive === item,
+                'active-menu-link': selectActiveLink === item,
               })}
               onClick={() => handleMenuItemClick(item)}
             >
@@ -91,6 +111,15 @@ export const Header: React.FC = () => {
           <div className="header__icons">
             {category && <SearchBar />}
 
+            <div
+              className="icon icon--theme__link "
+              onClick={() => setThemeToggle(prev => !prev)}
+            >
+              <i
+                className={`icon--${themeToggle ? 'moon' : 'sun'}`}
+              />
+            </div>
+
             <div className="icon icon--menu__link">
               <i
                 className={`icon--${!isMenuOpen ? 'menu' : 'close'}`}
@@ -100,7 +129,9 @@ export const Header: React.FC = () => {
 
             <Link
               to="/favourites"
-              className="icon icon--favourites__link-header"
+              className={classnames('icon icon--favourites__link-header', {
+                'active-icon-link': selectActiveLink === 'favourites',
+              })}
             >
               <CounterIcon
                 iconClassName="icon--favourites"
@@ -108,7 +139,12 @@ export const Header: React.FC = () => {
               />
             </Link>
 
-            <Link to="/cart" className="icon icon--shopping-bag__link-header">
+            <Link
+              to="/cart"
+              className={classnames('icon icon--shopping-bag__link-header', {
+                'active-icon-link': selectActiveLink === 'cart',
+              })}
+            >
               <CounterIcon
                 iconClassName="icon--shopping-bag"
                 amount={cart.length}

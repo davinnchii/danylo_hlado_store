@@ -3,7 +3,7 @@ $fontBold: "Mont-Bold";
 $fontSemiBold: "Mont-SemiBold";
 
 
-$primaryColor: #0f0f11;
+$primaryColor: var(--primaryColor);
 $secondaryColor: #89939a;
 $accentColor: #216cff;
 $iconsColor: #b4bdc3;

@@ -1,6 +1,9 @@
 import React from 'react';
-import Popup from 'reactjs-popup';
 import './ErrorPopUp.scss';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
 import { ModalButton } from '../ModalButton';
 
 type Props = {
@@ -10,19 +13,37 @@ type Props = {
 
 export const ErrorPopUp: React.FC<Props> = ({ open, onUpdatePage }) => {
   return (
-    <>
-      <Popup open={open} position="center center">
-        <div className="ErrorPopUp">
-          <h2 className="ErrorPopUp__header">
-            Something went wrong
-          </h2>
+    <div className="ErrorPopUp">
+      <Modal
+        sx={{
+          backdropFilter: 'blur(5px)',
+        }}
+        open={open}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box
+            className="ErrorPopUp__box"
+          >
+            <p
+              className="ErrorPopUp__header"
+            >
+              Something went wrong
+            </p>
 
-          <ModalButton
-            title="Reload"
-            onClick={() => onUpdatePage(new Date())}
-          />
-        </div>
-      </Popup>
-    </>
+            <ModalButton
+              title="Reload"
+              onClick={() => onUpdatePage(new Date())}
+            />
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
   );
 };

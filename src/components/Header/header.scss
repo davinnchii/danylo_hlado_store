@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  border-bottom: 1px solid #E2E6E9;
+  border-bottom: 1px solid var(--elementsColor);
 
   &__logo {
     display: flex;
@@ -49,7 +49,7 @@
       transition: color 0.4s ease-in;
 
       &:hover {
-        color: #0F0F11;
+        color: var(--primaryColor);
       }
     }
   }
@@ -83,7 +83,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid #E2E6E9;
+  border-left: 1px solid var(--elementsColor);
   background-size: cover;
   cursor: pointer;
 
@@ -110,6 +110,16 @@
     .icon--shopping-bag {
       animation: icons-shop 1s infinite alternate-reverse;
     }
+
+    .icon--moon {
+      animation: icons-search 3s infinite;
+      background-image: url(../../assets/icons/moon-active.svg);
+    }
+
+    .icon--sun {
+      animation: icons-theme-circle 1s infinite;
+      background-image: url(../../assets/icons/sun-active.svg);
+    }
   }
 
   &--close {
@@ -122,6 +132,25 @@
     background-image: url(../../assets/icons/menu.svg);
     width: 16px;
     height: 16px;
+  }
+
+  &--sun {
+    transition: background-image 1s ease;
+    background-image: url(../../assets/icons/sun.svg);
+    width: 16px;
+    height: 16px;
+  }
+
+  &--moon {
+    transition: background-image 1s ease;
+    background-image: url(../../assets/icons/moon.svg);
+    width: 16px;
+    height: 16px;
+  }
+
+  &--favourites__link-header,
+  &--shopping-bag__link-header {
+    position: relative;
   }
 }
 
@@ -175,8 +204,19 @@
 
 .active-menu-link {
   font-weight: 800;
-  color: #0F0F11;
-  border-color: #0F0F11;
+  color: var(--primaryColor)!important;
+  border-color: var(--primaryColor)!important;
+}
+
+.active-icon-link {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    background-color: var(--primaryColor);
+    width: 64px;
+    height: 3px;
+  }
 }
 
 .is-search-bar-active {
@@ -217,6 +257,15 @@ html:has(.is-search-bar-active) .header__search-bar {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes icons-theme-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

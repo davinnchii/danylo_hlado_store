@@ -4,7 +4,7 @@
   column-gap: 16px;
 
   &__header {
-    color: #0F0F11;
+    color: var(--primaryColor);
     font-family: 'Mont-Bold';
     font-size: 32px;
     font-weight: 800;
@@ -38,7 +38,7 @@
     }
 
     &__item-selected {
-      border-color: #0F0F11;
+      border-color: var(--primaryColor);
     }
   }
 
@@ -58,7 +58,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: #89939A;
+    color: var(--secondaryColor);
     font-family: 'Mont-SemiBold';
     font-size: 12px;
     font-weight: 600;
@@ -80,7 +80,7 @@
       font-family: 'Mont-SemiBold';
       font-size: 12px;
       font-weight: 700;
-      color: #B4BDC3;
+      color: var(--iconsPlaceholdersColor);
     }
 
     &__colors {
@@ -88,7 +88,7 @@
       gap: 8px;
 
       box-sizing: border-box;
-      border-bottom: 1px solid #E2E6E9;
+      border-bottom: 1px solid var(--elementsColor);
       padding-bottom: 24px;
       width: 100%;
     }
@@ -98,7 +98,7 @@
       width: 32px;
       border-radius: 50%;
       border: solid 2px white;
-      outline: 1px solid #E2E6E9;
+      outline: 1px solid var(--elementsColor);
       transition: outline-color 1s;
 
       &:hover {
@@ -107,7 +107,7 @@
     }
 
     &__color-selected {
-      outline-color: #0F0F11 !important;
+      outline-color: var(--primaryColor) !important;
     }
 
     &__capacity-header {
@@ -118,14 +118,14 @@
       display: flex;
       gap: 8px;
 
-      color: #0F0F11;
+      color: var(--primaryColor);
       text-align: center;
       font-family: 'Mont-SemiBold';
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;
       box-sizing: border-box;
-      border-bottom: 1px solid #E2E6E9;
+      border-bottom: 1px solid var(--elementsColor);
       padding-bottom: 24px;
       width: 100%;
     }
@@ -135,20 +135,20 @@
       height: 32px;
       color: #000;
       border-radius: 4px;
-      border: solid 1px #E2E6E9;
+      border: solid 1px var(--elementsColor);
       background-color: #FFF;
       transition: color 2s;
       transition: background-color 2s;
 
       &:hover {
-        border-color: #0F0F11;
+        border-color: var(--primaryColor);
       }
     }
 
     &__capacity-selected {
       color: #FFF;
-      background-color: #0F0F11;
-      border-color: #0F0F11;
+      background-color: var(--primaryColor);
+      border-color: var(--primaryColor);
     }
 
     &__prices {
@@ -159,7 +159,7 @@
     }
 
     &__price-discount {
-      color: #0F0F11;
+      color: var(--primaryColor);
       font-family: 'Mont-Bold';
       font-size: 32px;
       font-weight: 800;
@@ -172,7 +172,7 @@
     }
 
     &__price-regular {
-      color: var(--gray-secondary, #89939A);
+      color: var(--secondaryColor);
       font-family: 'Mont-Bold';
       font-size: 22px;
       font-weight: 500;
@@ -206,7 +206,7 @@
         text-align: left;
         text-transform: capitalize;
 
-        color: #89939A;
+        color: var(--secondaryColor);
         font-family: 'Mont-SemiBold';
         font-size: 12px;
         font-weight: 600;
@@ -215,7 +215,7 @@
       &__value {
         text-align: right;
 
-        color: #0F0F11;
+        color: var(--primaryColor);
         font-family: 'Mont-SemiBold';
         font-size: 12px;
         font-weight: 700;
