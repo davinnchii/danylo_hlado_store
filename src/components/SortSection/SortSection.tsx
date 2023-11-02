@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   FormControl,
   MenuItem,
   Select,
   SelectChangeEvent,
 } from '@mui/material';
+import { ThemeContext } from '../../context/ThemeContext';
 
 type Props = {
   value: string;
@@ -19,6 +20,8 @@ export const SortSection: React.FC<Props> = ({
   options,
   onChange,
 }) => {
+  const { theme } = useContext(ThemeContext);
+
   const itemClassName = label === 'Sort by'
     ? 'sort__item--sort'
     : 'sort__item--Pagination';
@@ -29,7 +32,7 @@ export const SortSection: React.FC<Props> = ({
 
       <FormControl
         sx={{ m: 1, minWidth: 120 }}
-        className={`sort__item ${itemClassName}`}
+        className={`sort__item ${itemClassName} sort__item--${theme.theme}`}
       >
         <Select
           id="demo-simple-select-helper"

@@ -1,7 +1,7 @@
 .footer {
   height: auto;
   padding: 16px;
-  box-shadow: 0px -1px 0px 0px #e2e6e9;
+  box-shadow: 0px -1px 0px 0px var(--elementsColor);
 
   display: flex;
   justify-content: space-between;
@@ -44,7 +44,7 @@
     font-weight: 700;
     line-height: 20px;
     letter-spacing: 0.48px;
-    color: #89939a;
+    color: var(--secondaryColor);
 
     position: relative;
     text-decoration: none;
@@ -56,7 +56,7 @@
       left: 0;
       right: 100%;
       top: 18px;
-      background: #89939a;
+      background: var(--secondaryColor);
       height: 1.5px;
       transition: right 0.4s;
     }
@@ -68,7 +68,7 @@
 }
 
 .top-button {
-  background-color: #fff;
+  background-color: var(--pageBackgroundColor);
   border: none;
   padding: 0;
   cursor: pointer;
@@ -111,7 +111,7 @@
     font-weight: 500;
     line-height: 20px;
     letter-spacing: 0.48px;
-    color: #89939a;
+    color: var(--secondaryColor);
 
     padding-right: 6px;
   }

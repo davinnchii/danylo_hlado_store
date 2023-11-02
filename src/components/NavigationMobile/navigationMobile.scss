@@ -21,7 +21,7 @@
       padding-bottom: 8px;
       height: 27px;
       line-height: 27px;
-      color: #89939A;
+      color: var(--secondaryColor);
       font-size: 12px;
     }
   }
@@ -32,7 +32,7 @@
 
     display: flex;
     width: 100%;
-    border-top: 1px solid #E2E6E9;
+    border-top: 1px solid var(--elementsColor);
   }
 }
 

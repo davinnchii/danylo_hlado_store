@@ -4,6 +4,7 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import './App.scss';
+import './variables.css';
 
 import { Header } from './components/Header';
 import { Footer } from './components/Footer/Footer';

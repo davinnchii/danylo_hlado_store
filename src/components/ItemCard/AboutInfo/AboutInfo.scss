@@ -22,7 +22,7 @@
       &__title {
         margin: 0;
 
-        color: #0F0F11;
+        color: var(--primaryColor);
 
         font-family: 'Mont-Semibold';
         font-size: 20px;
@@ -34,7 +34,7 @@
       &__text {
         margin: 0;
 
-        color: #89939A;
+        color: var(--secondaryColor);
 
         font-family: 'Mont-Regular';
         font-size: 14px;
@@ -50,7 +50,7 @@
   }
 
   &__header {
-    color: #0F0F11;
+    color: var(--primaryColor);
 
     font-family: 'Mont-Bold';
     font-size: 22px;
@@ -59,7 +59,7 @@
     padding-bottom: 16px;
     margin: 0;
 
-    border-bottom: 1px solid #E2E6E9;
+    border-bottom: 1px solid var(--elementsColor);
   }
 
   &__tech-specs {
@@ -83,12 +83,12 @@
       }
 
       &__title {
-        color: #89939A;
+        color: var(--secondaryColor);
         text-transform: capitalize;
       }
 
       &__data {
-        color: #0F0F11;
+        color: var(--primaryColor);
       }
     }
   }

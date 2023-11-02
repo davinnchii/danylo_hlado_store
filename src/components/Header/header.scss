@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  border-bottom: 1px solid #E2E6E9;
   padding-inline: 24px;
+  border-bottom: 1px solid var(--elementsColor);
 
   &__logo {
     display: flex;
@@ -49,7 +49,7 @@
       transition: color 0.4s ease-in;
 
       &:hover {
-        color: #0F0F11;
+        color: var(--primaryColor);
       }
     }
   }
@@ -90,7 +90,7 @@
     content: '';
     width: 1px;
     height: 64px;
-    background-color: #E2E6E9;
+    background-color: var(--elementsColor);
     position: absolute;
     left: -24px;
     top: -24px;
@@ -187,7 +187,7 @@
       content: '';
       width: 1px;
       height: 48px;
-      background-color: #E2E6E9;
+      background-color: var(--elementsColor);
       position: absolute;
       left: -16px;
       top: -16px;
@@ -224,8 +224,8 @@
 
 .active-menu-link {
   font-weight: 800;
-  color: #0F0F11;
-  border-color: #0F0F11;
+  color: var(--primaryColor);
+  border-color: var(--primaryColor);
 }
 
 .is-search-bar-active {
