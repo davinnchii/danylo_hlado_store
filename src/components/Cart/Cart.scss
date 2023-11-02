@@ -1,4 +1,11 @@
+$headerHeight: 65px;
+$footerHeight: 65px;
+$breadcrumbsNav: 48px;
+
 .basket {
+  min-height: calc(100vh - $headerHeight - $footerHeight - $breadcrumbsNav);
+  padding-top: 40px;
+
   a {
     color: inherit;
   }
@@ -8,10 +15,18 @@
 
   display: grid;
   grid-template-columns: 1fr 368px;
-  grid-template-rows: 80px 1fr;
+  grid-auto-rows: max-content;
+  gap: 16px;
   grid-template-areas:
     "title title"
     "card totalyCount";
+
+  &__top-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 
   &__title {
     grid-area: title;
@@ -41,7 +56,6 @@
       height: 16px;
       width: 16px;
       cursor: pointer;
-      background: none;
       border: none;
       background-image: url('../../assets/icons/close.svg');
 
@@ -116,7 +130,7 @@
 
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
+
       background-size: 16px;
 
       transition: all 0.5s;
@@ -220,7 +234,7 @@
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 80px;
+
     grid-template-areas:
       "title"
       "card"
@@ -262,14 +276,19 @@
   .basket {
     width: 288px;
     margin: 0 auto;
+    padding-top: 24px;
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 80px;
+
     grid-template-areas:
       "title"
       "card"
       "totalyCount";
+
+    &__top-bar {
+      gap: 24px;
+    }
 
     &__cards {
       grid-area: card;

@@ -6,52 +6,64 @@ import React, {
 import Skeleton from 'react-loading-skeleton';
 import { SelectChangeEvent } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
+
 import { SortSection } from '../../components/SortSection/SortSection';
-import { ProductCard } from '../../components/productCard/productCard';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { getSpecificSorting } from '../../api/products';
 import { ProductResponseType, ProductType } from '../../types';
 import { getSectionTitle } from '../../utils/getSectionTitle';
-import { Pagination } from '../../components/pagination/Pagination';
+import { Pagination } from '../../components/Pagination/Pagination';
 import { CartsLoader } from '../../components/CartsLoader/CartsLoader';
 import { Loader } from '../../components/Loader';
 import { ArrowsLoader } from '../../components/ArrowsLoader/ArrowsLoader';
-import '../../components/productCard/productCard.scss';
+import '../../components/ProductCard/ProductCard.scss';
 import { BreadcrumbsNav } from '../../components/Breadcrumbs/Breadcrumbs';
 import './PhonesPage.scss';
 import { ErrorPopUp } from '../../components/ErrorPopUp';
+import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 
 export const PhonesPage: React.FC = () => {
   const [categoryProducts, setCategoryProducts] = useState<ProductType[]>([]);
   const [hasCategoryProductsLoaded, setHasCategoryProductsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isError, setIsError] = useState(false);
+  const [updateRequest, setUpdateRequest] = useState(new Date());
+
+  const totalProducts = useRef({ value: 0 });
+
   const [searchParams, setSearchParams] = useSearchParams();
+
   const category = searchParams.get('category') || '';
   const sort = searchParams.get('sortBy') || 'newest';
   const limit = searchParams.get('limit') || '16';
   const offset = searchParams.get('offset') || '0';
-  const totalProducts = useRef({ value: 0 });
-  const [isError, setIserror] = useState(false);
-  const [updateRequest, setUpdateRequest] = useState(new Date());
+  const query = searchParams.get('query') || '';
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
-    setIserror(false);
+    setIsError(false);
 
-    getSpecificSorting(category, sort, Number(limit), Number(offset))
+    getSpecificSorting(category, sort, Number(limit), Number(offset), query)
       .then((data: ProductResponseType) => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
       })
       .catch(() => {
-        setIserror(true);
+        setIsError(true);
       })
-      .finally(() => setHasCategoryProductsLoaded(false));
-  }, [category, sort, limit, offset, updateRequest]);
+      .finally(() => {
+        setHasCategoryProductsLoaded(false);
+      });
+  }, [category, sort, limit, offset, updateRequest, query]);
 
   const handleChangePage = useCallback((page: number) => {
+    const params = new URLSearchParams(searchParams);
+
     setCurrentPage(page);
-    searchParams.set('offset', (Number(limit) * page).toString());
-  }, [searchParams, limit]);
+    params.set('offset', (Number(limit) * (page - 1)).toString());
+    params.set('page', page.toString());
+    setSearchParams(params);
+  }, [limit, sort]);
 
   const handleChangeParams = useCallback((event: SelectChangeEvent) => {
     const params = new URLSearchParams(searchParams);
@@ -85,7 +97,7 @@ export const PhonesPage: React.FC = () => {
         className="top-bar"
         links={[
           <Link
-            to={`?category=${category}&limit=${limit}&offset=${offset}&sortBy=${sort}`}
+            to={normalizedMenuLink(category, Number(limit), Number(offset), sort)}
             key={normalizedCategoryLink}
             className="top-bar__link-text top-bar__link-text--last"
           >

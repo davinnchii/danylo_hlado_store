@@ -1,3 +1,6 @@
+$headerHeight: 65px;
+$footerHeight: 65px;
+
 .ErrorPopUp {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -6,6 +9,8 @@
   justify-content: space-evenly;
 
   padding: 16px;
+
+  min-height: calc(100vh - $headerHeight - $footerHeight);
 
   &__header {
     font-family: 'Mont-Bold';

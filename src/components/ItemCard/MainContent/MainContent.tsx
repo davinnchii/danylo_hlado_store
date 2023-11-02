@@ -54,6 +54,21 @@ export const MainContent: React.FC<Props> = ({
   const [selectedPhoto, setSelectedPhoto] = useState(getImageUrl(images[0]));
   const [selectedColor, setSelectedColor] = useState(color);
 
+  const favouriteProduct: ProductType = {
+    id: productInfo.id,
+    category: productInfo.category,
+    itemId: id,
+    name,
+    fullPrice: priceRegular,
+    price: priceDiscount,
+    screen: productInfo.screen,
+    capacity: product.capacity,
+    color,
+    ram,
+    year: productInfo.year,
+    image: images[0],
+  };
+
   const statsTableData = {
     screen,
     resolution,
@@ -195,11 +210,7 @@ export const MainContent: React.FC<Props> = ({
                 }}
               />
 
-              <HeartIcon product={{
-                ...productInfo,
-                id,
-              }}
-              />
+              <HeartIcon product={favouriteProduct} />
             </div>
 
             <div className="MainContent__stats__short">

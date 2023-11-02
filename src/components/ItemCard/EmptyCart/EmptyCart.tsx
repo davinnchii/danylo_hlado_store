@@ -1,6 +1,5 @@
 import React from 'react';
 import './EmptyCart.scss';
-import { BackButton } from '../../BackButton';
 import emptyCart from '../../../assets/images/empty-cart.png';
 import { HomeButton } from '../../HomeButton/HomeButton';
 
@@ -9,7 +8,6 @@ export const EmptyCart = () => {
     <div className="container">
       <div className="wrapper">
         <section className="Empty-cart">
-          <BackButton />
 
           {/* <h1 className="Empty-cart__header">
             Press the button to add item to cart

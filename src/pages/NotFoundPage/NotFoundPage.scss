@@ -1,4 +1,9 @@
+$headerHeight: 65px;
+$footerHeight: 65px;
+
 .page-not-found {
+  min-height: calc(100vh - $headerHeight - $footerHeight);
+
   display: grid;
   place-items: center;
 

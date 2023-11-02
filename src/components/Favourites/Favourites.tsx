@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ProductCard } from '../productCard/productCard';
+import { ProductCard } from '../ProductCard/ProductCard';
 import './Favourites.scss';
 import { FavouriteContext } from '../../context/FavouriteContext';
-import { BackButton } from '../BackButton';
 import HaveNoFavourites from '../../assets/images/no-favourites.png';
 import { HomeButton } from '../HomeButton/HomeButton';
 import { BreadcrumbsNav } from '../Breadcrumbs/Breadcrumbs';
@@ -33,17 +32,12 @@ export const Favourites = () => {
           </div>
           <div className="favourites__products">
             {favourite.map((prod) => (
-              <ProductCard product={prod} key={prod.id} />
+              <ProductCard product={prod} key={prod.itemId} />
             ))}
           </div>
         </>
       ) : (
         <>
-          <BackButton />
-
-          <h1 className="favourites__title">
-            You have no favourites
-          </h1>
 
           <img
             src={HaveNoFavourites}

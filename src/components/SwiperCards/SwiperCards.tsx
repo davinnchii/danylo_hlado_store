@@ -3,7 +3,7 @@ import React from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ProductCard } from '../productCard/productCard';
+import { ProductCard } from '../ProductCard/ProductCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './swiperCards.scss';

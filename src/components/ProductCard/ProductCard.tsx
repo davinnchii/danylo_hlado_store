@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import './productCard.scss';
+import './ProductCard.scss';
 import { ProductType } from '../../types';
 import { getImageUrl } from '../../utils/getImageUrl';
 import { Button } from '../Button';
@@ -18,7 +18,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <section className="card">
-      <Link to={`/products/${product.id}`} onClick={handleScroll}>
+      <Link to={`/products/${product.itemId}`} onClick={handleScroll}>
         <span className="card__image-block">
           <img
             src={getImageUrl(product.image)}
@@ -96,7 +96,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <HeartIcon product={{
           ...product,
-          id: product.itemId,
         }}
         />
       </span>

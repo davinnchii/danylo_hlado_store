@@ -23,7 +23,7 @@ export const ItemCard = () => {
   const [availableVariants, setAvailableVariants] = useState<ProductCartResponseType | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<ProductType[]>([]);
   const [productInfo, setProductInfo] = useState<ProductType | null>(null);
-  const [isError, setIserror] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [updateRequest, setUpdateRequest] = useState(new Date());
   const [hasDataLoaded, setDataHasLoaded] = useState(false);
 
@@ -49,7 +49,7 @@ export const ItemCard = () => {
   useEffect(() => {
     setDataHasLoaded(true);
 
-    setIserror(false);
+    setIsError(false);
 
     if (id) {
       Promise.all([
@@ -63,7 +63,7 @@ export const ItemCard = () => {
           setRecommendedProducts(recommendedProductData);
         })
         .catch(() => {
-          setIserror(true);
+          setIsError(true);
         })
         .finally(() => {
           setDataHasLoaded(false);

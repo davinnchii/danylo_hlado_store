@@ -3,8 +3,17 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../assets/images/logo.png';
 import './Footer.scss';
+import imgToTop from
+  '../../assets/icons/Slider button - Default (right).png';
 
 export const Footer = () => {
+  const backToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer className="footer">
       <Link to="/" className="footer__logo-link">
@@ -19,13 +28,17 @@ export const Footer = () => {
         <a
           href="https://github.com/Peppers-Team"
           className="footer__link"
+          target="_blank"
+          rel="noreferrer noopener"
         >
           github
         </a>
 
         <a
-          href="https://maps.app.goo.gl/XNh35WymPsc6GJDJA"
+          href="/"
           className="footer__link"
+          target="_blank"
+          rel="noreferrer noopener"
         >
           contacts
         </a>
@@ -33,16 +46,31 @@ export const Footer = () => {
         <a
           href="https://savelife.in.ua/donate/#donate-army-card-monthly"
           className="footer__link support_ukraine"
+          target="_blank"
+          rel="noreferrer noopener"
         >
           support_ukraine
         </a>
       </div>
 
-      <div className="footer__back-block">
-        <a href="/" className="footer__back-button" aria-label="go-to-top">
-          <i className="footer__back-button" aria-hidden="true" />
-        </a>
-      </div>
+      <button
+        type="button"
+        className="footer__back top-button"
+        aria-label="go-to-top"
+        onClick={backToTop}
+      >
+        <div className="top-button__wrap">
+          <i className="top-button__text" aria-hidden="true">
+            BACK TO TOP
+          </i>
+
+          <img
+            src={imgToTop}
+            alt="BACK TO TOP"
+            className="top-button__img"
+          />
+        </div>
+      </button>
     </footer>
   );
 };

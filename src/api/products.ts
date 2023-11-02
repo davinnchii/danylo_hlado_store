@@ -30,10 +30,33 @@ export const getRecommendedProducts = (id: string) => {
 export const getSpecificSorting = (
   category: string,
   sortField: string,
-  limit: number,
-  offset: number,
+  limit?: number,
+  offset?: number,
+  query?: string,
 ) => {
+  const queryParams = [];
+
+  if (category) {
+    queryParams.push(`category=${category}`);
+  }
+
+  if (limit) {
+    queryParams.push(`limit=${limit}`);
+  }
+
+  if (offset) {
+    queryParams.push(`offset=${offset}`);
+  }
+
+  if (sortField) {
+    queryParams.push(`sortBy=${sortField}`);
+  }
+
+  if (query) {
+    queryParams.push(`query=${query}`);
+  }
+
   return client.get<ProductResponseType>(
-    `/${BASE_PARAMETER}?category=${category}&limit=${limit}&offset=${offset}&sortBy=${sortField}`,
+    `/${BASE_PARAMETER}${queryParams.length ? `?${queryParams.join('&')}` : ''}`,
   );
 };
