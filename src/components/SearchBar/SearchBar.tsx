@@ -29,11 +29,15 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="icon header__search-bar">
-      <i
-        className="icon--search"
+    <div className="header__search-bar">
+      <div
+        className="icon"
         onClick={() => setIsSearchBarOpen(prev => !prev)}
-      />
+      >
+        <i
+          className="icon--search"
+        />
+      </div>
 
       <input
         className={classnames('header__search-bar-input', {
