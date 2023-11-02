@@ -44,7 +44,7 @@ export const SortSection: React.FC<Props> = ({
             <MenuItem
               value={data}
               key={data}
-              className={`sort__item ${itemClassName} test2`}
+              className={`sort__item ${itemClassName}`}
             >
               <p
                 className="sort__item-text"

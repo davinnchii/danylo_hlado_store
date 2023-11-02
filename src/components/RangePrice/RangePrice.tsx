@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Box from '@mui/material/Box';

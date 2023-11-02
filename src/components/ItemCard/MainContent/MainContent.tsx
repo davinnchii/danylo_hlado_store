@@ -69,6 +69,23 @@ export const MainContent: React.FC<Props> = ({
     image: images[0],
   };
 
+  const breadcrumbsLinks = [
+    <Link
+      to={`/products?category=${productInfo.category}`}
+      className="top-bar__link-text"
+      key={normalizedCategoryLink}
+    >
+      {normalizedCategoryLink}
+    </Link>,
+    <Link
+      to={`/products/${productInfo.id}`}
+      className="top-bar__link-text top-bar__link-text--last"
+      key={productInfo.name}
+    >
+      {product.name}
+    </Link>,
+  ];
+
   const statsTableData = {
     screen,
     resolution,
@@ -81,6 +98,14 @@ export const MainContent: React.FC<Props> = ({
     setSelectedPhoto(getImageUrl(images[0]));
   }, [product, images]);
 
+  const cartProduct = {
+    id,
+    name,
+    amount: 1,
+    price: priceDiscount,
+    image: images[0],
+  };
+
   const handleChangeColor = (newColor: string) => {
     onSelectColor(newColor);
   };
@@ -90,22 +115,7 @@ export const MainContent: React.FC<Props> = ({
       <div className="wrapper">
         <BreadcrumbsNav
           className="top-bar"
-          links={[
-            <Link
-              to={`/products?category=${productInfo.category}`}
-              className="top-bar__link-text"
-              key={normalizedCategoryLink}
-            >
-              {normalizedCategoryLink}
-            </Link>,
-            <Link
-              to={`/products/${productInfo.id}`}
-              className="top-bar__link-text top-bar__link-text--last"
-              key={productInfo.name}
-            >
-              {product.name}
-            </Link>,
-          ]}
+          links={breadcrumbsLinks}
         />
         <BackButton />
 
@@ -201,13 +211,7 @@ export const MainContent: React.FC<Props> = ({
             <div className="MainContent__stats__buttons">
               <Button
                 content="Add to cart"
-                product={{
-                  id,
-                  name,
-                  amount: 1,
-                  price: priceDiscount,
-                  image: images[0],
-                }}
+                product={cartProduct}
               />
 
               <HeartIcon product={favouriteProduct} />

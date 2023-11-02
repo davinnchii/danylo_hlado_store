@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -59,7 +58,10 @@ export const SwiperMain = () => {
         disableOnInteraction: false,
       }}
       pagination={{ clickable: true }}
-      navigation={{ nextEl: '.swiper-slide__main-arrow-right', prevEl: '.swiper-slide__main-arrow-left' }}
+      navigation={{
+        nextEl: '.swiper-slide__main-arrow-right',
+        prevEl: '.swiper-slide__main-arrow-left',
+      }}
       mousewheel
       loop
     >
@@ -83,15 +85,28 @@ export const SwiperMain = () => {
               type="button"
               aria-label="arrow-left"
             >
-              <img src={theme.theme !== 'light' ? arrowLeft : arrowLeftBlack} alt="arrow_left_black" />
+              <img
+                src={
+                  theme.theme !== 'light'
+                    ? arrowLeft
+                    : arrowLeftBlack
+                }
+                alt="arrow_left_black"
+              />
             </button>
 
             <button
-              className="swiper-slide__main-arrow swiper-slide__main-arrow-right"
+              className={'swiper-slide__main-arrow'
+                + ' swiper-slide__main-arrow-right'}
               type="button"
               aria-label="arrow-right"
             >
-              <img src={theme.theme !== 'light' ? arrowRight : arrowRightBlack} alt="arrow_right_black" />
+              <img
+                src={theme.theme !== 'light'
+                  ? arrowRight
+                  : arrowRightBlack}
+                alt="arrow_right_black"
+              />
             </button>
           </div>
 

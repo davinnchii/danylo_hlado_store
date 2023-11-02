@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '@mui/material';
 import './Breadcrumbs.scss';
-import homeIcon from '../../assets/icons/Home.svg';
+import homeIconLight from '../../assets/icons/Home.svg';
 import homeIconDarkMode from '../../assets/icons-dark-mode/home.svg';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
 import { useTheme } from '../../context/ThemeContext';
@@ -17,6 +17,7 @@ export const BreadcrumbsNav: React.FC<Props> = ({
   className,
 }) => {
   const { theme } = useTheme();
+  const homeIcon = theme.theme === 'light' ? homeIconLight : homeIconDarkMode;
 
   return (
     <div className={className}>
@@ -37,7 +38,7 @@ export const BreadcrumbsNav: React.FC<Props> = ({
         >
           <img
             className="top-bar__icon"
-            src={theme.theme === 'light' ? homeIcon : homeIconDarkMode}
+            src={homeIcon}
             alt="home-icon"
           />
         </Link>

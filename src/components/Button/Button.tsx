@@ -14,6 +14,8 @@ export const Button: React.FC<Props> = ({ content, product }) => {
 
   const isInCart = cart.find(({ id }) => id === product.id);
 
+  const buttonText = isInCart ? 'Remove from cart' : content;
+
   const toggleButton = () => {
     if (isInCart) {
       setCart(curCart => (
@@ -36,7 +38,7 @@ export const Button: React.FC<Props> = ({ content, product }) => {
       type="button"
       onClick={toggleButton}
     >
-      {isInCart ? 'Remove from cart' : content}
+      {buttonText}
     </button>
   );
 };
