@@ -10,7 +10,7 @@ import { App } from './App';
 
 import { HomePage } from './pages/HomePage/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { Catalog } from './pages/PhonesPage/Catalog';
+import { Catalog } from './pages/Catalog/Catalog';
 import { ItemCard } from './components/ItemCard';
 import { Cart } from './components/Cart/Cart';
 import { Favourites } from './components/Favourites/Favourites';
