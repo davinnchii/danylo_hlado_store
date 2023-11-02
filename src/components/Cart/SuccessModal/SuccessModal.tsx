@@ -3,7 +3,6 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import './SuccessModal.scss';
 import { ModalButton } from '../../ModalButton';
@@ -49,19 +48,19 @@ export const SuccessModal: React.FC<Props> = ({ open, setOpen }) => {
       >
         <Fade in={open}>
           <Box className="SuccessModal__box">
-            <Typography
+            <h1
               id="transition-modal-title"
               className="SuccessModal__title"
             >
               Success
-            </Typography>
+            </h1>
 
-            <Typography
+            <p
               id="transition-modal-description"
               className="SuccessModal__content"
             >
               Thank you for your purchase
-            </Typography>
+            </p>
           </Box>
         </Fade>
       </Modal>
