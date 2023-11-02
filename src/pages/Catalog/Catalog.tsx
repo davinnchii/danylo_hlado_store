@@ -52,6 +52,8 @@ export const Catalog: React.FC = () => {
         const min = Math.min(...prices);
         const max = Math.max(...prices);
 
+        searchParams.set('query', '');
+        setSearchParams(searchParams);
         setPriceRange([min, max]);
       });
   }, [category, query]);
@@ -154,7 +156,7 @@ export const Catalog: React.FC = () => {
           {hasCategoryProductsLoaded
             ? <Skeleton />
             : (
-              visibleProducts.length > 0 && (
+              categoryProducts.length > 0 && (
                 <SortSection
                   options={limitOptions}
                   value={limit}
@@ -168,7 +170,7 @@ export const Catalog: React.FC = () => {
         {hasCategoryProductsLoaded
           ? <Skeleton width={300} height={30} />
           : (
-            visibleProducts.length > 0 && (
+            categoryProducts.length > 0 && (
               <RangePrice priceRange={priceRange} />
             )
           )}
