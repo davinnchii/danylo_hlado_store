@@ -2,7 +2,7 @@
   margin-top: 50px;
   padding-top: 24px;
   height: 100vh;
-  background-color: #fff;
+  background-color: var(--pageBackgroundColor);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -58,7 +58,9 @@
   &--favourites,
   &--shopping-bag,
   &--moon,
-  &--sun {
+  &--sun,
+  &--sun-dark,
+  &--moon-dark {
     z-index: 999;
     display: block;
     width: 16px;
@@ -71,6 +73,13 @@
     background-image: url(../../assets/icons/favouritesh-heart-like.svg);
     transition: background-image 0.3s ease;
 
+    &-dark {
+      background-image: url(../../assets/icons-dark-mode/favourites-heart-like.svg);
+      transition: background-image 0.3s ease;
+      width: 16px;
+      height: 16px;
+    }
+
     &:hover {
       animation: icons-scale 1s infinite;
       background-image: url(../../assets/icons/favourites-filled-heart-like.svg);
@@ -80,6 +89,10 @@
   &--shopping-bag {
     background-image: url(../../assets/icons/shopping-bag-cart.svg);
     transition: transform 0.3s ease;
+
+    &-dark {
+      background-image: url(../../assets/icons-dark-mode/shopping-bag-Cart.svg);
+    }
 
     &:hover {
       animation: icons-shop 1s infinite alternate-reverse;

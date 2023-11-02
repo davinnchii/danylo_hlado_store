@@ -7,6 +7,7 @@ import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import './navigationMobile.scss';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { useTheme } from '../../context/ThemeContext';
 
 type Props = {
   onMenuOpen: (value: boolean) => void;
@@ -20,6 +21,8 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
   const params = new URLSearchParams(searchParams);
   const sort = params.get('sortBy') || sortDefault;
   const category = params.get('category') || '';
+
+  const { theme } = useTheme();
 
   const handleMenuItemClick = (selectedItems: string) => {
     params.set('category', selectedItems);
@@ -94,7 +97,11 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
           )}
           onClick={handleIconsClick}
         >
-          <i className="icon--favourites" />
+          <i
+            className={classnames('icon--favourites', {
+              'icon--favourites-dark': theme.theme === 'dark',
+            })}
+          />
         </Link>
 
         <Link
@@ -107,7 +114,11 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
             },
           )}
         >
-          <i className="icon--shopping-bag" />
+          <i
+            className={classnames('icon--shopping-bag', {
+              'icon--shopping-bag-dark': theme.theme === 'dark',
+            })}
+          />
         </Link>
       </div>
     </nav>

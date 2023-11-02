@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 import React from 'react';
+import classnames from 'classnames';
 
 import { SwiperCards } from '../SwiperCards';
 import { ProductType } from '../../types';
+import { useTheme } from '../../context/ThemeContext';
 import './productsCarousel.scss';
 
 type Props = {
@@ -13,6 +16,10 @@ export const ProductsCarousel: React.FC<Props> = ({
   title,
   visibleProducts,
 }) => {
+  const { theme } = useTheme();
+
+  console.log(theme);
+
   return (
     <section className="products-carousel">
       <div className="container">
@@ -25,12 +32,24 @@ export const ProductsCarousel: React.FC<Props> = ({
             <div className="products-carousel__arrows">
               <div className="products-carousel__arrows">
                 <button
-                  className="products-carousel__arrow-left arrow arrow-left"
+                  className={classnames(
+                    'products-carousel__arrow-left arrow',
+                    {
+                      'arrow-left': theme.theme === 'light',
+                      'arrow-left-dark': theme.theme === 'dark',
+                    },
+                  )}
                   type="button"
                   aria-label="arrow-left"
                 />
                 <button
-                  className="products-carousel__arrow-right arrow arrow-right"
+                  className={classnames(
+                    'products-carousel__arrow-right arrow',
+                    {
+                      'arrow-right': theme.theme === 'light',
+                      'arrow-right-dark': theme.theme === 'dark',
+                    },
+                  )}
                   type="button"
                   aria-label="arrow-right"
                 />
