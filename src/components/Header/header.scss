@@ -249,6 +249,14 @@
   }
 }
 
+@media (max-width: 1199px) {
+  .active-icon-link {
+    &::after {
+      width: 44px;
+    }
+  }
+}
+
 .is-search-bar-active {
   display: flex;
 }

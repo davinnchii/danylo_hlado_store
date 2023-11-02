@@ -52,13 +52,18 @@ $breadcrumbsNav: 48px;
     border-radius: 16px;
     margin-bottom: 16px;
 
-    &__icon {
+    &__icon,
+    &__icon-dark {
       height: 16px;
       width: 16px;
       cursor: pointer;
       border: none;
       background-image: url('../../assets/icons/close.svg');
       background-color: var(--pageBackgroundColor);
+
+      &-dark {
+        background-image: url('../../assets/icons-dark-mode/close.svg');
+      }
 
       &:hover {
         background-image: url('../../assets/icons/close-none-active.svg');
@@ -153,6 +158,10 @@ $breadcrumbsNav: 48px;
     &__icon-minus {
       background-image: url(../../assets/icons/Minus.svg);
 
+      &-dark {
+        background-image: url(../../assets/icons-dark-mode/minus.svg);
+      }
+
       &:disabled {
         background-image: url(../../assets/icons/Minus-none-active.svg);
       }
@@ -160,6 +169,10 @@ $breadcrumbsNav: 48px;
 
     &__icon-plus {
       background-image: url(../../assets/icons/Plus.svg);
+
+      &-dark {
+        background-image: url(../../assets/icons-dark-mode/plus.svg);
+      }
 
       &:disabled {
         background-image: url(../../assets/icons/Plus-none-active.svg);

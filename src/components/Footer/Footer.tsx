@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../assets/images/logo.png';
+import arrowUp from '../../assets/icons/arrow-up.svg';
+import arrowUpBlack from '../../assets/icons-dark-mode/arrow-up.svg';
+import { useTheme } from '../../context/ThemeContext';
 import './Footer.scss';
-import imgToTop from
-  '../../assets/icons/Slider button - Default (right).png';
 
 export const Footer = () => {
   const backToTop = () => {
@@ -13,6 +14,8 @@ export const Footer = () => {
       behavior: 'smooth',
     });
   };
+
+  const { theme } = useTheme();
 
   return (
     <footer className="footer">
@@ -65,7 +68,7 @@ export const Footer = () => {
           </i>
 
           <img
-            src={imgToTop}
+            src={theme.theme === 'light' ? arrowUpBlack : arrowUp}
             alt="BACK TO TOP"
             className="top-button__img"
           />

@@ -26,6 +26,7 @@ export const Header: React.FC = () => {
   const { theme, setTheme } = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [toggleTheme, setToggleTheme] = useState(false);
   const [selectActiveLink, setSelectActiveLink] = useState<string>('');
 
   const params = new URLSearchParams(searchParams);
@@ -38,11 +39,13 @@ export const Header: React.FC = () => {
   const logo = isDark ? logoDarkMode : logoLightMode;
 
   const handleSwitchTheme = () => {
-    const toggleTheme = isLight
+    const newTheme = isLight
       ? { theme: 'dark' }
       : { theme: 'light' };
 
-    setTheme(toggleTheme);
+    setTheme(newTheme);
+    setToggleTheme(prev => !prev);
+
   };
 
   useEffect(() => {
@@ -81,7 +84,7 @@ export const Header: React.FC = () => {
     if (pathname.slice(1) === 'favourites') {
       setSelectActiveLink('favourites');
     }
-  }, [location]);
+  }, [location, category]);
 
   return (
     <header className="header">
@@ -136,15 +139,13 @@ export const Header: React.FC = () => {
             {category && <SearchBar />}
 
             <div
-              className="icon icon--theme__link "
+              className="icon icon--theme__link"
               onClick={handleSwitchTheme}
             >
               <i
-                className={classnames({
-                  'icon--sun': true && isLight,
-                  'icon--sun-dark': true && isDark,
-                  'icon--moon': false && isLight,
-                  'icon--moon-dark': false && isDark,
+                className={classnames('', {
+                  'icon--sun-dark': !toggleTheme && isDark,
+                  'icon--moon': toggleTheme && isLight,
                 })}
               />
             </div>
