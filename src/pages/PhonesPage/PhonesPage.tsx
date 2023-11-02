@@ -9,6 +9,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import { SortSection } from '../../components/SortSection/SortSection';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { RangePrice } from '../../components/RangePrice';
 import { getSpecificSorting } from '../../api/products';
 import { ProductResponseType, ProductType } from '../../types';
 import { getSectionTitle } from '../../utils/getSectionTitle';
@@ -38,12 +39,27 @@ export const PhonesPage: React.FC = () => {
   const limit = searchParams.get('limit') || '16';
   const offset = searchParams.get('offset') || '0';
   const query = searchParams.get('query') || '';
+  const priceFrom = searchParams.get('priceFrom') || '';
+  const priceTo = searchParams.get('priceTo') || '';
+
+  const [priceRange, setPriceRange] = useState<number[]>([0, 0]);
+
+  useEffect(() => {
+    getSpecificSorting(category, sort, Number(limit), Number(offset), query, '', '')
+      .then((data: ProductResponseType) => {
+        const prices = [...data.rows.map(({ price }) => price)];
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+
+        setPriceRange([min, max]);
+      });
+  }, [category]);
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
     setIsError(false);
 
-    getSpecificSorting(category, sort, Number(limit), Number(offset), query)
+    getSpecificSorting(category, sort, Number(limit), Number(offset), query, priceFrom, priceTo)
       .then((data: ProductResponseType) => {
         setCategoryProducts(data.rows);
         totalProducts.current.value = data.count;
@@ -54,7 +70,7 @@ export const PhonesPage: React.FC = () => {
       .finally(() => {
         setHasCategoryProductsLoaded(false);
       });
-  }, [category, sort, limit, offset, updateRequest, query]);
+  }, [category, sort, limit, offset, updateRequest, query, priceFrom, priceTo]);
 
   const handleChangePage = useCallback((page: number) => {
     const params = new URLSearchParams(searchParams);
@@ -144,7 +160,12 @@ export const PhonesPage: React.FC = () => {
                 label="Items on page"
               />
             )}
+
         </article>
+
+        {hasCategoryProductsLoaded
+          ? <Skeleton width={300} height={30} />
+          : <RangePrice priceRange={priceRange} />}
 
         {hasCategoryProductsLoaded
           ? <CartsLoader />

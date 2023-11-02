@@ -57,31 +57,32 @@ export const Header: React.FC = () => {
         </Link>
 
         <nav className="header__menu">
-          <Fade direction="down" triggerOnce>
-
-            <Link
-              to="/"
-              className={classnames('header__menu-link', {
-                'active-menu-link': selectMenuActive === '',
-              })}
-              onClick={() => handleMenuItemClick('')}
-            >
+          <Link
+            to="/"
+            className={classnames('header__menu-link', {
+              'active-menu-link': selectMenuActive === '',
+            })}
+            onClick={() => handleMenuItemClick('')}
+          >
+            <Fade direction="down" triggerOnce>
               home
-            </Link>
+            </Fade>
+          </Link>
 
-            {Object.values(CategoryType).map(item => (
-              <Link
-                key={item}
-                to={normalizedMenuLink(item, limitDefault, offsetDefault, sort)}
-                className={classnames('header__menu-link', {
-                  'active-menu-link': selectMenuActive === item,
-                })}
-                onClick={() => handleMenuItemClick(item)}
-              >
+          {Object.values(CategoryType).map(item => (
+            <Link
+              key={item}
+              to={normalizedMenuLink(item, limitDefault, offsetDefault, sort)}
+              className={classnames('header__menu-link', {
+                'active-menu-link': selectMenuActive === item,
+              })}
+              onClick={() => handleMenuItemClick(item)}
+            >
+              <Fade direction="down" triggerOnce>
                 {item}
-              </Link>
-            ))}
-          </Fade>
+              </Fade>
+            </Link>
+          ))}
         </nav>
       </div>
 
@@ -90,10 +91,12 @@ export const Header: React.FC = () => {
           <div className="header__icons">
             {category && <SearchBar />}
 
-            <i
-              className={`icon icon--${!isMenuOpen ? 'menu' : 'close'}`}
-              onClick={() => setIsMenuOpen(prev => !prev)}
-            />
+            <div className="icon icon--menu__link">
+              <i
+                className={`icon--${!isMenuOpen ? 'menu' : 'close'}`}
+                onClick={() => setIsMenuOpen(prev => !prev)}
+              />
+            </div>
 
             <Link
               to="/favourites"
