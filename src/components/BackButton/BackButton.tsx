@@ -1,10 +1,13 @@
 import React from 'react';
 import './BackButton.scss';
 import { useNavigate } from 'react-router-dom';
-import rightArrow from '../../assets/icons/Chevron (Arrow Right).svg';
+import leftArrow from '../../assets/icons/arrow-left.svg';
+import leftArrowBlack from '../../assets/icons/arrow-left-black.svg';
+import { useTheme } from '../../context/ThemeContext';
 
 export const BackButton = () => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   return (
     <button
@@ -15,7 +18,7 @@ export const BackButton = () => {
     >
       <img
         className="Back-button__back-arrow"
-        src={rightArrow}
+        src={theme.theme === 'light' ? leftArrowBlack : leftArrow}
         alt="back icon"
       />
     </button>
