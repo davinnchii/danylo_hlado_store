@@ -1,5 +1,5 @@
-$headerHeight: 65px;
-$footerHeight: 65px;
+$headerHeight: 78px;
+$footerHeight: 78px;
 $imageHeight: 50vh;
 $backButtonHeight: 17px;
 $titleHeight: auto;
@@ -8,7 +8,7 @@ $buttonHeight: 48px;
 $breadcrumbsNav: 24px;
 
 .favourites {
-  min-height: calc(100vh - $headerHeight - $footerHeight - $breadcrumbsNav);
+  min-height: calc(100vh - $headerHeight - $footerHeight);
 
   &__items {
     font-family: 'Mont-Regular', serif;
@@ -36,12 +36,8 @@ $breadcrumbsNav: 24px;
 .button-home {
   margin: 0 auto;
   display: block;
-}
-
-.clean-place {
-  padding: 0;
-  margin: 0;
-  min-height: calc(100vh - $titleHeight - $buttonHeight - $imageHeight - $backButtonHeight - $footerHeight - $headerHeight - $paddingsImg - 10px);
+  width: 150px;
+  padding-top: 20px;
 }
 
 @media (min-width: 950px) and (max-width: 1199px) {

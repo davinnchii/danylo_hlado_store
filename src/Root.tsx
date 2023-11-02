@@ -14,6 +14,7 @@ import { PhonesPage } from './pages/PhonesPage/PhonesPage';
 import { ItemCard } from './components/ItemCard';
 import { Cart } from './components/Cart/Cart';
 import { Favourites } from './components/Favourites/Favourites';
+import { Contacts } from './pages/Contacts/Contacts';
 
 export const Root = () => {
   return (
@@ -33,6 +34,8 @@ export const Root = () => {
           <Route path="home" element={<Navigate to="/" replace />} />
 
           <Route path="*" element={<NotFoundPage />} />
+
+          <Route path="contacts" element={<Contacts />} />
         </Route>
       </Routes>
     </Router>
