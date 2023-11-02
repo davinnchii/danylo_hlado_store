@@ -26,7 +26,6 @@ export const Header: React.FC = () => {
   const { theme, setTheme } = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [toggleTheme, setToggleTheme] = useState(false);
   const [selectActiveLink, setSelectActiveLink] = useState<string>('');
 
   const params = new URLSearchParams(searchParams);
@@ -40,12 +39,10 @@ export const Header: React.FC = () => {
 
   const handleSwitchTheme = () => {
     const newTheme = isLight
-      ? { theme: 'dark' }
-      : { theme: 'light' };
+      ? 'dark'
+      : 'light';
 
-    setTheme(newTheme);
-    setToggleTheme(prev => !prev);
-
+    setTheme({ theme: newTheme, toggleTheme: !theme.toggleTheme });
   };
 
   useEffect(() => {
@@ -144,8 +141,8 @@ export const Header: React.FC = () => {
             >
               <i
                 className={classnames('', {
-                  'icon--sun-dark': !toggleTheme && isDark,
-                  'icon--moon': toggleTheme && isLight,
+                  'icon--sun-dark': !theme.toggleTheme && isDark,
+                  'icon--moon': theme.toggleTheme && isLight,
                 })}
               />
             </div>

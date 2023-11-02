@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
-type Theme = { theme: string };
-const initialTheme = { theme: 'light' };
+type Theme = { theme: string, toggleTheme: boolean };
+const initialTheme = { theme: 'light', toggleTheme: false };
 
 interface ThemeContextType {
   theme: Theme,
