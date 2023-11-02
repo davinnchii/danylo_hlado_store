@@ -18,7 +18,7 @@ export const Pagination: React.FC<Props> = ({
   const [searchParams] = useSearchParams();
   const limit = searchParams.get('limit') || '16';
   const pages: number[] = getPagesCount(1,
-    Math.floor(total / Number(limit)));
+    Math.ceil(total / Number(limit)));
 
   const isFirstPageActive = currentPage === 1;
   const isLastPageActive = currentPage === pages.length;
