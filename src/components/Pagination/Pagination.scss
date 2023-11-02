@@ -15,11 +15,11 @@
 
     width: 32px;
     height: 32px;
-    border: 1px solid #b4bdc3;
+    border: 1px solid var(--iconsPlaceholdersColor);
     border-radius: 48px;
     background-color: #ffffff;
 
-    color: #0F0F11;
+    color: var(--primaryColor);
     text-align: center;
     font-family: Mont-Regular, serif;
     font-size: 14px;
@@ -48,7 +48,7 @@
 }
 
 .is-active {
-  background-color: #0f0f11;
+  background-color: var(--primaryColor);
   color: #ffffff;
 }
 

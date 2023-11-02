@@ -35,9 +35,9 @@
       top: 0;
       width: 32px;
       height: 100%;
-      border: 1px solid #B4BDC3;
+      border: 1px solid var(--iconsPlaceholdersColor);
       border-radius: 48px;
-      background-color: #fff;
+      background-color: var(--pageBackgroundColor);
       background-repeat: no-repeat;
       background-position: center;
       cursor: pointer;
@@ -139,7 +139,7 @@
       width: 14px;
       height: 4px;
       margin: 10px 5px;
-      background-color: #E2E6E9;
+      background-color: var(--elementsColor);
       opacity: 1;
       cursor: pointer;
       transition: transform 0.3s ease-in-out;
@@ -149,7 +149,7 @@
       }
 
       &-active {
-        background-color: #0F0F11;
+        background-color: var(--primaryColor);
       }
     }
   }

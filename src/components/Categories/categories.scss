@@ -2,7 +2,7 @@
   margin-bottom: 80px;
 
   &__title {
-    color: #0F0F11;
+    color: var(--primaryColor);
     font-weight: 800;
     font-size: 32px;
     line-height: 41px;
@@ -43,7 +43,7 @@
 
     &-title {
       margin: 0;
-      color: #0F0F11;
+      color: var(--primaryColor);
       font-size: 20px;
       font-weight: 700;
       line-height: 25.56px;
@@ -51,7 +51,7 @@
     }
 
     &-description {
-      color: #89939A;
+      color: var(--secondaryColor);
       font-size: 14px;
       font-weight: 500;
       line-height: 21px;

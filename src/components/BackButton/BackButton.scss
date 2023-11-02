@@ -6,7 +6,7 @@
   &__back-link {
     display: inline-block;
 
-    font-family: 'Mont-SemiBold';
+    font-family: 'Mont-SemiBold', serif;
     color: #89939A;
     font-size: 12px;
     font-weight: 700;
@@ -21,7 +21,7 @@
     }
 
     &:hover {
-      color: #0F0F11;
+      color: var(--primaryColor);
     }
   }
 }

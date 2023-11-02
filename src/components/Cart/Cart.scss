@@ -48,7 +48,7 @@ $breadcrumbsNav: 48px;
     width: 752px;
     margin-right: 16px;
     padding: 24px 12px;
-    border: 1px solid #E2E6E9;
+    border: 1px solid var(--elementsColor);
     border-radius: 16px;
     margin-bottom: 16px;
 
@@ -123,7 +123,7 @@ $breadcrumbsNav: 48px;
       box-sizing: border-box;
       border-radius: 50%;
       padding: 8px;
-      border: 1px solid #B4BDC3;
+      border: 1px solid var(--iconsPlaceholdersColor);
       background: none;
       width: 32px;
       height: 32px;
@@ -136,13 +136,13 @@ $breadcrumbsNav: 48px;
       transition: all 0.5s;
 
       &:disabled {
-        border-color: #E2E6E9;
+        border-color: var(--elementsColor);
         pointer-events: none;
         cursor: not-allowed;
       }
 
       &:hover {
-        border-color: #0F0F11;
+        border-color: var(--primaryColor);
       }
     }
 
@@ -175,12 +175,12 @@ $breadcrumbsNav: 48px;
     height: 175px;
 
     padding: 24px;
-    border: 1px solid #E2E6E9;
+    border: 1px solid var(--elementsColor);
     border-radius: 16px;
 
     .totally {
       &__title {
-        color: #0F0F11;
+        color: var(--primaryColor);
         font-family: 'Mont-SemiBold', serif;
         font-size: 32px;
         font-style: normal;
@@ -197,11 +197,11 @@ $breadcrumbsNav: 48px;
         font-size: 14px;
         font-weight: 500;
         line-height: 21px;
-        border-bottom: 1px solid #E2E6E9;
+        border-bottom: 1px solid var(--elementsColor);
         text-align: center;
         width: 100%;
         padding: 0 24px 25px 24px;
-        color: #89939A;
+        color: var(--secondaryColor);
         font-family: Mont-Regular, serif;
         box-sizing: border-box;
       }
@@ -211,7 +211,7 @@ $breadcrumbsNav: 48px;
         border-radius: 8px;
         padding: 13.5px 125.5px;
         text-decoration: none;
-        background: #216CFF;
+        background: var(--accentColor);
         font-family: Mont-Regular, serif;
         color: #FFF;
         font-size: 14px;
@@ -265,7 +265,7 @@ $breadcrumbsNav: 48px;
 
       padding: 24px;
       margin: 32px 0 64px 0;
-      border: 1px solid #E2E6E9;
+      border: 1px solid var(--elementsColor);
       border-radius: 16px;
     }
   }
@@ -323,7 +323,7 @@ $breadcrumbsNav: 48px;
 
       padding: 24px 12px;
       margin: 32px 0 64px 0;
-      border: 1px solid #E2E6E9;
+      border: 1px solid var(--elementsColor);
       border-radius: 16px;
     }
   }

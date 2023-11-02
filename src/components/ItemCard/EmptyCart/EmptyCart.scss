@@ -6,7 +6,7 @@ $imageHeight: 50vh;
   min-height: calc(100vh - $headerHeight - $footerHeight);
 
   &__header {
-    color: #0F0F11;
+    color: var(--primaryColor);
     text-align: center;
 
     font-family: 'Mont-Bold';

@@ -12,13 +12,13 @@
 
   &__link-text {
     font-family: 'Mont-SemiBold', sans-serif;
-    color: #0f0f11;
+    color: var(--primaryColor);
     padding-top: 4px;
     font-weight: 700;
     font-size: 12px;
 
     &--last {
-      color: #89939a;
+      color: var(--secondaryColor);
       font-weight: 600;
     }
   }
