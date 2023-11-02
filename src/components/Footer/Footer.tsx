@@ -34,14 +34,14 @@ export const Footer = () => {
           github
         </a>
 
-        <a
-          href="/"
+        <Link
+          to="/contacts"
           className="footer__link"
           target="_blank"
           rel="noreferrer noopener"
         >
           contacts
-        </a>
+        </Link>
 
         <a
           href="https://savelife.in.ua/donate/#donate-army-card-monthly"

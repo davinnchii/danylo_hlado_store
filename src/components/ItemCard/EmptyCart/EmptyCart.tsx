@@ -9,10 +9,6 @@ export const EmptyCart = () => {
       <div className="wrapper">
         <section className="Empty-cart">
 
-          {/* <h1 className="Empty-cart__header">
-            Press the button to add item to cart
-          </h1> */}
-
           <img
             src={emptyCart}
             alt="your cart is empty"

@@ -1,8 +1,9 @@
-$headerHeight: 65px;
-$footerHeight: 65px;
+$headerHeight: 70px;
+$footerHeight: 70px;
 $imageHeight: 50vh;
 
 .Empty-cart {
+  padding-top: 10px;
   min-height: calc(100vh - $headerHeight - $footerHeight);
 
   &__header {
@@ -19,11 +20,12 @@ $imageHeight: 50vh;
   &__button-home {
     margin: 0 auto;
     display: block;
-    padding: 1px;
+    width: 150px;
   }
 }
 
 .img-cart {
+  padding-top: 20px;
   padding: 1px;
   margin: 0 auto;
   display: block;
