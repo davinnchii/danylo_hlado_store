@@ -54,7 +54,7 @@ export const Catalog: React.FC = () => {
 
         setPriceRange([min, max]);
       });
-  }, [category]);
+  }, [category, query]);
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
@@ -141,45 +141,54 @@ export const Catalog: React.FC = () => {
           {hasCategoryProductsLoaded
             ? <Skeleton />
             : (
-              <SortSection
-                value={sort}
-                onChange={handleChangeParams}
-                options={sortOptions}
-                label="Sort by"
-              />
+              categoryProducts.length > 0 && (
+                <SortSection
+                  value={sort}
+                  onChange={handleChangeParams}
+                  options={sortOptions}
+                  label="Sort by"
+                />
+              )
             )}
 
           {hasCategoryProductsLoaded
             ? <Skeleton />
             : (
-              <SortSection
-                options={limitOptions}
-                value={limit}
-                onChange={handleChangeParams}
-                label="Items on page"
-              />
+              visibleProducts.length > 0 && (
+                <SortSection
+                  options={limitOptions}
+                  value={limit}
+                  onChange={handleChangeParams}
+                  label="Items on page"
+                />
+              )
             )}
         </article>
 
         {hasCategoryProductsLoaded
           ? <Skeleton width={300} height={30} />
-          : <RangePrice priceRange={priceRange} />}
-
-        {hasCategoryProductsLoaded
-          ? <CartsLoader />
           : (
-            <section className="catalog">
-              {categoryProducts.map(product => (
-                <ProductCard product={product} key={product.id} />
-              ))}
-            </section>
+            visibleProducts.length > 0 && (
+              <RangePrice priceRange={priceRange} />
+            )
           )}
 
+        {hasCategoryProductsLoaded && <CartsLoader />}
+
+        {categoryProducts.length === 0 ? (
+          <h1>Nothing found</h1>
+        ) : (
+          <section className="catalog">
+            {categoryProducts.map(product => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </section>
+        )}
       </section>
 
       {hasCategoryProductsLoaded
         ? <ArrowsLoader />
-        : (
+        : categoryProducts.length > 0 && (
           <Pagination
             total={totalProducts.current.value}
             currentPage={Number(currentPage)}
