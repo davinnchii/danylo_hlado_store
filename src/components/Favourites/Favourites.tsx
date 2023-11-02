@@ -26,7 +26,7 @@ export const Favourites = () => {
       />
       {favourite.length ? (
         <>
-          <div className="favourites__title">Favourites</div>
+          <h1 className="favourites__title">Favourites</h1>
           <div className="favourites__items">
             {`${favourite.length} items`}
           </div>

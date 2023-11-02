@@ -10,7 +10,7 @@ export function useLocalStorageState<T>(key: string, initialValue: T) {
       return initialValue;
     }
 
-    if (!stored || !Array.isArray(JSON.parse(stored))) {
+    if (!stored) {
       return initialValue;
     }
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 type Theme = { theme: string };
-const initialTheme: Theme = { theme: 'dark' };
+const initialTheme = { theme: 'light' };
 
 interface ThemeContextType {
   theme: Theme,
@@ -25,9 +25,7 @@ export const ThemeContextProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={value}>
-      <div id={`is-${theme.theme}`}>
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   );
 };

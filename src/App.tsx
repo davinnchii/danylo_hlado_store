@@ -18,9 +18,11 @@ export const App = () => {
       baseColor={theme.theme === 'dark' ? '#45474B' : '#F1EFEF'}
       highlightColor="#7D7C7C"
     >
-      <Header />
-      <Outlet />
-      <Footer />
+      <div id={`is-${theme.theme}`}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
     </SkeletonTheme>
   );
 };

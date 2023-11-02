@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { favourite } = useFavourite();
   const { cart } = useCart();
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectActiveLink, setSelectActiveLink] = useState<string>('');
@@ -32,6 +32,24 @@ export const Header: React.FC = () => {
   const params = new URLSearchParams(searchParams);
   const category = params.get('category') || '';
   const sort = params.get('sortBy') || sortDefault;
+
+  const handleSwitchTheme = () => {
+    setTheme(theme.theme === 'light'
+      ? { theme: 'dark' }
+      : { theme: 'light' });
+  };
+
+  useEffect(() => {
+    const backgroundColor = theme.theme === 'light'
+      ? '#fafbfc'
+      : '#0f1121';
+
+    const page = document.getElementById('page');
+
+    if (page) {
+      page.style.backgroundColor = backgroundColor;
+    }
+  }, [theme.theme]);
 
   const handleMenuItemClick = (selectedItems: string) => {
     params.set('category', selectedItems);
@@ -113,9 +131,7 @@ export const Header: React.FC = () => {
 
             <div
               className="icon icon--theme__link "
-              onClick={() => {
-                // toggle theme here
-              }}
+              onClick={handleSwitchTheme}
             >
               <i
                 className={classnames({
@@ -162,7 +178,7 @@ export const Header: React.FC = () => {
               <CounterIcon
                 iconClassName={classnames('icon--shopping-bag', {
                   'icon--shopping-bag-dark':
-                  !isMenuOpen && theme.theme === 'dark',
+                    !isMenuOpen && theme.theme === 'dark',
                 })}
                 amount={cart.length}
               />
