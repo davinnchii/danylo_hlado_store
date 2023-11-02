@@ -147,6 +147,11 @@
     width: 16px;
     height: 16px;
   }
+
+  &--favourites__link-header,
+  &--shopping-bag__link-header {
+    position: relative;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -199,8 +204,19 @@
 
 .active-menu-link {
   font-weight: 800;
-  color: var(--primaryColor);
-  border-color: var(--primaryColor);
+  color: var(--primaryColor)!important;
+  border-color: var(--primaryColor)!important;
+}
+
+.active-icon-link {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    background-color: var(--primaryColor);
+    width: 64px;
+    height: 3px;
+  }
 }
 
 .is-search-bar-active {

@@ -1,20 +1,25 @@
-import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import classnames from 'classnames';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 import { CategoryType } from '../../types/CategoryType';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import './navigationMobile.scss';
+import { SearchBar } from '../SearchBar/SearchBar';
 
 type Props = {
   onMenuOpen: (value: boolean) => void;
 };
 
 export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
+  const location = useLocation();
   const [searchParams, setSeacrhParams] = useSearchParams();
+  const [selectActiveLink, setSelectActiveLink] = useState<string>('');
 
   const params = new URLSearchParams(searchParams);
   const sort = params.get('sortBy') || sortDefault;
+  const category = params.get('category') || '';
 
   const handleMenuItemClick = (selectedItems: string) => {
     params.set('category', selectedItems);
@@ -26,13 +31,35 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
     onMenuOpen(false);
   };
 
+  useEffect(() => {
+    const { pathname } = location;
+
+    if (pathname.slice(1) === '') {
+      setSelectActiveLink('');
+    }
+
+    if (pathname.slice(1) === 'products') {
+      setSelectActiveLink(category);
+    }
+
+    if (pathname.slice(1) === 'cart') {
+      setSelectActiveLink('cart');
+    }
+
+    if (pathname.slice(1) === 'favourites') {
+      setSelectActiveLink('favourites');
+    }
+  }, [location]);
+
   return (
     <nav className="navigation-mobile">
       <div className="navigation-mobile__menu">
         <Link
           to="/"
-          className="navigation-mobile__menu-link"
           onClick={() => handleMenuItemClick('')}
+          className={classnames('navigation-mobile__menu-link', {
+            'active-menu-link': selectActiveLink === '',
+          })}
         >
           home
         </Link>
@@ -41,7 +68,9 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
           <Link
             key={item}
             to={normalizedMenuLink(item, limitDefault, offsetDefault, sort)}
-            className="navigation-mobile__menu-link"
+            className={classnames('navigation-mobile__menu-link', {
+              'active-menu-link': selectActiveLink === item,
+            })}
             onClick={() => handleMenuItemClick(item)}
           >
             {item}
@@ -49,10 +78,20 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
         ))}
       </div>
 
+      <div className="icon icon--search__link-navigation-mobile">
+        {category && <SearchBar onMenuOpen={onMenuOpen} />}
+      </div>
+
       <div className="navigation-mobile__icons">
+
         <Link
           to="/favourites"
-          className="icon icon--favourites__link-navigation-mobile"
+          className={classnames(
+            'icon icon--favourites__link-navigation-mobile',
+            {
+              'active-icon-link-mobile': selectActiveLink === 'favourites',
+            },
+          )}
           onClick={handleIconsClick}
         >
           <i className="icon--favourites" />
@@ -60,8 +99,13 @@ export const NavigationMobile: React.FC<Props> = ({ onMenuOpen }) => {
 
         <Link
           to="/cart"
-          className="icon icon--shopping-bag__link-navigation-mobile"
           onClick={handleIconsClick}
+          className={classnames(
+            'icon icon--shopping-bag__link-navigation-mobile',
+            {
+              'active-icon-link-mobile': selectActiveLink === 'cart',
+            },
+          )}
         >
           <i className="icon--shopping-bag" />
         </Link>

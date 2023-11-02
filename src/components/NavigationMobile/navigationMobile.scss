@@ -22,6 +22,8 @@
       line-height: 27px;
       color: var(--secondaryColor);
       font-size: 12px;
+
+      border-bottom: 3px solid transparent;
     }
   }
 
@@ -38,10 +40,20 @@
 .icon {
   &--favourites__link-navigation-mobile,
   &--shopping-bag__link-navigation-mobile {
-  width: 50%;
-  height: 64px;
-  padding-bottom: 10px;
- }
+    width: 50%;
+    height: 64px;
+    padding-bottom: 10px;
+
+  }
+
+  &--search__link-navigation-mobile {
+    width: 100%;
+    margin-top: 100px;
+
+    &--mobile {
+      border: none;
+    }
+  }
 
   &--favourites,
   &--shopping-bag,
@@ -77,4 +89,31 @@
 
 html:has(.navigation-mobile) {
   overflow: hidden;
+}
+
+.is-icon-active {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: -24px;
+    background-color: #0F0F11;
+    width: 64px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 639px) {
+  .header__search-bar {
+    display: none;
+  }
+}
+
+.icon--search__link-navigation-mobile .header__search-bar {
+  display: flex;
+  border: 1px solid #E2E6E9;
+}
+
+.active-icon-link-mobile {
+  border-top: 3px solid #0F0F11;
 }

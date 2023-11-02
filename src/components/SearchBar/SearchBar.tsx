@@ -4,11 +4,15 @@ import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 
-export const SearchBar = () => {
+type Props = {
+  onMenuOpen?: (value: boolean) => void;
+};
+
+export const SearchBar: React.FC<Props> = ({ onMenuOpen }) => {
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
+  const [query, setQuery] = useState(params.get('query') || '');
 
   useEffect(() => {
     if (query === '') {
@@ -25,13 +29,17 @@ export const SearchBar = () => {
     if (event.key === 'Enter') {
       params.set('query', query.toLowerCase());
       setSearchParams(params);
+
+      if (onMenuOpen) {
+        onMenuOpen(false);
+      }
     }
   };
 
   return (
     <div className="header__search-bar">
       <div
-        className="icon"
+        className="icon icon--mobile"
         onClick={() => setIsSearchBarOpen(prev => !prev)}
       >
         <i
