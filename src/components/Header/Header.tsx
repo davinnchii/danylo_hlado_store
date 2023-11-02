@@ -141,8 +141,8 @@ export const Header: React.FC = () => {
             >
               <i
                 className={classnames('', {
-                  'icon--sun-dark': !theme.toggleTheme && isDark,
-                  'icon--moon': theme.toggleTheme && isLight,
+                  'icon--sun-dark': theme.toggleTheme && isDark,
+                  'icon--moon': !theme.toggleTheme && isLight,
                 })}
               />
             </div>
