@@ -40,10 +40,18 @@
 
   &-left {
     background-image: url(../../assets/icons/arrow-left-black.svg);
+
+    &-dark {
+      background-image: url(../../assets/icons/arrow-left.svg);
+    }
   }
 
   &-right {
     background-image: url(../../assets/icons/arrow-right-black.svg);
+
+    &-dark {
+      background-image: url(../../assets/icons/arrow-right.svg);
+    }
   }
 }
 

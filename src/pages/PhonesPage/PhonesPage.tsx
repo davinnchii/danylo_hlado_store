@@ -160,7 +160,6 @@ export const PhonesPage: React.FC = () => {
                 label="Items on page"
               />
             )}
-
         </article>
 
         {hasCategoryProductsLoaded

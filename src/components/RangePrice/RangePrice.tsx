@@ -42,7 +42,7 @@ export const RangePrice: React.FC<Props> = ({
 
   return (
     <section className="range__section">
-      <span>
+      <span className="range__price-number">
         {priceRange[0]}
       </span>
 
@@ -60,7 +60,7 @@ export const RangePrice: React.FC<Props> = ({
         />
       </Box>
 
-      <span>
+      <span className="range__price-number">
         {priceRange[1]}
       </span>
     </section>

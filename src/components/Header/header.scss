@@ -73,6 +73,7 @@
       background: transparent;
       margin-left: 10px;
       font-family: 'Mont-Regular', sans-serif;
+      color: var(--primaryColor);
     }
   }
 }
@@ -93,8 +94,10 @@
 
   &--search {
     background-image: url(../../assets/icons/Search.svg);
-    width: 16px;
-    height: 16px;
+
+    &-dark {
+      background-image: url(../../assets/icons-dark-mode/search.svg);
+    }
   }
 
   &:hover {
@@ -111,12 +114,14 @@
       animation: icons-shop 1s infinite alternate-reverse;
     }
 
-    .icon--moon {
+    .icon--moon,
+    .icon--moon-dark {
       animation: icons-search 3s infinite;
       background-image: url(../../assets/icons/moon-active.svg);
     }
 
-    .icon--sun {
+    .icon--sun,
+    .icon--sun-dark {
       animation: icons-theme-circle 1s infinite;
       background-image: url(../../assets/icons/sun-active.svg);
     }
@@ -126,26 +131,51 @@
     background-image: url(../../assets/icons/close.svg);
     width: 16px;
     height: 16px;
+
+    &-dark {
+      background-image: url(../../assets/icons-dark-mode/close.svg);
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &--moon,
+  &--sun,
+  &--moon-dark,
+  &--sun-dark,
+  &--menu,
+  &--menu-dark,
+  &--search,
+  &--search-dark {
+    width: 16px;
+    height: 16px;
   }
 
   &--menu {
     background-image: url(../../assets/icons/menu.svg);
-    width: 16px;
-    height: 16px;
+
+    &-dark {
+      background-image: url(../../assets/icons-dark-mode/menu.svg);
+    }
   }
 
   &--sun {
     transition: background-image 1s ease;
     background-image: url(../../assets/icons/sun.svg);
-    width: 16px;
-    height: 16px;
+
+    &-dark {
+      transition: background-image 1s ease;
+      background-image: url(../../assets/icons-dark-mode/sun.svg);
+    }
   }
 
   &--moon {
     transition: background-image 1s ease;
     background-image: url(../../assets/icons/moon.svg);
-    width: 16px;
-    height: 16px;
+
+    &-dark {
+      background-image: url(../../assets/icons-dark-mode/moon.svg);
+    }
   }
 
   &--favourites__link-header,

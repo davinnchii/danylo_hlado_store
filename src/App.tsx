@@ -8,10 +8,16 @@ import './variables.css';
 
 import { Header } from './components/Header';
 import { Footer } from './components/Footer/Footer';
+import { useTheme } from './context/ThemeContext';
 
 export const App = () => {
+  const { theme } = useTheme();
+
   return (
-    <SkeletonTheme baseColor="#F1EFEF" highlightColor="#7D7C7C">
+    <SkeletonTheme
+      baseColor={theme.theme === 'dark' ? '#45474B' : '#F1EFEF'}
+      highlightColor="#7D7C7C"
+    >
       <Header />
       <Outlet />
       <Footer />

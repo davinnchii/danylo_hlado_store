@@ -18,7 +18,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <section className="card">
-      <Link to={`/products/${product.itemId}`} onClick={handleScroll}>
+      <Link
+        to={`/products/${product.itemId}`}
+        onClick={handleScroll}
+        className="card__link"
+      >
         <span className="card__image-block">
           <img
             src={getImageUrl(product.image)}

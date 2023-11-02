@@ -13,6 +13,8 @@ import bannerWatchMobile from '../../assets/images/banner-watch-mobile.png';
 import bannerIpadMobile from '../../assets/images/banner-ipad-mobile.png';
 
 import arrowLeftBlack from '../../assets/icons/arrow-left-black.svg';
+import arrowLeft from '../../assets/icons/arrow-left.svg';
+import arrowRight from '../../assets/icons/arrow-right.svg';
 import arrowRightBlack from '../../assets/icons/arrow-right-black.svg';
 
 import 'swiper/css';
@@ -21,6 +23,7 @@ import 'swiper/css/pagination';
 import './swiperMain.scss';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
+import { useTheme } from '../../context/ThemeContext';
 
 const banners = [
   {
@@ -44,6 +47,8 @@ export const SwiperMain = () => {
   const [searchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const sort = params.get('sortBy') || sortDefault;
+
+  const { theme } = useTheme();
 
   return (
     <Swiper
@@ -78,7 +83,7 @@ export const SwiperMain = () => {
               type="button"
               aria-label="arrow-left"
             >
-              <img src={arrowLeftBlack} alt="arrow_left_black" />
+              <img src={theme.theme !== 'light' ? arrowLeft : arrowLeftBlack} alt="arrow_left_black" />
             </button>
 
             <button
@@ -86,7 +91,7 @@ export const SwiperMain = () => {
               type="button"
               aria-label="arrow-right"
             >
-              <img src={arrowRightBlack} alt="arrow_right_black" />
+              <img src={theme.theme !== 'light' ? arrowRight : arrowRightBlack} alt="arrow_right_black" />
             </button>
           </div>
 

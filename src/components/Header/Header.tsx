@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
@@ -6,8 +5,8 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import classnames from 'classnames';
 import { Fade } from 'react-awesome-reveal';
 
-import logo from '../../assets/images/logo.png';
-import logoBlack from '../../assets/images/logo-black.png';
+import logoDarkMode from '../../assets/images/logo-dark-mode.png';
+import logoLightMode from '../../assets/images/logo-black.png';
 import './header.scss';
 import { limitDefault, offsetDefault, sortDefault } from '../../utils/constant';
 import { normalizedMenuLink } from '../../utils/getNormalizedMenuLink';
@@ -17,6 +16,7 @@ import { SearchBar } from '../SearchBar/SearchBar';
 import { useFavourite } from '../../context/FavouriteContext';
 import { useCart } from '../../context/CartContext';
 import { CounterIcon } from '../CounterIcon/CounterIcon';
+import { useTheme } from '../../context/ThemeContext';
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -24,9 +24,9 @@ export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { favourite } = useFavourite();
   const { cart } = useCart();
+  const { theme } = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [themeToggle, setThemeToggle] = useState(false);
   const [selectActiveLink, setSelectActiveLink] = useState<string>('');
 
   const params = new URLSearchParams(searchParams);
@@ -70,7 +70,7 @@ export const Header: React.FC = () => {
           <Fade direction="left" triggerOnce>
             <img
               className="header__logo-img"
-              src={isMenuOpen ? logo : logoBlack}
+              src={theme.theme === 'dark' ? logoDarkMode : logoLightMode}
               alt="logo"
             />
           </Fade>
@@ -113,16 +113,28 @@ export const Header: React.FC = () => {
 
             <div
               className="icon icon--theme__link "
-              onClick={() => setThemeToggle(prev => !prev)}
+              onClick={() => {
+                // toggle theme here
+              }}
             >
               <i
-                className={`icon--${themeToggle ? 'moon' : 'sun'}`}
+                className={classnames({
+                  'icon--sun': true && theme.theme === 'light',
+                  'icon--sun-dark': true && theme.theme === 'dark',
+                  'icon--moon': false && theme.theme === 'light',
+                  'icon--moon-dark': false && theme.theme === 'dark',
+                })}
               />
             </div>
 
             <div className="icon icon--menu__link">
               <i
-                className={`icon--${!isMenuOpen ? 'menu' : 'close'}`}
+                className={classnames('', {
+                  'icon--menu': !isMenuOpen && theme.theme === 'light',
+                  'icon--close': isMenuOpen && theme.theme === 'light',
+                  'icon--menu-dark': !isMenuOpen && theme.theme === 'dark',
+                  'icon--close-dark': isMenuOpen && theme.theme === 'dark',
+                })}
                 onClick={() => setIsMenuOpen(prev => !prev)}
               />
             </div>
@@ -134,7 +146,9 @@ export const Header: React.FC = () => {
               })}
             >
               <CounterIcon
-                iconClassName="icon--favourites"
+                iconClassName={classnames('icon--favourites', {
+                  'icon--favourites-dark': theme.theme === 'dark',
+                })}
                 amount={favourite.length}
               />
             </Link>
@@ -146,7 +160,10 @@ export const Header: React.FC = () => {
               })}
             >
               <CounterIcon
-                iconClassName="icon--shopping-bag"
+                iconClassName={classnames('icon--shopping-bag', {
+                  'icon--shopping-bag-dark':
+                  !isMenuOpen && theme.theme === 'dark',
+                })}
                 amount={cart.length}
               />
             </Link>

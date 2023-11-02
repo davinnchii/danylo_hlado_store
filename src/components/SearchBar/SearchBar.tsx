@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 
 type Props = {
   onMenuOpen?: (value: boolean) => void;
@@ -13,6 +14,7 @@ export const SearchBar: React.FC<Props> = ({ onMenuOpen }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const [query, setQuery] = useState(params.get('query') || '');
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (query === '') {
@@ -43,7 +45,10 @@ export const SearchBar: React.FC<Props> = ({ onMenuOpen }) => {
         onClick={() => setIsSearchBarOpen(prev => !prev)}
       >
         <i
-          className="icon--search"
+          className={classnames('', {
+            'icon--search': theme.theme === 'light',
+            'icon--search-dark': theme.theme === 'dark',
+          })}
         />
       </div>
 
