@@ -27,12 +27,18 @@ export const getRecommendedProducts = (id: string) => {
   return client.get<ProductType[]>(`/${BASE_PARAMETER}/${id}/recommended`);
 };
 
+export const getCategoryCount = () => {
+  return client.get<{ [key: string]: number }>(`/${BASE_PARAMETER}/count`);
+};
+
 export const getSpecificSorting = (
   category: string,
   sortField: string,
   limit?: number,
   offset?: number,
   query?: string,
+  priceFrom?: string,
+  priceTo?: string,
 ) => {
   const queryParams = [];
 
@@ -54,6 +60,14 @@ export const getSpecificSorting = (
 
   if (query) {
     queryParams.push(`query=${query}`);
+  }
+
+  if (priceFrom) {
+    queryParams.push(`priceFrom=${priceFrom}`);
+  }
+
+  if (priceTo) {
+    queryParams.push(`priceTo=${priceTo}`);
   }
 
   return client.get<ProductResponseType>(

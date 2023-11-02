@@ -8,18 +8,21 @@ export const categories = [
     title: 'Mobile phones',
     description: '95 models',
     imgSrc: mobilePhones,
+    count: 'phonesCount',
   },
   {
     id: 'tablets',
     title: 'Tablets',
     description: '24 models',
     imgSrc: tablets,
+    count: 'tabletsCount',
   },
   {
     id: 'accessories',
     title: 'Accessories',
     description: '100 models',
     imgSrc: accessories,
+    count: 'accessoriesCount',
   },
 ];
 
