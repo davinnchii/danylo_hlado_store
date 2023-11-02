@@ -34,6 +34,7 @@ export const getCategoryCount = () => {
 export const getSpecificSorting = (
   category: string,
   sortField: string,
+  page: string,
   limit?: number,
   offset?: number,
   query?: string,
@@ -68,6 +69,10 @@ export const getSpecificSorting = (
 
   if (priceTo) {
     queryParams.push(`priceTo=${priceTo}`);
+  }
+
+  if (page) {
+    queryParams.push(`page=${page}`);
   }
 
   return client.get<ProductResponseType>(
