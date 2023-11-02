@@ -44,7 +44,9 @@
  }
 
   &--favourites,
-  &--shopping-bag {
+  &--shopping-bag,
+  &--moon,
+  &--sun {
     z-index: 999;
     display: block;
     width: 16px;

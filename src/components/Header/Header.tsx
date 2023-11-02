@@ -23,6 +23,7 @@ export const Header: React.FC = () => {
   const { cart } = useCart();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [themeToggle, setThemeToggle] = useState(false);
   const [selectMenuActive, setSelectMenuActive] = useState<string>('');
 
   const params = new URLSearchParams(searchParams);
@@ -90,6 +91,15 @@ export const Header: React.FC = () => {
         <Fade direction="right" triggerOnce>
           <div className="header__icons">
             {category && <SearchBar />}
+
+            <div
+              className="icon icon--theme__link"
+              onClick={() => setThemeToggle(prev => !prev)}
+            >
+              <i
+                className={`icon--${themeToggle ? 'moon' : 'sun'}`}
+              />
+            </div>
 
             <div className="icon icon--menu__link">
               <i
