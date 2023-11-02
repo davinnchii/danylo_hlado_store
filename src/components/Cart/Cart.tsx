@@ -59,7 +59,7 @@ export const Cart: React.FC = () => {
           <section className="basket">
             <div className="basket__top-bar">
               <BackButton />
-              <div className="basket__title">Cart</div>
+              <h1 className="basket__title">Cart</h1>
             </div>
             <div className="basket__cards">
               {cart.map(product => {

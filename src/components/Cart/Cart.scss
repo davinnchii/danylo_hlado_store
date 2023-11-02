@@ -58,6 +58,7 @@ $breadcrumbsNav: 48px;
       cursor: pointer;
       border: none;
       background-image: url('../../assets/icons/close.svg');
+      background-color: var(--pageBackgroundColor);
 
       &:hover {
         background-image: url('../../assets/icons/close-none-active.svg');
@@ -88,6 +89,7 @@ $breadcrumbsNav: 48px;
       font-weight: 600;
       line-height: 21px;
       width: 336px;
+      color: var(--primaryColor);
     }
 
     &__count {
@@ -102,6 +104,7 @@ $breadcrumbsNav: 48px;
       align-items: center;
       justify-content: space-between;
       width: 96px;
+      color: var(--primaryColor);
     }
 
     &__sum {
@@ -112,6 +115,7 @@ $breadcrumbsNav: 48px;
       font-size: 22px;
       font-style: normal;
       font-weight: 800;
+      color: var(--primaryColor);
 
       &::before {
         content: '$';
