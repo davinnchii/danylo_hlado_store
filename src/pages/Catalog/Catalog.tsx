@@ -56,7 +56,7 @@ export const Catalog: React.FC = () => {
         setSearchParams(searchParams);
         setPriceRange([min, max]);
       });
-  }, [category, query]);
+  }, [category]);
 
   useEffect(() => {
     setHasCategoryProductsLoaded(true);
