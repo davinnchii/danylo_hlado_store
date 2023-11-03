@@ -181,8 +181,7 @@ export const Header: React.FC = () => {
             >
               <CounterIcon
                 iconClassName={classnames('icon--shopping-bag', {
-                  'icon--shopping-bag-dark':
-                    !isMenuOpen && isDark,
+                  'icon--shopping-bag-dark': isDark,
                 })}
                 amount={cart.length}
               />
