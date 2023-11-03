@@ -133,10 +133,10 @@
     &__capacity {
       width: 56px;
       height: 32px;
-      color: #000;
+      color: var(--primaryColor);
       border-radius: 4px;
       border: solid 1px var(--elementsColor);
-      background-color: #FFF;
+      background-color: var(--pageBackgroundColor);
       transition: color 2s;
       transition: background-color 2s;
 
@@ -146,7 +146,7 @@
     }
 
     &__capacity-selected {
-      color: #FFF;
+      color: var(--pageBackgroundColor);
       background-color: var(--primaryColor);
       border-color: var(--primaryColor);
     }
